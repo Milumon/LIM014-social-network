@@ -22,6 +22,7 @@ más comentado.
 
 ## 2. Resumen del proyecto
  
+**Find my Paw** es una red social orientada a usuarios interesados por el bienestar y protección de los animales, en la que se podrá compartir, comentar y visualizar post's relacionados a la situación en la que los animales se encuentran, tales como animales abandonados, en peligro (contrabando, salud), cuidados, etc.
 
 ## 3. Objetivos de aprendizaje
 
