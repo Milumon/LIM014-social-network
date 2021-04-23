@@ -12,11 +12,7 @@
 * [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
 
 ## 1. Preámbulo
-
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
-vivir sin ellas.
-
+  
 Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
 en una ronda de financiamiento con inversionistas, se presentó una red social
 para químicos en la que los usuarios podían publicar artículos sobre sus
@@ -25,15 +21,7 @@ de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
 más comentado.
 
 ## 2. Resumen del proyecto
-
-En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
-Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
-salud, energías renovables, amantes de las [Empanadas](https://es.wikipedia.org/wiki/Empanada)
-o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco), de la
-[Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
-
-Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de
-acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
+ 
 
 ## 3. Objetivos de aprendizaje
 
@@ -41,243 +29,448 @@ El objetivo principal de aprendizaje de este proyecto es construir una
 [Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
 [_responsive_](../../topics/css/02-responsive) (con más de una vista / página)
 en la que podamos **leer y escribir datos.**
-
-### HTML y CSS
-
-* [ ] [Uso de HTML semántico.](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
-* [ ] Uso de selectores de CSS.
-* [ ] [Uso de flexbox en CSS.](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-* [ ] [Uso de CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
-
-A continuación te proporcionamos el layout (diseño) de la vista mobile y desktop que deberás replicar visualmente y cuyo contenido, colores y fuentes de texto, dejaremos a tu elección.
-
-* Vista mobile
-
-    ![mobile](https://user-images.githubusercontent.com/32286663/56174616-ec9f6100-5fb8-11e9-9edb-d5ef7c251d9c.png)
-
-* Vista Desktop
-
-    ![desktop](https://user-images.githubusercontent.com/32286663/56174626-fcb74080-5fb8-11e9-8854-26e8d9c4e25f.png)
-
-### DOM y Web APIs
-
-* [ ] Uso de selectores del DOM.
-* [ ] Manejo de eventos del DOM (addEventListener, removeEventListener,
-Event objeto, delegación de eventos)
-* [ ] [Manipulación dinámica del DOM](
-  https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n)
-(appendChild | createElement | createTextNode | innerHTML | textContent | etc.)
-* [ ] Implementación de routing ([History API.](
-  https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador
-  ) | `hashchange`)
-
-### JavaScript
-
-* [ ] Uso de condicionales (if-else | switch | operador ternario)
-* [ ] Uso de funciones (parámetros | argumentos | valor de retorno)
-* [ ] Manipular arrays (filter | map | sort | reduce)
-* [ ] Manipular objects (key | value)
-* [ ] Uso ES modules ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-| [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
-* [ ] Diferenciar entre expression y statements.
-* [ ] Diferenciar entre tipos de datos atómicos y estructurados.
-* [ ] [Uso de callbacks.](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
-* [ ] [Consumo de Promesas.](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
-
-### Testing
-
-* [ ] [Testeo unitario.](https://jestjs.io/docs/es-ES/getting-started)
-* [ ] [Testeo asíncrono.](https://jestjs.io/docs/es-ES/asynchronous)
-* [ ] [Uso de librerias de Mock.](https://jestjs.io/docs/es-ES/manual-mocks)
-
-### Estructura del código y guía de estilo
-
-* [ ] Organizar y dividir el código en módulos (Modularización)
-* [ ] Uso de identificadores descriptivos (Nomenclatura | Semántica)
-* [ ] Uso de linter (ESLINT)
-
-### Git y Github
-
-* [ ] Uso de comandos de git (add | commit | pull | status | push)
-* [ ] Manejo de repositorios de GitHub (clone | fork | gh-pages)
-* [ ] Colaboración en Github (branches | pull requests | |tags)
-* [ ] Organización en Github (projects | issues | labels | milestones)
-
-### Firebase
-
-* [ ] [Firestore.](https://firebase.google.com/docs/firestore)
-* [ ] [Firebase Auth.](https://firebase.google.com/docs/auth/web/start)
-* [ ] [Firebase security rules.](https://firebase.google.com/docs/rules)
-* [ ] Observadores. ([onAuthStateChanged](https://firebase.google.com/docs/auth/web/manage-users?hl=es#get_the_currently_signed-in_user)
- | [onSnapshot](https://firebase.google.com/docs/firestore/query-data/listen#listen_to_multiple_documents_in_a_collection))
-
-### UX
-
-* [ ] Diseñar la aplicación pensando y entendiendo al usuario.
-* [ ] Crear prototipos para obtener feedback e iterar.
-* [ ] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)
-* [ ] Planear y ejecutar tests de usabilidad.
-
-## 4. Consideraciones generales
-
-* Este proyecto se debe trabajar en equipos de tres.
-
-* La lógica del proyecto debe estar implementada completamente en JavaScript
-  (ES6+), HTML y CSS :smiley:. Para este proyecto **no está permitido** utilizar
-  _frameworks_ o librerías de CSS y JS.
-
-* La división y organización del trabajo debe permitir, sin excepciones, que
-  **cada integrante** del equipo practique el aprendizaje de todo lo involucrado
-  en **cada historia**. _No se dividan el trabajo como en una fábrica._
-  - ¿Hasta acá has avanzado en tus proyectos con cierta fluidez y sin mayores
-    problemas? Sé generosa con tus compañeras, permíteles aprender y practicar
-    sin restricciones, aunque tome un poco más de tiempo. Aproveha de
-    _coachearlas_, de hacer _pair programming_, una de las mejores maneras de
-    aprender es explicando verbalmente.
-
-  - ¿Se te está haciendo difícil y te cuesta un poco más avanzar? No te quedes
-    con las partes "fáciles" del proyecto, conversa, negocia, exige tu oportunidad
-    para practicar y aprender lo que se te hace más difícil.
-
-* Solamente pueden trabajar en una única historia por vez, no pueden avanzar a
-  la siguiente sin haber completado la anterior. La historia se completa cuando
-  se cumplen **todos** sus Criterios de Aceptación + **toda** su Definición
-  de Terminado.
-
-Para comenzar tendrás que hacer un _fork_ y _clonar_ este repositorio.
-
-## 5. Criterios de aceptación mínimos del proyecto
-
-### 5.1 Boilerplate
-
-Este proyecto no incluye un _boilerplate_, así es que tendrás que definir la
-estructura de carpetas y escribir tus propias Pruebas Unitarias (_tests_). Para
-hacerlo, puedes guiarte de los proyectos anteriores.
-
-### 5.2 Definición del producto
-
-En el `README.md` cuéntanos brevemente cómo descubriste las necesidades de los
-usuarios y cómo llegaste a la definición final de tu producto. Es importante
-que detalles:
-
-* Quiénes son los principales usuarios de producto.
-* Qué problema resuelve el producto / para qué le servirá a estos usuarios.
-
+    
 ### 5.3 Historias de usuario
 
-Una vez que entiendas las necesidades de tus usuarixs, escribe las Historias de
-Usuario que representen todo lo que necesitan hacer/ver en la Red Social. Cada
-una de tus Historias de Usuario debe tener:
+<!-- Output copied to clipboard! -->
 
-* **Criterios de Aceptación:** todo lo que debe ocurrir para satisfacer las
-  necesidades del usuario.
 
-* **Definición de terminado:** todos los aspectos técnicos que deben cumplirse
-  para que, como equipo, sepan que esa historia está terminada y lista
-  para publicarse. **Todas** tus Historias de Usuario (salvo excepciones), deben
-  incluir estos aspectos en su Definición de Terminado (más todo lo que
-  necesiten agregar):
 
-  - Debe ser una SPA.
-  - Debe ser _responsive_.
-  - Deben haber recibido _code review_ de al menos una compañera de otro equipo.
-  - Hicieron los _test_ unitarios
-  - Testearon manualmente buscando errores e imperfecciones simples.
-  - Hicieron _pruebas_ de usabilidad e incorporaron el _feedback_ de los
-    usuarios como mejoras.
-  - Desplegaron su aplicación y etiquetaron la versión (git tag).
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>001
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Crear cuenta
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario nuevo <strong>Quiero </strong>poder crear una cuenta con nombre de usuario,  email y password <strong>para </strong>poder ingresar a la red social
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que</em></strong> el usuario quiere crearse una cuenta <strong><em>cuando </em></strong>esté interesado en compartir información en la red social, y conocer sus beneficios<em> <strong>entonces </strong></em>se creará un apartado que permita al usuario llenar sus datos de username, email, password o registrarse con su cuenta gmail. Y luego estos datos serán guardados.
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario ingresa satisfactoriamente sus datos de registro, el cual se usará para el ingreso al timeline del website.
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>002
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Login
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario registrado <strong>quiero </strong>poder ingresar con mi cuenta gmail o nombre de usuario y password <strong>para </strong>entrar al timeline del website
+<p>
+Definición de Terminado
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que </em></strong>el usuario <strong>quiere </strong>ingresar a la cuenta con sus datos <strong><em>cuando</em> </strong>esté interesado en compartir o visualizar información en la red social <strong><em>entonces</em></strong> se creará un apartado que permita al usuario llenar sus datos de username, password o ingresar con su cuenta gmail. Y luego estos datos serán validados.
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario ingresa satisfactoriamente sus datos de login, el cual se usará para el ingreso al timeline del website.
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>003
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Diseño Responsive
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario que uso frecuentemente el celular <strong>quiero </strong>poder manejar de manera sencilla el producto. (Responsive) <strong>para </strong>que pueda usar las herramientas del website de manera eficiente<strong> </strong>
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que e</em></strong>l  usuario usa frecuentemente su dispositivo móvil<strong><em> cuando </em></strong>está interesado en compartir, visualizar, manipular información en la red social <strong><em>entonces</em></strong> se desarrollará el producto con la técnica mobile first (Responsive)
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario manipula de manera eficiente los elementos del website desde su dispositivo móvil
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>004
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Entorno SPA
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario que frecuentemente usa la red social "FindMyPaw" <strong>quiero</strong> obtener los resultados de manera óptima (SPA) <strong>para </strong>reducir el tiempo de espera de las páginas.
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que e</em></strong>l  usuario usa frecuentemente la red social <strong><em>cuando e</em></strong>stá interesado en compartir, visualizar, manipular información de manera rápida en la red social <strong><em>entonces s</em></strong>e construirá una Single-Page Application 
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario puede manipular de manera óptima través de las diferentes páginas del SPA
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>005
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Diseño Responsive
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como</strong> usuario registrado <strong>quiero</strong> pueda acceder al contenido de la red social <strong>para</strong> interactuar con las herramientas del producto 
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que e</em></strong>l  usuario registrado quiere interactuar con el contenido del timeline <strong><em>cuando e</em></strong>stá interesado en compartir, visualizar, manipular información de la red social <strong><em>entonces s</em></strong>e creará el apartado de timeline, que tendrá interacción con los usuarios
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario puede entrar al timeline y obtener información compartida por los usuarios.
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>006
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Crear publicación
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario registrado <strong>quiero</strong> compartir el estado de un animal mediante imagen o redacción <strong>para </strong>que pueda acceder al apartado de compartir y crear post
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que e</em></strong>l usuario registrado quiere compartir información<em> <strong>cuando</strong> t</em>enga la oportunidad de encontrar animales que necesitan ayuda <strong>e<em>ntonces</em> </strong>se desarrollará el apartado de “crear post”
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario es capaz de crear un post con la información que desea compartir.
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>007
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Consultar likes
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario autor <strong>quiero</strong> poder visualizar la cantidad de likes <strong>para </strong>obtener el conteo de interacción de los usuarios
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que e</em></strong>l  usuario registrado quiere visualizar los likes <strong>c<em>uando l</em></strong>os usuarios interactúan con el post <strong><em>entonces </em></strong>se desarrollará una función de conteo de likes
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario es capaz de visualizar el conteo de likes de su post.
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>008
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Eliminar publicación
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario autor <strong>quiero</strong> poder eliminar y confirmar la eliminación de un post <strong>para</strong> quitar información que haya publicado en el timeline
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que e</em></strong>l  usuario quiere eliminar su post <strong><em>cuando </em></strong>quiera retirar la información ingresada <strong><em>entonces </em></strong>se desarrollará un apartado de “eliminar post” en la parte superior del post (tres puntos) y un modal para confirmar la eliminación.
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario es capaz de eliminar su post, con una confirmación previa
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>009
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Editar publicación
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario autor <strong>quiero</strong> poder editar y guardar el post editado para corregir o incorporar nueva información 
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que </em></strong>el  usuario quiere editar su post <strong>c<em>uando </em></strong>quiera corregir alguna información <strong>e<em>ntonces s</em></strong>e desarrollará un apartado de “editar post” en la parte superior del post (tres puntos).
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario es capaz de editar de manera eficiente su post publicado.
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>010
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Visualizar publicación
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario autor quiero: poder visualizar mi post  despues de publicarlo <strong>para</strong> corregir o incorporar nueva información
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que </em></strong>el  usuario quiere poder visualizar su post <strong>c<em>uando </em></strong>termine de publicarlo <strong>e<em>ntonces s</em></strong>e recargará la página después de enviar el post para poder visualizarlo y poder editarlo.
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario es capaz de visualizar de manera eficiente su post publicado.
+   </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+   <td colspan="2" >HISTORIA DE USUARIO
+   </td>
+  </tr>
+  <tr>
+   <td>COD:
+   </td>
+   <td>011
+   </td>
+  </tr>
+  <tr>
+   <td>NOMBRE:
+   </td>
+   <td>Editar publicación
+   </td>
+  </tr>
+  <tr>
+   <td>DESCRIPCIÓN: 
+   </td>
+   <td><strong>Como </strong>usuario que interactúa con el contenido del website interesado en alguna publicación <strong>quiero </strong>poder dar likes y quitarlos <strong>cuando </strong>lo desee
+   </td>
+  </tr>
+  <tr>
+   <td>ACEPTACIÓN:
+   </td>
+   <td><strong><em>Dado que e</em></strong>l usuario quiere interactuar dando likes <strong>c<em>uando </em></strong>esté interesado o le guste alguna publicación <strong>e<em>ntonces s</em></strong>e desarrollará un botón  de corazón en la publicación para que interactúe con el post, mediante un solo click
+   </td>
+  </tr>
+  <tr>
+   <td>DEFINICIÓN DE TERMINADO:
+   </td>
+   <td>El usuario es capaz de dar y quitar un like en cada publicación.
+   </td>
+  </tr>
+</table>
+
 
 ### 5.4 Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 
 Debes definir cuál será el flujo que seguirá el usuario dentro de tu aplicación
 y, con eso, diseña la Interfaz de Usuario (UI por sus siglas en inglés) que
-siga este flujo.
-
-### 5.5 Responsive
-
-Debe verse bien en dispositivos de pantallas grandes
-(computadoras/es, laptops, etc.) y pequeñas (_tablets_, celulares, etc.). Te
-sugerimos seguir la técnica de _`mobile first`_ (más detalles sobre esta técnica
-al final).
-
-### 5.6 Consideraciones del comportamiento de la interfaz de usuario (UI)
-
-Estas consideraciones te ayudarán a escribir las Definiciones de Terminado de
-tus H.U.:
-
-#### Creación de cuenta de usuario e inicio de sesión
-
-* _Login_ con Firebase:
-  - Para el _login_ y las publicaciones en el muro puedes utilizar [Firebase](https://firebase.google.com/products/database/)
-  - Creación de cuenta de acceso y autenticación con cuenta de correo y
-    contraseña, y también con una cuenta de Google.
-* Validaciones:
-  - Solamente se permite el acceso a usuarios con cuentas válidas.
-  - No pueden haber usuarios repetidos.
-  - La cuenta de usuario debe ser un correo electrónico válido.
-  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
-* Comportamiento:
-  - Al enviarse el formulario de registro o inicio de sesión, debe validarse.
-  - Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
-  usuario a corregirlos.
-
-#### Muro/timeline
-
-* Validaciones:
-  - Al publicar, se debe validar que exista contenido en el _input_.
-* Comportamiento:
-  - Al recargar la aplicación, se debe verificar si el usuario está _logueado_
-    antes de mostrar contenido.
-  - Poder publicar un _post_.
-  - Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
-  - Llevar un conteo de los _likes_.
-  - Poder eliminar un post específico.
-  - Pedir confirmación antes de eliminar un _post_.
-  - Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_
-    que permita editar el texto y luego guardar los cambios.
-  - Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la
-    información editada.
-  - Al recargar la página debo de poder ver los textos editados.
-
-### 5.7 Consideraciones técnicas Front-end
-
-* Separar la manipulación del DOM de la lógica (Separación de responsabilidades).
-* Contar con múltiples vistas. Para esto, tu aplicación debe ser una
- [Single Page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-* Alterar y persistir datos. Los datos que agregues o modifiques deberán
-  persistir a lo largo de la aplicación. Te recomendamos que uses
-  [Firebase](https://firebase.google.com/) para eso también.
-
-#### Pruebas unitarias (unit tests)
-
-* Recuerda que no hay un _setup_ de **tests** definido, dependerá de
-  la estructura de tu proyecto. Algo que no debes de olvidar es pensar en éstas
-  pruebas, te pueden ayudar a definir la estructura y nomenclatura de tu lógica.
-
-* Los tests unitarios deben cubrir un mínimo del 70% de _statements_, _functions_,
-  _lines_, y _branches_.
-
-### 5.8 Consideraciones técnicas UX
-
-* Hacer al menos 2 entrevistas con usuarios.
-* Hacer un  prototipo de baja fidelidad.
-* Asegurarte de que la implementación en código siga los lineamientos del
-  diseño.
-* Hacer sesiones de _testing de usabilidad_ con el producto en HTML.
-
-## 6. Hacker edition
-
-Las secciones llamadas _Hacker Edition_ son **opcionales**. Si **terminaste**
-con todo lo anterior y te queda tiempo, intenta completarlas. Así podrás
-profundizar y/o ejercitar más sobre los objetivos de aprendizaje del proyecto.
-
-* Permite crear posts con imágenes.
-* Permite buscar usuarios, agregar y eliminar "amigos".
-* Permite definir la privacidad de los _posts_ (público o solamente para amigos).
-* Permite ver su muro de cualquier usuario "no-amigo" (solamente los
-  posts _públicos_).
-* Permite comentar o responder una publicación.
-* Permite editar perfil.
+siga este flujo. 
 
 ## 7. Entrega
 
@@ -288,43 +481,7 @@ puedas haber encontrado en el camino.
 ***
 
 ## 8. Pistas, tips y Lecturas complementarias
-
-### Mobile first
-
-El concepto de [_mobile first_](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-hace referencia a un proceso de diseño y desarrollo donde partimos de cómo se ve
-y cómo funciona la aplicación en un dispositivo móvil primero, y más adelante se
-ve como adaptar la aplicación a pantallas progresivamente grandes y
-características específicas del entorno desktop. Esto es en contraposición al
-modelo tradicional, donde primero se diseñaban los websites (o webapps) para
-desktop y después se trataba de _arrugar_ el diseño para que entre en pantallas
-más chicas. La clave acá es asegurarse de que desde el principio diseñan usando
-la vista _responsive_ de las herramientas de desarrollador (developer tools) del
-navegador. De esa forma, partimos de cómo se ve y comporta la aplicación en una
-pantalla y entorno móvil.
-
-### Múltiples vistas
-
-En proyectos anteriores nuestras aplicaciones habían estado compuestas de una
-sola _vista_ principal (una sóla _página_). En este proyecto se introduce la
-necesidad de tener que dividir nuestra interfaz en varias _vistas_ o _páginas_
-y ofrecer una manera de navegar entre estas vistas. Este problema se puede
-afrontar de muchas maneras: con archivos HTML independientes (cada uno con su
-URL) y links tradicionales, manteniendo estado en memoria y rederizando
-condicionalmente (sin refrescar la página), [manipulando el historial del
-navegador](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-con [`window.history`](https://developer.mozilla.org/es/docs/Web/API/Window/history).
-En este proyecto te invitamos a explorar opciones y decidir una opción
-de implementación.
-
-### Escritura de datos
-
-En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
-habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
-proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
-modificar datos existentes. Estos datos se podrán guardar de forma remota
-usando [Firebase](https://firebase.google.com/).
-
+  
 ### Otras:
 
 * [Pildora SPA](https://www.loom.com/share/fa63a8ad0e9a43428222c15b6f6613d3)
