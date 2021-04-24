@@ -20,7 +20,13 @@ investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
 de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
 más comentado.
 
-## 2. Resumen del proyecto
+## 2. Definición del producto
+Quiénes son los principales usuarios de producto.
+Qué problema resuelve el producto / para qué le servirá a estos usuarios.
+
+En la actualidad, vivimos una problematica con el abandono, maltrato y falta de empatía hacia los animales. Pero existen personas con mucho interés en aportar un grano de arena en la vida de estos, ya que mediante plataformas como Facebook e Instagram muestran su preocupacion, y en muchos casos otros usuarios responden brindando más apoyo. 
+
+Y debido al trafico de informacion variada que se pueda generar en esas plataformas, decidimos crear **Find my Paw** una red social orientada a usuarios interesados por el bienestar y protección de los animales, en la que se podrá compartir, comentar y visualizar post's relacionados a la situación en la que los animales se encuentran, tales como animales abandonados, en peligro (contrabando, salud), cuidados, etc.
  
 **Find my Paw** es una red social orientada a usuarios interesados por el bienestar y protección de los animales, en la que se podrá compartir, comentar y visualizar post's relacionados a la situación en la que los animales se encuentran, tales como animales abandonados, en peligro (contrabando, salud), cuidados, etc.
 
@@ -466,14 +472,41 @@ Definición de Terminado
   </tr>
 </table>
 
-
 ### 5.4 Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 
 Debes definir cuál será el flujo que seguirá el usuario dentro de tu aplicación
 y, con eso, diseña la Interfaz de Usuario (UI por sus siglas en inglés) que
 siga este flujo. 
 
-## 7. Entrega
+### Feedback e iteración con el prototipo
+
+Usuario 1
+
+Tanto el apartado de login como registro tengan la misma dsitribucion de elementos como los circulos superiores, el nombre del sitio web, y la frase
+
+Presenta colores agradables que dan apariencia pulcra. 
+
+Genera confianza en el usuario para instalarlo
+
+Los iconos del timeline, aun no están muy claros. (buscador, home, signo más)
+
+Puede ser un diferenciador de la página el bordeado de las imágenes, ya que en otras redes se visualiza sin borde.
+
+
+
+Usuario 2 (feedback grupal)
+
+Los iconos no están muy claros (recomendacion cambiar el signo más con un lapiz)
+
+Colores agradables
+
+Dudas en uso de google con register 
+
+Recomiendan agregar opción de regreso al login desde el registro
+
+
+
+## 7. Test de Usabilidad
 
 El proyecto será _entregado_ subiendo tu código a GitHub (`commit`/`push`) y la
 interfaz será desplegada usando GitHub pages u otro servicio de hosting que
