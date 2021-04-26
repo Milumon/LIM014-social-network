@@ -1,5 +1,5 @@
 import {
-  createUser
+  createUser,
 } from '../controller/auth.js';
 
 export default () => {
