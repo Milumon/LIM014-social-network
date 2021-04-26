@@ -9,6 +9,13 @@ export const createUser = (email, password, username) => {
         displayName: username,
       });
       console.log(result);
+      const configuration = {
+        url: 'http://localhost:5000/#/timeline',
+      };
+      result.user.sendEmailVerification(configuration).catch((error) => console.log(error));
+
+      firebase.auth().signOut();
+      // Materialize.toast(`Welcome ${username}`);
     })
     .catch((error) => console.error(error));
 
