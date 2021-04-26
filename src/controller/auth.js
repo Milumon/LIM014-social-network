@@ -18,7 +18,12 @@ export const createUser = (email, password, username) => {
       // Materialize.toast(`Welcome ${username}`);
     })
     .catch((error) => console.error(error));
+};
 
-  // creando método para autenticar email y password
-  // Nota; para autenticar el usuario, habilitar en el proyecto de SN Laboratoria/autenticacion
+export const loginUser = (email, password) => {
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((result) => console.log('USUARIOOOOOOO', result.user.username))
+    .catch((error) => console.error('ERROOOOOOOOR', error));
 };

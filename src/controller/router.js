@@ -23,6 +23,8 @@ const changeView = (route) => {
     default:
       break;
   }
+
+  return 1;
 };
 
 export { changeView };
