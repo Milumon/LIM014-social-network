@@ -28,14 +28,21 @@ export default () => {
 
   const loginForm = divElement.querySelector('#login-form');
 
-  loginForm.addEventListener('submit', (e) => {
+  loginForm.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('SUBMIT ENVIADO');
 
     const email = loginForm.querySelector('#email').value;
     const password = loginForm.querySelector('#password').value;
 
-    loginUser(email, password);
+    loginUser(email, password)
+      .then((data) => {
+        if (data.user.emailVerified) {
+          window.location.hash = '#/timeline';
+        } else {
+          alert('user no verificó');
+        }
+      });
   });
 
   return divElement;

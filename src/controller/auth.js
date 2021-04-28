@@ -1,7 +1,6 @@
 export const createUser = (email, password) => {
   console.log('ingresó a create');
   const user = firebase.auth();
-  firebase.auth().signOut();
   return user.createUserWithEmailAndPassword(email, password);
 };
 
@@ -33,7 +32,7 @@ export const sendEmail = () => {
   return user.sendEmailVerification(configuration);
 };
 
-export const updateUsername = (username) => {
+/* export const updateUsername = (username) => {
   console.log('ingresó a username');
 
   const user = firebase.auth().currentUser;
@@ -42,11 +41,21 @@ export const updateUsername = (username) => {
     displayName: username,
   });
 };
-
+ */
 export const loginUser = (email, password) => {
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((result) => console.log('USUARIOOOOOOO', result.user.username))
-    .catch((error) => console.error('ERROOOOOOOOR', error));
+  const user = firebase.auth();
+  return user.signInWithEmailAndPassword(email, password);
+};
+
+export const sendRecoverPass = (email) => {
+  const auth = firebase.auth();
+  return auth.sendPasswordResetEmail(email);
+};
+
+export const logOut = () => firebase.auth().signOut();
+
+export const signInGoogle = () => {
+  const auth = firebase.auth();
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return auth.signInWithPopup(provider);
 };

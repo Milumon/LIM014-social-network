@@ -1,5 +1,5 @@
 import {
-  createUser, sendEmail, updateUsername,
+  createUser, sendEmail, signInGoogle, // updateUsername,
 } from '../controller/auth.js';
 
 export default () => {
@@ -32,20 +32,22 @@ export default () => {
     const username = registerForm.querySelector('#username').value;
 
     createUser(email, password)
-      .then(() => {
-        updateUsername(username);
-        sendEmail();
+      .then((result) => {
+        console.log(result);
+        // updateUsername(username).catch((err) => console.log('UPDATE ', err));
         registerForm.reset();
+        sendEmail();
+        firebase.auth().signOut();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('CREATE ', err));
 
-    const db = firebase.firestore();
+    /* const db = firebase.firestore();
     db.collection('users').add({
       User: username,
       Email: email,
       Password: password,
     })
-      .then();
+      .then(); */
   });
 
   const btnGoogle = divElement.querySelector('#btnGoogle');
@@ -53,18 +55,12 @@ export default () => {
 
   btnGoogle.addEventListener('click', () => {
     // Accede al servicio auth de firebase para validar datos ingresados
-    const auth = firebase.auth();
+    /* const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
     auth
-      .signInWithPopup(provider)
-      .then(() => {
-        console.log('google sign in');
-        window.location.hash = '#/timeline';
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log('hola');
+      .signInWithPopup(provider); */
+
+    signInGoogle();
   });
 
   return divElement;
