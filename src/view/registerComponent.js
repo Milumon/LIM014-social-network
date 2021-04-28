@@ -1,5 +1,5 @@
 import {
-  createUser,
+  createUser, sendEmail, updateUsername,
 } from '../controller/auth.js';
 
 export default () => {
@@ -31,7 +31,13 @@ export default () => {
     const password = registerForm.querySelector('#password').value;
     const username = registerForm.querySelector('#username').value;
 
-    createUser(email, password, username);
+    createUser(email, password)
+      .then(() => {
+        updateUsername(username);
+        sendEmail();
+        registerForm.reset();
+      })
+      .catch((err) => console.log(err));
 
     const db = firebase.firestore();
     db.collection('users').add({
