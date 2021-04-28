@@ -1,6 +1,4 @@
-import {
-  loginUser,
-} from '../controller/auth.js';
+import { loginUser } from "../controller/auth.js";
 
 export default () => {
   const viewLogin = `
@@ -12,7 +10,7 @@ export default () => {
     <form id="login-form">
       <input type="email" id="email" placeholder="E-mail" required />
       <input type="password" id="password" placeholder="Password" required />
-      <button type="submit" class=""><a href="#/timeline">Log in</a></button>
+      <button type="submit" class="btn-login"><a href="#/timeline">Log in</a></button>
     </form>
     <p class="text">or enter with ...</p>
     <section class="option">
@@ -23,26 +21,26 @@ export default () => {
     <button type="submit" id="btnRegister" class="newAccount"><a href="#/register">Create an account</a></button>
   </section>`;
 
-  const divElement = document.createElement('div');
+  const divElement = document.createElement("div");
   divElement.innerHTML = viewLogin;
 
-  const loginForm = divElement.querySelector('#login-form');
+  const loginForm = divElement.querySelector("#login-form");
+  const btnLogin = divElement.querySelector(".btn-login");
 
-  loginForm.addEventListener('click', (e) => {
+  btnLogin.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log('SUBMIT ENVIADO');
+    console.log("SUBMIT ENVIADO");
 
-    const email = loginForm.querySelector('#email').value;
-    const password = loginForm.querySelector('#password').value;
+    const email = divElement.querySelector("#email").value;
+    const password = divElement.querySelector("#password").value;
 
-    loginUser(email, password)
-      .then((data) => {
-        if (data.user.emailVerified) {
-          window.location.hash = '#/timeline';
-        } else {
-          alert('user no verificó');
-        }
-      });
+    loginUser(email, password).then((data) => {
+      if (data.user.emailVerified) {
+        window.location.hash = "#/timeline";
+      } else {
+        alert("user no verificó");
+      }
+    });
   });
 
   return divElement;

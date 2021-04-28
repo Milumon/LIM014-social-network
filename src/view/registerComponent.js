@@ -1,9 +1,11 @@
 import {
-  createUser, sendEmail, signInGoogle, // updateUsername,
-} from '../controller/auth.js';
+  createUser,
+  sendEmail,
+  signInGoogle, // updateUsername,
+} from "../controller/auth.js";
 
 export default () => {
-  console.log('ENTRÓ');
+  console.log("ENTRÓ");
   const viewRegister = `
   <header>
     <img src="" class="title">
@@ -20,16 +22,17 @@ export default () => {
   <button type="submit" class="btn-signUpGoogle" id="btnGoogle">Login with Google</button>
 `;
 
-  const divElement = document.createElement('div');
+  const divElement = document.createElement("div");
   divElement.innerHTML = viewRegister;
 
-  const registerForm = divElement.querySelector('#register-form');
-  registerForm.addEventListener('submit', (e) => {
+  const registerForm = divElement.querySelector("#register-form");
+  const btnRegister = divElement.querySelector(".btn-signUp");
+  btnRegister.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const email = registerForm.querySelector('#email').value;
-    const password = registerForm.querySelector('#password').value;
-    const username = registerForm.querySelector('#username').value;
+    const email = divElement.querySelector("#email").value;
+    const password = divElement.querySelector("#password").value;
+    // const username = divElement.querySelector('#username').value;
 
     createUser(email, password)
       .then((result) => {
@@ -39,7 +42,7 @@ export default () => {
         sendEmail();
         firebase.auth().signOut();
       })
-      .catch((err) => console.log('CREATE ', err));
+      .catch((err) => console.log("CREATE ", err));
 
     /* const db = firebase.firestore();
     db.collection('users').add({
@@ -50,10 +53,10 @@ export default () => {
       .then(); */
   });
 
-  const btnGoogle = divElement.querySelector('#btnGoogle');
+  const btnGoogle = divElement.querySelector("#btnGoogle");
   console.log(document);
 
-  btnGoogle.addEventListener('click', () => {
+  btnGoogle.addEventListener("click", () => {
     // Accede al servicio auth de firebase para validar datos ingresados
     /* const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
