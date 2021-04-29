@@ -1,5 +1,5 @@
-import { logOut } from "../controller/auth.js";
-import { post } from "../controller/post.js";
+import { logOut } from '../controller/firebase-auth.js';
+import { addPost, getPosts, addPostTwo } from '../controller/firebase-firestore.js';
 
 export default () => {
   const viewTimeLine = `
@@ -26,33 +26,44 @@ export default () => {
     </section> 
   `;
 
-  const divElement = document.createElement("div");
+  const divElement = document.createElement('div');
   divElement.innerHTML = viewTimeLine;
 
-  const btnSingOut = divElement.querySelector("button");
+  const btnSingOut = divElement.querySelector('button');
 
-  btnSingOut.addEventListener("click", (e) => {
+  btnSingOut.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log("LOG OUT ENVIADO");
+    console.log('LOG OUT ENVIADO');
 
     logOut().then(() => {
-      window.location.hash = "#/login";
+      window.location.hash = '#/login';
     });
   });
 
-  const btnShare = divElement.querySelector(".btn-share");
-  btnShare.addEventListener("click", (e) => {
+  const userId = firebase.auth().currentUser.uid;
+  const btnShare = divElement.querySelector('.btn-share');
+  btnShare.addEventListener('click', (e) => {
     e.preventDefault();
-    const inputContent = divElement.querySelector(".description").value;
-    const formShare = divElement.querySelector(".form-share");
+    const inputContent = divElement.querySelector('.description').value;
+    const formShare = divElement.querySelector('.form-share');
     formShare.reset();
-    post("ecFTadaE4NPmoXH5xjzjbVpiTHJ2", inputContent)
+    console.log('ENVIANDO DATOS: ', userId, inputContent);
+    addPost(userId, inputContent)
       .then((refDoc) => {
         console.log(`Id del post => ${refDoc.id}`);
       })
       .catch((error) => {
         console.log(`Error creaando el post => ${error}`);
       });
+  });
+
+  const containerPost = divElement.querySelector('.container-post');
+
+  getPosts((post) => {
+    console.log('post', post);
+    post.forEach((x) => {
+      containerPost.innerHTML += x.userId;
+    });
   });
 
   return divElement;

@@ -1,5 +1,5 @@
 export const createUser = (email, password) => {
-  console.log("ingresó a create");
+  console.log('ingresó a create');
   const user = firebase.auth();
   return user.createUserWithEmailAndPassword(email, password);
 };
@@ -22,10 +22,10 @@ export const createUser = (email, password) => {
     .catch((error) => console.error(error)); */
 
 export const sendEmail = () => {
-  console.log("ingresó a sendemail");
+  console.log('ingresó a sendemail');
 
   const configuration = {
-    url: "http://localhost:5000/#/",
+    url: 'http://localhost:5000/#/',
   };
   // Enviar e-mail de verificación
   const user = firebase.auth().currentUser;

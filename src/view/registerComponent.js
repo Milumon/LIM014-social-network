@@ -3,10 +3,10 @@ import {
   sendEmail,
   signInGoogle,
   logOut, // updateUsername,
-} from "../controller/auth.js";
+} from '../controller/firebase-auth.js';
 
 export default () => {
-  console.log("ENTRÓ");
+  console.log('ENTRÓ');
   const viewRegister = `
   <header>
     <img src="" class="title">
@@ -23,28 +23,28 @@ export default () => {
   <button type="submit" class="btn-signUpGoogle" id="btnGoogle">Login with Google</button>
 `;
 
-  const divElement = document.createElement("div");
+  const divElement = document.createElement('div');
   divElement.innerHTML = viewRegister;
 
-  const registerForm = divElement.querySelector("#register-form");
-  const btnRegister = divElement.querySelector(".btn-signUp");
-  btnRegister.addEventListener("click", (e) => {
+  const registerForm = divElement.querySelector('#register-form');
+  const btnRegister = divElement.querySelector('.btn-signUp');
+  btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
 
-    const email = divElement.querySelector("#email").value;
-    const password = divElement.querySelector("#password").value;
+    const email = divElement.querySelector('#email').value;
+    const password = divElement.querySelector('#password').value;
     // const username = divElement.querySelector('#username').value;
 
     createUser(email, password)
       .then((result) => {
-        console.log("se registró ", result);
+        console.log('se registró ', result);
         // updateUsername(username).catch((err) => console.log('UPDATE ', err));
         registerForm.reset();
         sendEmail();
         logOut();
-        console.log("salio", result, firebase.auth());
+        console.log('salio', result, firebase.auth());
       })
-      .catch((err) => console.log("CREATE ", err));
+      .catch((err) => console.log('CREATE ', err));
 
     /* const db = firebase.firestore();
     db.collection('users').add({
@@ -55,10 +55,10 @@ export default () => {
       .then(); */
   });
 
-  const btnGoogle = divElement.querySelector("#btnGoogle");
+  const btnGoogle = divElement.querySelector('#btnGoogle');
   console.log(document);
 
-  btnGoogle.addEventListener("click", () => {
+  btnGoogle.addEventListener('click', () => {
     // Accede al servicio auth de firebase para validar datos ingresados
     /* const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
