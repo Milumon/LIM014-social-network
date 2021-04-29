@@ -1,7 +1,8 @@
 import {
   createUser,
   sendEmail,
-  signInGoogle, // updateUsername,
+  signInGoogle,
+  logOut, // updateUsername,
 } from "../controller/auth.js";
 
 export default () => {
@@ -36,11 +37,12 @@ export default () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result);
+        console.log("se registró ", result);
         // updateUsername(username).catch((err) => console.log('UPDATE ', err));
         registerForm.reset();
         sendEmail();
-        firebase.auth().signOut();
+        logOut();
+        console.log("salio", result, firebase.auth());
       })
       .catch((err) => console.log("CREATE ", err));
 
