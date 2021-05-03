@@ -1,10 +1,10 @@
 import { logOut } from '../controller/firebase-auth.js';
-import { addPost, getPosts, addPostTwo } from '../controller/firebase-firestore.js';
+import { addPost, getPosts } from '../controller/firebase-firestore.js';
 
 export default () => {
-  const viewTimeLine = `
+  const viewTimeLine = ` 
     <section class = "user_header">
-    <h1> FindMyPaw </h1>
+  
     <figure> 
     <img class= "img_profile" src = "">
     <img class= "img_icon">
@@ -60,9 +60,13 @@ export default () => {
   const containerPost = divElement.querySelector('.container-post');
 
   getPosts((post) => {
-    console.log('post', post);
+    containerPost.innerHTML = '';
+    console.log('POOOOOOOOOOOOOOOOOOOOOOOST', post);
     post.forEach((x) => {
-      containerPost.innerHTML += x.userId;
+      // containerPost.appendChild(x.Description);
+      const singlePost = document.createElement('div');
+      singlePost.innerHTML += x.Description;
+      containerPost.appendChild(singlePost);
     });
   });
 

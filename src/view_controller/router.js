@@ -7,24 +7,31 @@ const changeView = (route) => {
   const container = document.getElementById('container');
   container.innerHTML = '';
   switch (route) {
+    case '': {
+      container.appendChild(components.login());
+      break;
+    }
     case '#/': {
-      return container.appendChild(components.login());
+      container.appendChild(components.login());
+      break;
     }
     case '#/login': {
-      return container.appendChild(components.login());
+      container.appendChild(components.login());
+      break;
     }
     case '#/register': {
-      return container.appendChild(components.register());
+      container.appendChild(components.register());
+      break;
     }
     case '#/timeline': {
       console.log('TIMELINE');
-      return container.appendChild(components.timeline());
+      container.appendChild(components.header());
+      container.appendChild(components.timeline());
+      break;
     }
     default:
       break;
   }
-
-  return 1;
 };
 
 export { changeView };

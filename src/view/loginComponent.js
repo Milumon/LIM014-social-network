@@ -24,7 +24,7 @@ export default () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = viewLogin;
 
-  const loginForm = divElement.querySelector('#login-form');
+  // const loginForm = divElement.querySelector('#login-form');
   const btnLogin = divElement.querySelector('.btn-login');
 
   btnLogin.addEventListener('click', (e) => {
@@ -40,7 +40,8 @@ export default () => {
       } else {
         alert('user no verificó');
       }
-    });
+    })
+      .catch((err) => alert(err));
   });
 
   return divElement;
