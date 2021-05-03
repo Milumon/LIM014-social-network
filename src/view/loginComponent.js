@@ -1,7 +1,10 @@
 import { loginUser } from '../controller/firebase-auth.js';
 
 export default () => {
-  const viewLogin = `
+  const viewLogin = document.createElement('div');
+  viewLogin.classList.add('container-login');
+  viewLogin.innerHTML = `
+  
   <section class="logIn">
     <header>
       <img src="" class="title">
@@ -21,18 +24,15 @@ export default () => {
     <button type="submit" id="btnRegister" class="newAccount"><a href="#/register">Create an account</a></button>
   </section>`;
 
-  const divElement = document.createElement('div');
-  divElement.innerHTML = viewLogin;
-
   // const loginForm = divElement.querySelector('#login-form');
-  const btnLogin = divElement.querySelector('.btn-login');
+  const btnLogin = viewLogin.querySelector('.btn-login');
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('SUBMIT ENVIADO');
 
-    const email = divElement.querySelector('#email').value;
-    const password = divElement.querySelector('#password').value;
+    const email = viewLogin.querySelector('#email').value;
+    const password = viewLogin.querySelector('#password').value;
 
     loginUser(email, password).then((data) => {
       if (data.user.emailVerified) {
@@ -44,5 +44,5 @@ export default () => {
       .catch((err) => alert(err));
   });
 
-  return divElement;
+  return viewLogin;
 };

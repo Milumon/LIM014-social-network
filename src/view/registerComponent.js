@@ -6,33 +6,37 @@ import {
 } from '../controller/firebase-auth.js';
 
 export default () => {
-  console.log('ENTRÓ');
-  const viewRegister = `
+  const viewSignUp = document.createElement('section');
+  viewSignUp.classList.add('container-SignUp');
+  viewSignUp.innerHTML = `
   <header>
-    <img src="" class="title">
-    <p class="text">Find my Pawn!</p>
+    <h1 class="text">Find my Pawn!</h1>
   </header>
   <form id="register-form" class="signup-form">
-    <input type="text" id="username" placeholder="Username" required />
+  <div> 
+  <input type="text" id="username" placeholder="Username" required />
+  </div>
+  <div>
     <input type="email" id="email" placeholder="E-mail" required />
+  </div>
+  <div>
     <input type="password" id="password" placeholder="Password" required />
-    <button type="submit" class="btn-signUp"><a href="#/login">Sign Up</a></button> 
+  </div>
+    <button type="submit" class="btn-signUp"><a href="#/login">Sign Up</a></button>
   </form>
-
-  
-  <button type="submit" class="btn-signUpGoogle" id="btnGoogle">Login with Google</button>
+  <div class="content-google">
+  <h6>Or join us with</h6>
+  <button type="submit" class="btn-signUpGoogle" id="btnGoogle"></button>
+  </div>
 `;
 
-  const divElement = document.createElement('div');
-  divElement.innerHTML = viewRegister;
-
-  const registerForm = divElement.querySelector('#register-form');
-  const btnRegister = divElement.querySelector('.btn-signUp');
+  const registerForm = viewSignUp.querySelector('#register-form');
+  const btnRegister = viewSignUp.querySelector('.btn-signUp');
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
 
-    const email = divElement.querySelector('#email').value;
-    const password = divElement.querySelector('#password').value;
+    const email = viewSignUp.querySelector('#email').value;
+    const password = viewSignUp.querySelector('#password').value;
     // const username = divElement.querySelector('#username').value;
 
     createUser(email, password)
@@ -55,7 +59,7 @@ export default () => {
       .then(); */
   });
 
-  const btnGoogle = divElement.querySelector('#btnGoogle');
+  const btnGoogle = viewSignUp.querySelector('#btnGoogle');
   console.log(document);
 
   btnGoogle.addEventListener('click', () => {
@@ -68,6 +72,6 @@ export default () => {
     signInGoogle();
   });
 
-  return divElement;
+  return viewSignUp;
   /* ------------------------------handle back to Sign In----------------------------------- */
 };
