@@ -9,12 +9,18 @@ export default () => {
   const viewSignUp = document.createElement('section');
   viewSignUp.classList.add('container-SignUp');
   viewSignUp.innerHTML = `
+  <div class="content-circles">
+  <div class="circle"></div>
+  <div class="semi-circle"></div>
+  </div>
   <header>
     <h1 class="text">Find my Pawn!</h1>
   </header>
-  <form id="register-form" class="signup-form">
+  <div class="content-formSignUp">
+  <img src= "./img/fotoRegister.png" width = "400px">
+  <form class="signUp-form" id="register-form" >
   <div> 
-  <input type="text" id="username" placeholder="Username" required />
+    <input type="text" id="username" placeholder="Username" required />
   </div>
   <div>
     <input type="email" id="email" placeholder="E-mail" required />
@@ -24,9 +30,14 @@ export default () => {
   </div>
     <button type="submit" class="btn-signUp"><a href="#/login">Sign Up</a></button>
   </form>
-  <div class="content-google">
+  </div>
+  <div class="content-googleSignUp">
   <h6>Or join us with</h6>
   <button type="submit" class="btn-signUpGoogle" id="btnGoogle"></button>
+  </div>
+  <div class="content-returnLogin">
+  <h6>Have an account?</h6>
+  <button type="submit" class="btn-return-login"> <a href="#/login">Login</a></button>
   </div>
 `;
 

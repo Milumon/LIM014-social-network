@@ -1,28 +1,32 @@
 import { loginUser } from '../controller/firebase-auth.js';
 
 export default () => {
-  const viewLogin = document.createElement('div');
+  const viewLogin = document.createElement('section');
   viewLogin.classList.add('container-login');
   viewLogin.innerHTML = `
-  
-  <section class="logIn">
-    <header>
-      <img src="" class="title">
-      <p class="text">¡ Find my Pawn !</p>
-    </header>
-    <form id="login-form">
-      <input type="email" id="email" placeholder="E-mail" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit" class="btn-login"><a href="#/timeline">Log in</a></button>
-    </form>
-    <p class="text">or enter with ...</p>
-    <section class="option">
-      <img src="" class="gmail">
-      <img src="" class="facebook">
-    </section>
-    <p class="text">¿Don't you have an account in Find my Pawn?</p>
-    <button type="submit" id="btnRegister" class="newAccount"><a href="#/register">Create an account</a></button>
-  </section>`;
+  <header>
+    <h1 class="text">Find my Pawn!</h1>
+  </header>
+  <div class="container-formLogin">
+  <form id="login-form">
+  <div>
+    <input type="email" id="email" placeholder="E-mail" required />
+  </div>
+  <div>
+    <input type="password" id="password" placeholder="Password" required />
+  </div> 
+  <button type="submit" class="btn-login"><a href="#/timeline">Log in</a></button>
+  </form>
+  </div>
+  <div class="content-googleLogin">
+  <h6>or enter with ...</h6>
+  <button type="submit" class="btn-signUpGoogle" id="btnGoogle"></button>
+  </div>
+  <div class="content-returnLogin">
+  <h6>Don´t Have an account?</h6>
+  <button type="submit"  class="newAccount" id="btnRegister"><a href="#/register">Create an account</a></button>
+  </div>
+    `;
 
   // const loginForm = divElement.querySelector('#login-form');
   const btnLogin = viewLogin.querySelector('.btn-login');
