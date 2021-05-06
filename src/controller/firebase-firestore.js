@@ -10,8 +10,8 @@ export const addPost = (UserId, description) => {
 };
 
 export const getPosts = (callback) => {
-  const db = firebase.firestore();
-  db.collection('post').orderBy('Date', 'desc')
+  const db = firebase.firestore().OrderBy('Date');
+  db.collection('post')
     .onSnapshot((querySnapshot) => {
       console.log('Colección(querySnapshot)', querySnapshot);
       const post = [];

@@ -16,23 +16,27 @@ export default () => {
   <header>
     <h1 class="text">Find my Pawn!</h1>
   </header>
+  <img src= "./img/fotoRegister.png" width = "300px">
   <div class="content-formSignUp">
-  <img src= "./img/fotoRegister.png" width = "400px">
   <form class="signUp-form" id="register-form" >
   <div> 
-    <input type="text" id="username" placeholder="Username" required />
+    <input type="text" class="inputForm" id="username" placeholder="Username" required />
   </div>
   <div>
-    <input type="email" id="email" placeholder="E-mail" required />
+    <input type="email" class="inputForm" id="email" placeholder="E-mail" required />
   </div>
   <div>
-    <input type="password" id="password" placeholder="Password" required />
+    <input type="password" class="inputForm" id="password" placeholder="Password" required />
+  </div>
+  <div class="msg">
   </div>
     <button type="submit" class="btn-signUp"><a href="#/login">Sign Up</a></button>
   </form>
   </div>
-  <div class="content-googleSignUp">
+  <div class="content-google">
+  <div class="content-Googletext">
   <h6>Or join us with</h6>
+  </div>
   <button type="submit" class="btn-signUpGoogle" id="btnGoogle"></button>
   </div>
   <div class="content-returnLogin">
@@ -43,43 +47,31 @@ export default () => {
 
   const registerForm = viewSignUp.querySelector('#register-form');
   const btnRegister = viewSignUp.querySelector('.btn-signUp');
+  const inputForm = viewSignUp.querySelectorAll('.inputForm');
+
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-
+    // Obtener valores de datos de registros ingresados
     const email = viewSignUp.querySelector('#email').value;
     const password = viewSignUp.querySelector('#password').value;
-    // const username = divElement.querySelector('#username').value;
-
+    const contentMsg = viewSignUp.querySelector('.msg');
+    // Registrar usuario
     createUser(email, password)
-      .then((result) => {
-        console.log('se registró ', result);
-        // updateUsername(username).catch((err) => console.log('UPDATE ', err));
+      .then(() => {
         registerForm.reset();
         sendEmail();
         logOut();
-        console.log('salio', result, firebase.auth());
       })
-      .catch((err) => console.log('CREATE ', err));
-
-    /* const db = firebase.firestore();
-    db.collection('users').add({
-      User: username,
-      Email: email,
-      Password: password,
-    })
-      .then(); */
+      .catch((err) => {
+        contentMsg.innerHTML = `<p>${err.message}</p>`;
+        return contentMsg;
+      });
   });
 
   const btnGoogle = viewSignUp.querySelector('#btnGoogle');
   console.log(document);
 
   btnGoogle.addEventListener('click', () => {
-    // Accede al servicio auth de firebase para validar datos ingresados
-    /* const auth = firebase.auth();
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth
-      .signInWithPopup(provider); */
-
     signInGoogle();
   });
 

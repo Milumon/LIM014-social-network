@@ -1,25 +1,8 @@
-export const createUser = (email, password) => {
-  console.log('ingresó a create');
-  const user = firebase.auth();
-  return user.createUserWithEmailAndPassword(email, password);
-};
+// Acceso al servicio de Firebase auth
+const user = firebase.auth();
 
-/* .createUserWithEmailAndPassword(email, password), */
-/* .then((result) => {
-    // resetear el formulario una vez ingresado los datos
-      result.user.updateProfile({
-        displayName: username,
-      });
-      console.log(result);
-      const configuration = {
-        url: 'http://localhost:5000/#/timeline',
-      };
-      result.user.sendEmailVerification(configuration).catch((error) => console.log(error));
-
-      firebase.auth().signOut();
-      // Materialize.toast(`Welcome ${username}`);
-    })
-    .catch((error) => console.error(error)); */
+// Registrar usuario
+export const createUser = (email, password) => user.createUserWithEmailAndPassword(email, password);
 
 export const sendEmail = () => {
   console.log('ingresó a sendemail');
@@ -28,8 +11,7 @@ export const sendEmail = () => {
     url: 'http://localhost:5000/#/',
   };
   // Enviar e-mail de verificación
-  const user = firebase.auth().currentUser;
-  return user.sendEmailVerification(configuration);
+  return user.currentUser.sendEmailVerification(configuration);
 };
 
 /* export const updateUsername = (username) => {

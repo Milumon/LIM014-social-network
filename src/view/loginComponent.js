@@ -4,9 +4,14 @@ export default () => {
   const viewLogin = document.createElement('section');
   viewLogin.classList.add('container-login');
   viewLogin.innerHTML = `
+  <div class="content-circles">
+  <div class="circle"></div>
+  <div class="semi-circle"></div>
+  </div>
   <header>
     <h1 class="text">Find my Pawn!</h1>
   </header>
+  <img src= "./img/fotoLogin.png" width = "150px" >
   <div class="container-formLogin">
   <form id="login-form">
   <div>
@@ -18,13 +23,15 @@ export default () => {
   <button type="submit" class="btn-login"><a href="#/timeline">Log in</a></button>
   </form>
   </div>
-  <div class="content-googleLogin">
+  <div class="content-google">
+  <div class="content-Googletext">
   <h6>or enter with ...</h6>
-  <button type="submit" class="btn-signUpGoogle" id="btnGoogle"></button>
+  <div class="content-Googletext">
+  <button type="submit" class="btn-signInGoogle" id="btnGoogle"></button>
   </div>
-  <div class="content-returnLogin">
+  <div class="content-returnSignUp">
   <h6>Don´t Have an account?</h6>
-  <button type="submit"  class="newAccount" id="btnRegister"><a href="#/register">Create an account</a></button>
+  <button type="submit" class="btn-register"><a href="#/register">Create an account</a></button>
   </div>
     `;
 

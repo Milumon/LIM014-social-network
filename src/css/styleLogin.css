@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+/*Variables*/
+:root {
+  /*Color Palette*/
+  --paletteOne-one-color: #262A4C;
+  --paletteOne-two-color: #2FE099;
+  --paletteOne-three-color: white;
+  
+  /*Typography*/
+  --font-logo: 'Lobster', cursive;
+}
+@media screen and (min-width:300px ){
+  /*
+  .msg {
+   font-weight: lighter;
+   font-size: 12px;
+   color: red;
+  }
+  */
+  .container-login header {
+    height:0;
+  }
+  
+  .container-login header h1 {
+    font-family: var(--font-logo);
+    color: var(--paletteOne-one-color);
+    text-align: right;
+    margin-right: 4%;
+    font-size: xx-large;
+    position: relative;
+    bottom: 50px;
+  }
+
+  .container-login form{
+    height: 180px
+  }
+
+  .container-login form div {
+    padding:5px
+  } 
+  .container-login form div input{
+    border-radius: 30px;
+    width:200px;
+    height: 10px;
+    border:  2px solid #23282c20;
+    padding: 5px;
+    color: #1a2437a3;
+  } 
+  .container-login form div #email {
+     background-image: url(../img/e-mail.jpg);
+    background-repeat: no-repeat;
+     background-position-y: center;
+     background-position-x: 170px;
+  }
+  .container-login form div #password {
+    background-image: url(../img/password.png);
+    background-size: 15px;
+    background-repeat: no-repeat;
+     background-position-y: center;
+     background-position-x: 170px;
+  }
+  
+  .btn-signUp, .btn-return-login, .btn-login {
+   width: 173px;
+   height: 28px;
+   background: #51B78E;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   border-radius: 30px;
+   border: 1px solid #51B78E;
+   margin-top:  10px;
+   margin-bottom: 30px;
+  }
+  .container-login .btn-signInGoogle {
+    background-image: url(../img/google.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: relative;
+    top: 80px;
+  }
+  .content-returnSignUp{
+    padding-top: 80px;
+  }
+  .btn-register {
+   background: #51B78E;
+   border-radius: 30px;
+   border: 1px solid #51B78E;
+   height:28px
+  }
+}

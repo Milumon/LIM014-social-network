@@ -4,7 +4,6 @@ import { addPost, getPosts } from '../controller/firebase-firestore.js';
 export default () => {
   const viewTimeLine = ` 
     <section class = "user_header">
-  
     <figure> 
     <img class= "img_profile" src = "">
     <img class= "img_icon">
