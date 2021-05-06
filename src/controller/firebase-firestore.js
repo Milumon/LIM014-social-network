@@ -40,3 +40,21 @@ export const getPosts = (callback) => {
       callback(post);
     });
 };
+
+export const uploadImage = (file, uid) => {
+  const refStorage = firebase.storage().ref(`imgsPost/${uid}/${file.name}`);
+  const task = refStorage.put(file);
+
+  task.on('state_changed', (snapshot) => {
+    const porcent = ((snapshot.bytesTransferred) / (snapshot.totalBytes) * 100);
+    $('.determinate').attr('style', `width: ${porcent}%`);
+  },
+  (err) => console.log(err),
+  () => {
+    task.snapshot.ref.getDownloadURL()
+      .then((url) => {
+        console.log(url);
+        sessionStorage.setItem('imgNewPost', url);
+      }).catch((err) => console.log(err));
+  });
+};
