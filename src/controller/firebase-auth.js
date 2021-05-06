@@ -24,10 +24,7 @@ export const sendEmail = () => {
   });
 };
  */
-export const loginUser = (email, password) => {
-  const user = firebase.auth();
-  return user.signInWithEmailAndPassword(email, password);
-};
+export const loginUser = (email, password) => user.signInWithEmailAndPassword(email, password);
 
 export const sendRecoverPass = (email) => {
   const auth = firebase.auth();

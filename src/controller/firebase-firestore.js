@@ -3,21 +3,24 @@ export const addPost = (UserId, description) => {
   return db.collection('post').add({
     userId: UserId,
     Description: description,
-    Date: new Date().toLocaleString(),
+    Date: firebase.firestore.FieldValue.serverTimestamp(),
     imageURL: 'imagen',
     likes: '2',
   });
 };
 
 export const getPosts = (callback) => {
-  const db = firebase.firestore().OrderBy('Date');
-  db.collection('post')
+  const db = firebase.firestore();
+  db.collection('post').orderBy('Date', 'desc')
     .onSnapshot((querySnapshot) => {
       console.log('Colección(querySnapshot)', querySnapshot);
       const post = [];
       querySnapshot.forEach((doc) => {
         console.log('info de los posts (doc) dentro del querySnapshot', doc.data());
-        post.push({ id: doc.id, ...doc.data() });
+        post.push({
+          id: doc.id,
+          ...doc.data(),
+        });
       });
       console.log('array de post', post);
       callback(post);

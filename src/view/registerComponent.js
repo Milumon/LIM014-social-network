@@ -64,7 +64,9 @@ export default () => {
       })
       .catch((err) => {
         contentMsg.innerHTML = `<p>${err.message}</p>`;
-        return contentMsg;
+        setTimeout(() => {
+          contentMsg.innerHTML = '';
+        }, 3000);
       });
   });
 

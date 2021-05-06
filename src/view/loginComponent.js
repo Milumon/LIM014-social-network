@@ -1,4 +1,6 @@
-import { loginUser } from '../controller/firebase-auth.js';
+import {
+  loginUser
+} from '../controller/firebase-auth.js';
 
 export default () => {
   const viewLogin = document.createElement('section');
@@ -25,10 +27,10 @@ export default () => {
   </div>
   <div class="content-google">
   <div class="content-Googletext">
-  <h6>or enter with ...</h6>
+  <h6>or enter with ...</h6> 
   <div class="content-Googletext">
   <button type="submit" class="btn-signInGoogle" id="btnGoogle"></button>
-  </div>
+  </div></div>
   <div class="content-returnSignUp">
   <h6>Don´t Have an account?</h6>
   <button type="submit" class="btn-register"><a href="#/register">Create an account</a></button>
@@ -46,12 +48,12 @@ export default () => {
     const password = viewLogin.querySelector('#password').value;
 
     loginUser(email, password).then((data) => {
-      if (data.user.emailVerified) {
-        window.location.hash = '#/timeline';
-      } else {
-        alert('user no verificó');
-      }
-    })
+        if (data.user.emailVerified) {
+          window.location.hash = '#/timeline';
+        } else {
+          alert('user no verificó');
+        }
+      })
       .catch((err) => alert(err));
   });
 
