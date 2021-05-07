@@ -13,7 +13,14 @@ export default () => {
   <header>
     <h1 class="text">Find my Pawn!</h1>
   </header>
-  <img src= "./img/fotoLogin.png" width = "150px" >
+  <div class='content-images'>
+  <div class='firstgato'>
+  <img src= "./img/gato miau.png" width = "230px" >
+  </div>
+  <div class='secondgato'>
+  <img src= "./img/gato miau 2.png" width = "130px" >
+  </div>
+  </div>
   <div class="container-formLogin">
   <form id="login-form">
   <div>
@@ -28,9 +35,8 @@ export default () => {
   <div class="content-google">
   <div class="content-Googletext">
   <h6>or enter with ...</h6> 
-  <div class="content-Googletext">
   <button type="submit" class="btn-signInGoogle" id="btnGoogle"></button>
-  </div></div>
+  </div>
   <div class="content-returnSignUp">
   <h6>Don´t Have an account?</h6>
   <button type="submit" class="btn-register"><a href="#/register">Create an account</a></button>
