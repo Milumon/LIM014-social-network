@@ -30,12 +30,13 @@ export default () => {
     <section class="container-post">
     </section> 
 
- < div class = "progress-panel" >
-   <input type = "file" value = "upload" id = "btnUploadFile">
-   <div class = "progress" >
-   <div class = "determinate"style = "width: 0%" > < /div> 
-   </div> 
-   </div>
+    <div class="progress-panel">
+    <label for="btnUploadFile">Imagen:</label>
+    <input type="file" value="upload" id="btnUploadFile" />
+    <div class="progress">
+        <div class="determinate" style="width: 0%"></div>
+    </div>
+</div>
   `;
 
   const divElement = document.createElement('div');
@@ -44,30 +45,8 @@ export default () => {
   const inputFile = divElement.querySelector('#btnUploadFile');
 
   inputFile.addEventListener('change', (e) => {
-  // const uploader = divElement.querySelector('#uploader');
-  // const fileButton = divElement.querySelector('#fileButton');
-  // fileButton.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    const task = uploadImage(file, firebase.auth().currentUser);
-    task.on('state_changed', (snapshot) => {
-      const porcent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      ('.determinate').attr('style', `width: ${porcent}%`);
-    },
-    (err) => console.log(err),
-    () => {
-      task.snapshot.ref.getDownloadURL()
-        .then((url) => {
-          console.log(url);
-          sessionStorage.setItem('imgNewPost', url);
-        }).catch((err) => console.log(err));
-    });
-  //   const storage = firebase.storage();
-  //   const storageRef = storage.ref(`img/${file.name}`);
-  //   task.on('state_changed', (snapshot) => {
-  //     const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //     uploader.value = percentage;
-  //   });
-  // });
+    uploadImage(file, 'profilePhotos');
   });
 
   const btnSingOut = divElement.querySelector('button');
