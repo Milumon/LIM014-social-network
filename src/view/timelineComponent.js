@@ -29,15 +29,9 @@ export default () => {
     </section>
     <section class="container-post">
     </section> 
-    <!-- CONTAINER UPLOAD 
-    <div class="mainDiv" align="right">
- <h1 align="left">Firebase File Upload</h1>
- <progress id="uploader" value="0" max="100">0%</progress>
- <input type="file" id="fileButton" value="upload"/>
- </div>
- -- >
+
  < div class = "progress-panel" >
-   <input type = "file" value = "upload" id = "btnUploadFile" / >
+   <input type = "file" value = "upload" id = "btnUploadFile">
    <div class = "progress" >
    <div class = "determinate"style = "width: 0%" > < /div> 
    </div> 
@@ -48,23 +42,33 @@ export default () => {
   divElement.innerHTML = viewTimeLine;
 
   const inputFile = divElement.querySelector('#btnUploadFile');
+
   inputFile.addEventListener('change', (e) => {
-    const file = e.target.file[0];
-    const post = new addPost();
-    post.uploadImage(file, firebase.auth().currentUser);
-  });
   // const uploader = divElement.querySelector('#uploader');
   // const fileButton = divElement.querySelector('#fileButton');
   // fileButton.addEventListener('change', (e) => {
-  //   const file = e.target.files[0];
+    const file = e.target.files[0];
+    const task = uploadImage(file, firebase.auth().currentUser);
+    task.on('state_changed', (snapshot) => {
+      const porcent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      ('.determinate').attr('style', `width: ${porcent}%`);
+    },
+    (err) => console.log(err),
+    () => {
+      task.snapshot.ref.getDownloadURL()
+        .then((url) => {
+          console.log(url);
+          sessionStorage.setItem('imgNewPost', url);
+        }).catch((err) => console.log(err));
+    });
   //   const storage = firebase.storage();
   //   const storageRef = storage.ref(`img/${file.name}`);
-  //   const task = storageRef.put(file);
   //   task.on('state_changed', (snapshot) => {
   //     const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
   //     uploader.value = percentage;
   //   });
   // });
+  });
 
   const btnSingOut = divElement.querySelector('button');
 

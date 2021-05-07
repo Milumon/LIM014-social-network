@@ -43,10 +43,10 @@ export const getPosts = (callback) => {
 
 export const uploadImage = (file, uid) => {
   const refStorage = firebase.storage().ref(`imgsPost/${uid}/${file.name}`);
-  const task = refStorage.put(file);
+  return refStorage.put(file);
 
-  task.on('state_changed', (snapshot) => {
-    const porcent = ((snapshot.bytesTransferred) / (snapshot.totalBytes) * 100);
+  /* task.on('state_changed', (snapshot) => {
+    const porcent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     $('.determinate').attr('style', `width: ${porcent}%`);
   },
   (err) => console.log(err),
@@ -56,5 +56,5 @@ export const uploadImage = (file, uid) => {
         console.log(url);
         sessionStorage.setItem('imgNewPost', url);
       }).catch((err) => console.log(err));
-  });
+  }); */
 };
