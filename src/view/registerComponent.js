@@ -16,7 +16,14 @@ export default () => {
   <header>
     <h1 class="text">Find my Pawn!</h1>
   </header>
-  <img src= "./img/fotoRegister.png" width = "300px">
+  <div class='content-images'>
+  <div class='firstgato'>
+  <img src= "./img/perrito3.0.png" width = "230px" >
+  </div>
+  <div class='secondgato'>
+  <img src= "./img/perrito.png" width = "130px" >
+  </div>
+  </div>
   <div class="content-formSignUp">
   <form class="signUp-form" id="register-form" >
   <div> 

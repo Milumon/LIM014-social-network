@@ -33,9 +33,14 @@
     position: relative;
     bottom: 50px;
   }
+  .container-login .content-images{
+    display: flex;
+    justify-content: space-between;
+  }
 
   .container-login form {
-    height: 180px
+    height: 180px;
+    padding-top: 50px;
   }
 
   .container-login form div {
@@ -44,8 +49,8 @@
 
   .container-login form div input {
     border-radius: 30px;
-    width: 200px;
-    height: 10px;
+    width: 180px;
+    height: 5px;
     border: 2px solid #23282c20;
     padding: 5px;
     color: #1a2437a3;
@@ -69,14 +74,28 @@
   .btn-signUp,
   .btn-return-login,
   .btn-login {
-    width: 173px;
-    height: 28px;
+    width: 170px;
+    height: 20px;
     background: #51B78E;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     border: 1px solid #51B78E;
     margin-top: 10px;
     margin-bottom: 30px;
+  }
+  .container-login .content-google{
+    width: 85%;
+    height: 0;
+    border-top: 2px solid #23282c20;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-top: 50px;
+    padding-top: 30px;
+    position: relative;
+    bottom: 90px;
+  }
+  .container-login .content-Googletext h6{
+    color: black;
   }
 
   .btn-signInGoogle {
@@ -88,17 +107,17 @@
     height: 40px;
     border-radius: 100%;
     position: relative;
-    top: 80px;
+    top: 5px;
   }
 
   .content-returnSignUp {
-    padding-top: 80px;
+    padding-bottom: 20px;
   }
 
   .btn-register {
     background: #51B78E;
     border-radius: 30px;
     border: 1px solid #51B78E;
-    height: 28px
+    height: 20px
   }
 }
