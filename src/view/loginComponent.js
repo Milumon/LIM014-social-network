@@ -1,4 +1,8 @@
 import {
+  createUser,
+  sendEmail,
+  signInGoogle,
+  logOut,
   loginUser,
 } from '../controller/firebase-auth.js';
 
@@ -33,7 +37,7 @@ export default () => {
 
           <div class="social-media">
             <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
+              <i class="fab fa-google" id="btnGoogle"></i>
             </a>
           </div> <!-- social-media -->
 
@@ -61,13 +65,13 @@ export default () => {
           <div class="msg">
           </div>
           <!-- BOTÓN DE ENVIAR -->
-          <input type="submit" class="btn" value="Sign Up" />
+          <input type="submit" class="btn" id="btn-signUp" value="Sign Up" />
 
           <p class="social-text">Or Sign up with ...</p>
 
           <div class="social-media">
             <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
+            <i class="fab fa-google" id="btnGoogle"></i>
             </a>
           </div> <!-- social-media -->
 
@@ -129,13 +133,12 @@ export default () => {
     containerTwo.classList.remove('sign-up-mode');
   });
 
+  /* EVENTO DE LOGEO */
+
   btnSubmitLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('SUBMIT ENVIADO');
-
     const email = viewLogin.querySelector('#email-login').value;
     const password = viewLogin.querySelector('#password-login').value;
-
     loginUser(email, password).then((data) => {
       if (data.user.emailVerified) {
         window.location.hash = '#/timeline';
@@ -144,6 +147,41 @@ export default () => {
       }
     })
       .catch((err) => alert(err));
+  });
+
+  const registerForm = viewLogin.querySelector('#register-form');
+  const btnRegister = viewLogin.querySelector('#btn-signUp');
+  const inputForm = viewLogin.querySelectorAll('.inputForm');
+
+  /* EVENTO DE REGISTRO */
+
+  btnRegister.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Obtener valores de datos de registros ingresados
+    const email = viewLogin.querySelector('#email-register').value;
+    const password = viewLogin.querySelector('#password-register').value;
+    const contentMsg = viewLogin.querySelector('.msg');
+    // Registrar usuario
+    createUser(email, password)
+      .then(() => {
+        registerForm.reset();
+        sendEmail();
+        logOut();
+        window.location.hash = '#/';
+      })
+      .catch((err) => {
+        contentMsg.innerHTML = `<p>${err.message}</p>`;
+        setTimeout(() => {
+          contentMsg.innerHTML = '';
+        }, 3000);
+      });
+  });
+
+  const btnGoogle = viewLogin.querySelector('#btnGoogle');
+  console.log(document);
+
+  btnGoogle.addEventListener('click', () => {
+    signInGoogle();
   });
 
   return viewLogin;
