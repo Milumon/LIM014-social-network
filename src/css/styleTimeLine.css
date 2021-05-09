@@ -1,0 +1,233 @@
+@media screen and (min-width:200px) {
+  .section-TimeLine {
+    height: 100vh;
+    width: 100%
+  }
+
+  /* Header */
+  .header {
+    height: auto;
+    padding: 20px 10px;
+    box-shadow: 1px 1px 9px -5px rgba(18, 31, 63, 0.44);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header h1 {
+    font-family: 'Lobster', cursive;
+    font-size: medium;
+    letter-spacing: 1.5px;
+    margin: 0;
+  }
+
+  .header .user {
+    display: flex;
+    align-items: center;
+  }
+
+  .header .user img {
+    max-height: 40px;
+    max-width: 40px;
+    border-radius: 100%;
+    margin: 0 10px;
+  }
+
+  .header .user i {
+    color: var(--paletteOne-one-color)
+  }
+
+  /* Menú */
+  .nav {
+    background-color: var(--paletteOne-one-color);
+    margin-top: 5px;
+    height: auto;
+    padding: 20px 10px;
+  }
+
+  .nav .list-options {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .nav .list-options i {
+    font-size: 30px;
+    color: var(--paletteOne-two-color);
+  }
+
+  /* Share */
+  .content-share .share {
+    text-align: center;
+    border-radius: 5px;
+    border: solid 1.9px var(--paletteOne-one-color);
+    padding: 10px;
+    margin: 20px 5%;
+  }
+
+  .content-share .share form {
+    text-align: right;
+  }
+
+  .content-share .share .progress-panel {
+    text-align: left;
+    border-bottom: solid 0.1px var(--paletteOne-one-color);
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  .content-share .share .progress-panel input {
+    font-size: 10px;
+  }
+
+  .content-share .share .post-description {
+    width: 100%;
+    height: 55px;
+    border: 1px solid #c6c6c6;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-size: 11px;
+    resize: none;
+    outline: none;
+    padding: 5px;
+  }
+
+  .content-share .share button {
+    margin-top: 10px;
+    width: 80px;
+    color: var(--paletteOne-one-color);
+    background-color: var(--paletteOne-two-color);
+    border: 1.95px solid var(--paletteOne-two-color);
+    border-radius: 2px;
+    box-sizing: border-box;
+    padding: 1px
+  }
+
+  /********** Posts ***********/
+  .content-posts .post-user {
+    margin: 20px 5%;
+    background-color: #fafafa;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+
+  }
+
+  .content-posts .post-user .header-post-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .content-posts .post-user .header-post-user figure {
+    display: flex;
+    align-items: center;
+  }
+
+  .content-posts .post-user .header-post-user figure img {
+    max-height: 30px;
+    max-width: 30px;
+    border-radius: 100%;
+    margin-right: 5px;
+  }
+
+  .content-posts .post-user .header-post-user p {
+    font-size: 12px
+  }
+
+  .content-posts .post-user .header-post-user .icon-edit i {
+    color: var(--paletteOne-one-color)
+  }
+
+  .content-posts .post-user .user-post-description {
+    margin: 10px 0;
+  }
+
+  .content-posts .post-user .user-post-description img {
+    width: 98%;
+    border-radius: 20px
+  }
+
+  .content-posts .post-user .user-post-description p {
+    text-align: justify;
+    font-size: 12px;
+  }
+
+  .content-posts .post-user .user-post-description .like-comment {
+    margin: 5px 0;
+  }
+
+  .content-posts .post-user .user-post-description .like-comment a {
+    display: inline-block;
+    padding: 8px;
+    background-color: var(--paletteOne-three-color);
+    border-radius: 100%;
+    color: var(--paletteOne-one-color);
+  }
+}
+
+@media screen and (min-width:650px) {
+  .section-TimeLine {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: center;
+    grid-template-areas: "header  header"
+      "menu    contentPosts";
+  }
+
+  /* Header */
+  .header {
+    grid-area: header;
+  }
+
+  .header h1 {
+    font-size: xx-large;
+  }
+
+  .header .user img {
+    max-height: 50px;
+    max-width: 50px;
+  }
+
+  /* Menu */
+  .nav {
+    grid-area: menu;
+  }
+
+  .nav .list-options {
+    display: block;
+    text-align: center
+  }
+
+  .nav .list-options li {
+    margin-bottom: 60px;
+  }
+
+  .nav .list-options i {
+    font-size: 35px
+  }
+
+  /* Share */
+  .contentPosts-container {
+    grid-area: contentPosts;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .content-share .share {
+    width: 50%;
+    margin: 20px auto;
+  }
+
+  .content-posts .post-user {
+    width: 300px;
+    margin: 20px 2%;
+  }
+
+  .content-posts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}

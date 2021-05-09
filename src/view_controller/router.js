@@ -1,4 +1,6 @@
-import { components } from '../view/index.js';
+import {
+  components,
+} from '../view/index.js';
 
 // aqui exportaras las funciones que necesites
 
@@ -25,7 +27,7 @@ const changeView = (route) => {
     }
     case '#/timeline': {
       console.log('TIMELINE');
-      container.appendChild(components.header());
+      // container.appendChild(components.header());
       container.appendChild(components.timeline());
       break;
     }
@@ -34,4 +36,6 @@ const changeView = (route) => {
   }
 };
 
-export { changeView };
+export {
+  changeView,
+};

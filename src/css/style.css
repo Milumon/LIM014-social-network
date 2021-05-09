@@ -1,5 +1,24 @@
-html,
-body {
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+:root {
+  /*Color Palette*/
+  --paletteOne-one-color: #262A4C;
+  --paletteOne-two-color: #2FE099;
+  --paletteOne-three-color: white;
+  --background: #fafafa;
+}
+
+* {
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--paletteOne-three-color);
+}
+
+ul,
+li {
+  list-style: none;
 }

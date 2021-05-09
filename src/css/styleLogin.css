@@ -1,16 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
-/*Variables*/
-:root {
-  /*Color Palette*/
-  --paletteOne-one-color: #262A4C;
-  --paletteOne-two-color: #2FE099;
-  --paletteOne-three-color: white;
-
-  /*Typography*/
-  --font-logo: 'Lobster', cursive;
-}
-
 @media screen and (min-width:300px) {
 
   /*
@@ -33,7 +20,8 @@
     position: relative;
     bottom: 50px;
   }
-  .container-login .content-images{
+
+  .container-login .content-images {
     display: flex;
     justify-content: space-between;
   }
@@ -83,7 +71,8 @@
     margin-top: 10px;
     margin-bottom: 30px;
   }
-  .container-login .content-google{
+
+  .container-login .content-google {
     width: 85%;
     height: 0;
     border-top: 2px solid #23282c20;
@@ -94,7 +83,8 @@
     position: relative;
     bottom: 90px;
   }
-  .container-login .content-Googletext h6{
+
+  .container-login .content-Googletext h6 {
     color: black;
   }
 
