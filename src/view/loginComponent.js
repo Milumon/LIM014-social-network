@@ -1,65 +1,148 @@
 import {
-  loginUser
+  loginUser,
 } from '../controller/firebase-auth.js';
 
 export default () => {
   const viewLogin = document.createElement('section');
   viewLogin.classList.add('container-login');
   viewLogin.innerHTML = `
-  <div class="content-circles">
-  <div class="circle"></div>
-  <div class="semi-circle"></div>
-  </div>
-  <header>
-    <h1 class="text">Find my Pawn!</h1>
-  </header>
-  <div class='content-images'>
-  <div class='firstgato'>
-  <img src= "./img/gato miau.png" width = "230px" >
-  </div>
-  <div class='secondgato'>
-  <img src= "./img/gato miau 2.png" width = "130px" >
-  </div>
-  </div>
-  <div class="container-formLogin">
-  <form id="login-form">
-  <div>
-    <input type="email" id="email" placeholder="E-mail" required />
-  </div>
-  <div>
-    <input type="password" id="password" placeholder="Password" required />
-  </div> 
-  <button type="submit" class="btn-login"><a href="#/timeline">Log in</a></button>
-  </form>
-  </div>
-  <div class="content-google">
-  <div class="content-Googletext">
-  <h6>or enter with ...</h6> 
-  <button type="submit" class="btn-signInGoogle" id="btnGoogle"></button>
-  </div>
-  <div class="content-returnSignUp">
-  <h6>Don´t Have an account?</h6>
-  <button type="submit" class="btn-register"><a href="#/register">Create an account</a></button>
-  </div>
-    `;
+
+  <div class="container"> <div class="containerTwo"> 
+    <div class="forms-container">
+      <div class="signin-signup">
+
+        <form class="sign-in-form" id="login-form">
+          <h2 class="title">Sign in</h2>
+          <!-- CAMPO DE CORREO -->
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="email" id="email-login" placeholder="E-mail" required />
+          </div>
+          <!-- CAMPO DE CONTRASEÑA -->
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password-login" placeholder="Password" required />
+          </div>
+          <!-- MENSAJE DE ERROR -->
+          <div class="msg">
+          </div>
+          <!-- BOTÓN DE ENVIAR -->
+          <input type="submit" class="btn" id="btnSubmitLogin" value="Login"/>
+
+          <p class="social-text">Or enter with ...</p>
+
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+          </div> <!-- social-media -->
+
+        </form> <!-- login-form -->
+
+
+        <form class="sign-up-form" id="register-form">
+          <h2 class="title">Sign up</h2>
+          <!-- CAMPO DE USUARIO -->
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username-register" placeholder="Username" required />
+          </div>
+          <!-- CAMPO DE CORREO -->
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email"id="email-register" placeholder="E-mail" required />
+          </div>
+          <!-- CAMPO DE CONTRASEÑA -->
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password-register" placeholder="Password" required />
+          </div>
+          <!-- MENSAJE DE ERROR -->
+          <div class="msg">
+          </div>
+          <!-- BOTÓN DE ENVIAR -->
+          <input type="submit" class="btn" value="Sign Up" />
+
+          <p class="social-text">Or Sign up with ...</p>
+
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+          </div> <!-- social-media -->
+
+        </form> <!-- register-form -->
+ 
+
+      </div> <!-- signin-signup -->
+    </div> <!-- container-forms --> 
+
+  <div class="panels-container">
+
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>¿Aún no te registras?</h3>
+        <p>
+          Llena tus datos y podrás formar parte de nuestra comunidad
+        </p>
+        <button class="btn transparent" id="sign-up-btn">
+          REGISTRARSE
+        </button>
+      </div>
+      <img src="img/log.svg" class="image" alt="" />
+    </div> <!-- left-panel -->
+
+    <div class="panel right-panel">
+      <div class="content">
+        <h3>¿Te encuentras registrado?</h3>
+        <p>
+          Ingresa tus datos y accede a tu comunidad
+        </p>
+        <button class="btn transparent" id="sign-in-btn">
+          INGRESAR
+        </button>
+      </div>
+      <img src="img/register.svg" class="image" alt="" />
+    </div> <!-- right-panel -->
+
+  </div> <!-- panels-container --> 
+</div> <!-- container -->
+</div> <!-- container -->
+
+  `;
 
   // const loginForm = divElement.querySelector('#login-form');
-  const btnLogin = viewLogin.querySelector('.btn-login');
 
-  btnLogin.addEventListener('click', (e) => {
+  const btnSubmitLogin = viewLogin.querySelector('#btnSubmitLogin');
+  const btnLoginMode = viewLogin.querySelector('#sign-in-btn');
+  const btnSignUpMode = viewLogin.querySelector('#sign-up-btn');
+  const container = viewLogin.querySelector('.container');
+  const containerTwo = viewLogin.querySelector('.containerTwo');
+
+  btnSignUpMode.addEventListener('click', () => {
+    container.classList.add('sign-up-mode');
+    containerTwo.classList.add('sign-up-mode');
+  });
+
+  btnLoginMode.addEventListener('click', () => {
+    container.classList.remove('sign-up-mode');
+    containerTwo.classList.remove('sign-up-mode');
+  });
+
+  btnSubmitLogin.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('SUBMIT ENVIADO');
 
-    const email = viewLogin.querySelector('#email').value;
-    const password = viewLogin.querySelector('#password').value;
+    const email = viewLogin.querySelector('#email-login').value;
+    const password = viewLogin.querySelector('#password-login').value;
 
     loginUser(email, password).then((data) => {
-        if (data.user.emailVerified) {
-          window.location.hash = '#/timeline';
-        } else {
-          alert('user no verificó');
-        }
-      })
+      if (data.user.emailVerified) {
+        window.location.hash = '#/timeline';
+      } else {
+        alert('user no verificó');
+      }
+    })
       .catch((err) => alert(err));
   });
 
