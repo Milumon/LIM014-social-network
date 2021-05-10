@@ -16,16 +16,17 @@ export const addUserInfo = (photo, birthday, description) => {
   });
 };
 
-export const addPost = (UserId, description) => db.collection('post').add({
-  userId: UserId,
-  Description: description,
-  Date: firebase.firestore.FieldValue.serverTimestamp(),
-  imageURL: 'imagen',
+export const addPost = (userId, privacy, description, imageURL) => db.collection('post').add({
+  userId,
+  description,
+  privacy,
+  date: firebase.firestore.FieldValue.serverTimestamp(),
+  imageURL,
   likes: '2',
 });
 
 export const getPosts = (callback) => {
-  db.collection('post').orderBy('Date', 'desc')
+  db.collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapshot) => {
       console.log('Colección(querySnapshot)', querySnapshot);
       const post = [];

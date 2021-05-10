@@ -151,7 +151,6 @@ export default () => {
 
   const registerForm = viewLogin.querySelector('#register-form');
   const btnRegister = viewLogin.querySelector('#btn-signUp');
-  const inputForm = viewLogin.querySelectorAll('.inputForm');
 
   /* EVENTO DE REGISTRO */
 
