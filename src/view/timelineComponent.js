@@ -1,13 +1,15 @@
-import { logOut } from "../controller/firebase-auth.js";
+import {
+  logOut
+} from '../controller/firebase-auth.js';
 import {
   addPost,
   getPosts,
   uploadImage,
-} from "../controller/firebase-firestore.js";
+} from '../controller/firebase-firestore.js';
 
 export default () => {
-  const viewTimeLine = document.createElement("section");
-  viewTimeLine.classList.add("section-TimeLine");
+  const viewTimeLine = document.createElement('section');
+  viewTimeLine.classList.add('section-TimeLine');
   viewTimeLine.innerHTML = `
     <!--Header-->  
       <header class="header">
@@ -47,11 +49,11 @@ export default () => {
     </div>
   `;
 
-  const inputFile = viewTimeLine.querySelector("#btnUploadFile");
+  const inputFile = viewTimeLine.querySelector('#btnUploadFile');
 
-  inputFile.addEventListener("change", (e) => {
+  inputFile.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    uploadImage(file, "profilePhotos");
+    uploadImage(file, 'profilePhotos').then(() => {});
   });
 
   // const btnSingOut = viewTimeLine.querySelector("button");
@@ -66,13 +68,13 @@ export default () => {
   // });
 
   const userId = firebase.auth().currentUser.uid;
-  const btnShare = viewTimeLine.querySelector(".btn-share");
-  btnShare.addEventListener("click", (e) => {
+  const btnShare = viewTimeLine.querySelector('.btn-share');
+  btnShare.addEventListener('click', (e) => {
     e.preventDefault();
-    const inputContent = viewTimeLine.querySelector(".post-description").value;
-    const formShare = viewTimeLine.querySelector(".form-share");
+    const inputContent = viewTimeLine.querySelector('.post-description').value;
+    const formShare = viewTimeLine.querySelector('.form-share');
     formShare.reset();
-    console.log("ENVIANDO DATOS: ", userId, inputContent);
+    console.log('ENVIANDO DATOS: ', userId, inputContent);
     addPost(userId, inputContent)
       .then((refDoc) => {
         console.log(`Id del post => ${refDoc.id}`);
@@ -82,15 +84,15 @@ export default () => {
       });
   });
 
-  const containerPost = viewTimeLine.querySelector(".content-posts");
+  const containerPost = viewTimeLine.querySelector('.content-posts');
 
   getPosts((post) => {
-    containerPost.innerHTML = "";
-    console.log("POOOOOOOOOOOOOOOOOOOOOOOST", post);
+    containerPost.innerHTML = '';
+    console.log('POOOOOOOOOOOOOOOOOOOOOOOST', post);
     post.forEach((x) => {
       // containerPost.appendChild(x.Description);
-      const singlePost = document.createElement("div");
-      singlePost.classList.add("post-user");
+      const singlePost = document.createElement('div');
+      singlePost.classList.add('post-user');
       singlePost.innerHTML += `
       <header class="header-post-user">
         <figure class="img-user">

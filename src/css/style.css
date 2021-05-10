@@ -18,4 +18,8 @@ body,
 input {
   font-family: "Lobster", sans-serif;
 }
- 
+
+ul,
+li {
+  list-style: none;
+}
