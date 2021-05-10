@@ -1,8 +1,7 @@
 const db = firebase.firestore();
-export const addUser = (name, username, email, password) => {
+export const addUser = (name, email, password) => {
   db.collection('user').add({
-    name,
-    username,
+    name: name.displayName,
     email,
     password,
   });
@@ -16,8 +15,9 @@ export const addUserInfo = (photo, birthday, description) => {
   });
 };
 
-export const addPost = (userId, privacy, description, imageURL) => db.collection('post').add({
+export const addPost = (userId, name, privacy, description, imageURL) => db.collection('post').add({
   userId,
+  name,
   description,
   privacy,
   date: firebase.firestore.FieldValue.serverTimestamp(),

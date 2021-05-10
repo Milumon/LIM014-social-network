@@ -5,6 +5,7 @@ import {
   logOut,
   loginUser,
 } from '../controller/firebase-auth.js';
+import { addUser } from '../controller/firebase-firestore.js';
 
 export default () => {
   const viewLogin = document.createElement('section');
@@ -151,14 +152,14 @@ export default () => {
 
   const registerForm = viewLogin.querySelector('#register-form');
   const btnRegister = viewLogin.querySelector('#btn-signUp');
+  const email = viewLogin.querySelector('#email-register').value;
+  const password = viewLogin.querySelector('#password-register').value;
 
   /* EVENTO DE REGISTRO */
 
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
     // Obtener valores de datos de registros ingresados
-    const email = viewLogin.querySelector('#email-register').value;
-    const password = viewLogin.querySelector('#password-register').value;
     const contentMsg = viewLogin.querySelector('.msg');
     // Registrar usuario
     createUser(email, password)
@@ -166,7 +167,10 @@ export default () => {
         registerForm.reset();
         sendEmail();
         logOut();
-        window.location.hash = '#/';
+        window.location.hash = '#/timeline';
+      })
+      .then(() => {
+        addUser(firebase.auth().currentUser, email, password);
       })
       .catch((err) => {
         contentMsg.innerHTML = `<p>${err.message}</p>`;
@@ -177,10 +181,17 @@ export default () => {
   });
 
   const btnGoogle = viewLogin.querySelector('#btnGoogle');
-  console.log(document);
 
   btnGoogle.addEventListener('click', () => {
-    signInGoogle();
+    signInGoogle()
+      .then(() => {
+        addUser(firebase.auth().currentUser, email, password);
+      })
+      .then(() => {
+        if (firebase.auth().currentUser) {
+          window.location.hash = '#/timeline';
+        }
+      });
   });
 
   return viewLogin;

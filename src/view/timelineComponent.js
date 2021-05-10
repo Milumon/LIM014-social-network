@@ -64,6 +64,7 @@ export default () => {
 
   // Capturar el USER ID actual
   const userId = firebase.auth().currentUser.uid;
+  const currentUser = firebase.auth().currentUser.displayName;
   // Capturar el botón de compartir
   const btnShare = viewTimeLine.querySelector('.btn-share');
   // Capturar el botón de subir archivo
@@ -94,7 +95,7 @@ export default () => {
     }, () => {
       // Handle successful uploads on complete
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-        addPost(userId, privacy, inputContent, downloadURL)
+        addPost(userId, currentUser, privacy, inputContent, downloadURL)
           .then((refDoc) => {
             console.log('Info del post => ', refDoc);
           })
@@ -122,7 +123,7 @@ export default () => {
       <header class="header-post-user">
         <figure class="img-user">
           <img src="">
-          <p>user 1</p>
+          <p>${x.name}</p>
         </figure>
         <div class="icon-edit">
           <a><i class="fas fa-grip-vertical"></i></a>
