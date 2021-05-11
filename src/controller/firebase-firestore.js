@@ -1,9 +1,9 @@
 const db = firebase.firestore();
 export const addUser = (name, email, password) => {
   db.collection('user').add({
-    name: name.displayName,
-    email,
-    password,
+    name,
+    email: email || 'noEmail',
+    password: password || 'noPassword',
   });
 };
 
