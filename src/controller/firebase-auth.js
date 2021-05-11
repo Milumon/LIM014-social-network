@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 // Acceso al servicio de Firebase auth
 const user = firebase.auth();
 
