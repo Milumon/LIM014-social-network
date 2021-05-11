@@ -42,14 +42,7 @@ export const getPosts = (callback) => {
     });
 };
 
-export const deletePost = (idPost) => {
-  db.collection('post').doc(idPost.id).delete().then(() => {
-      console.log('Document successfully deleted!');
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
-    });
-};
+export const deletePost = (idPost) => db.collection('post').doc(idPost.id).delete();
 
 export const uploadImage = (file, location) => {
   const storageRef = firebase.storage().ref(`${location}/${file.name}`);
