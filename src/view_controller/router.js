@@ -21,10 +21,6 @@ const changeView = (route) => {
       container.appendChild(components.login());
       break;
     }
-    case '#/register': {
-      container.appendChild(components.register());
-      break;
-    }
     case '#/timeline': {
       console.log('TIMELINE');
       // container.appendChild(components.header());

@@ -1,10 +1,9 @@
 const db = firebase.firestore();
-export const addUser = (name, username, email, password) => {
+export const addUser = (name, email, password) => {
   db.collection('user').add({
     name,
-    username,
-    email,
-    password,
+    email: email || 'noEmail',
+    password: password || 'noPassword',
   });
 };
 
@@ -16,16 +15,18 @@ export const addUserInfo = (photo, birthday, description) => {
   });
 };
 
-export const addPost = (UserId, description) => db.collection('post').add({
-  userId: UserId,
-  Description: description,
-  Date: firebase.firestore.FieldValue.serverTimestamp(),
-  imageURL: 'imagen',
+export const addPost = (userId, name, privacy, description, imageURL) => db.collection('post').add({
+  userId,
+  name,
+  description,
+  privacy,
+  date: firebase.firestore.FieldValue.serverTimestamp(),
+  imageURL,
   likes: '2',
 });
 
 export const getPosts = (callback) => {
-  db.collection('post').orderBy('Date', 'desc')
+  db.collection('post').orderBy('date', 'desc')
     .onSnapshot((querySnapshot) => {
       console.log('Colección(querySnapshot)', querySnapshot);
       const post = [];
@@ -38,6 +39,15 @@ export const getPosts = (callback) => {
       });
       console.log('array de post', post);
       callback(post);
+    });
+};
+
+export const deletePost = (idPost) => {
+  db.collection('post').doc(idPost.id).delete().then(() => {
+      console.log('Document successfully deleted!');
+    })
+    .catch((error) => {
+      console.error('Error removing document: ', error);
     });
 };
 

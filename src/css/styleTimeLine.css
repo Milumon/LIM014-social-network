@@ -103,6 +103,14 @@
   }
 
   /********** Posts ***********/
+  #icon-edit ul {
+    display: none;
+  }
+
+  #icon-edit a:hover {
+    display: block;
+  }
+
   .content-posts .post-user {
     margin: 20px 5%;
     background-color: #fafafa;
@@ -213,6 +221,10 @@
 }
 
 @media screen and (min-width:1024px) {
+  .section-TimeLine {
+    grid-template-columns: 5% 95%;
+  }
+
   .content-share .share {
     width: 50%;
     margin: 20px auto;

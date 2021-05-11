@@ -5,13 +5,17 @@ import {
   logOut,
   loginUser,
 } from '../controller/firebase-auth.js';
+import {
+  addUser,
+} from '../controller/firebase-firestore.js';
 
 export default () => {
   const viewLogin = document.createElement('section');
   viewLogin.classList.add('container-login');
   viewLogin.innerHTML = `
 
-  <div class="container"> <div class="containerTwo"> 
+<div class="container">
+  <div class="containerTwo">
     <div class="forms-container">
       <div class="signin-signup">
 
@@ -31,7 +35,7 @@ export default () => {
           <div class="msg">
           </div>
           <!-- BOTÓN DE ENVIAR -->
-          <input type="submit" class="btn" id="btnSubmitLogin" value="Login"/>
+          <input type="submit" class="btn" id="btnSubmitLogin" value="Login" />
 
           <p class="social-text">Or enter with ...</p>
 
@@ -53,8 +57,8 @@ export default () => {
           </div>
           <!-- CAMPO DE CORREO -->
           <div class="input-field">
-            <i class="fas fa-envelope"></i>
-            <input type="email"id="email-register" placeholder="E-mail" required />
+            <i class="fas fa-envelope"></i> 
+            <input type="email" id="email-register" placeholder="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required />
           </div>
           <!-- CAMPO DE CONTRASEÑA -->
           <div class="input-field">
@@ -71,53 +75,52 @@ export default () => {
 
           <div class="social-media">
             <a href="#" class="social-icon">
-            <i class="fab fa-google" id="btnGoogle"></i>
+              <i class="fab fa-google" id="btnGoogle"></i>
             </a>
           </div> <!-- social-media -->
 
         </form> <!-- register-form -->
- 
+
 
       </div> <!-- signin-signup -->
-    </div> <!-- container-forms --> 
+    </div> <!-- container-forms -->
 
-  <div class="panels-container">
+    <div class="panels-container">
 
-    <div class="panel left-panel">
-      <div class="content">
-        <h3>¿Aún no te registras?</h3>
-        <p>
-          Llena tus datos y podrás formar parte de nuestra comunidad
-        </p>
-        <button class="btn transparent" id="sign-up-btn">
-          REGISTRARSE
-        </button>
-      </div>
-      <img src="img/log.svg" class="image" alt="" />
-    </div> <!-- left-panel -->
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>¿Aún no te registras?</h3>
+          <p>
+            Llena tus datos y podrás formar parte de nuestra comunidad
+          </p>
+          <button class="btn transparent" id="sign-up-btn">
+            REGISTRARSE
+          </button>
+        </div>
+        <img src="img/log.svg" class="image" alt="" />
+      </div> <!-- left-panel -->
 
-    <div class="panel right-panel">
-      <div class="content">
-        <h3>¿Te encuentras registrado?</h3>
-        <p>
-          Ingresa tus datos y accede a tu comunidad
-        </p>
-        <button class="btn transparent" id="sign-in-btn">
-          INGRESAR
-        </button>
-      </div>
-      <img src="img/register.svg" class="image" alt="" />
-    </div> <!-- right-panel -->
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>¿Te encuentras registrado?</h3>
+          <p>
+            Ingresa tus datos y accede a tu comunidad
+          </p>
+          <button class="btn transparent" id="sign-in-btn">
+            INGRESAR
+          </button>
+        </div>
+        <img src="img/register.svg" class="image" alt="" />
+      </div> <!-- right-panel -->
 
-  </div> <!-- panels-container --> 
+    </div> <!-- panels-container -->
+  </div> <!-- container -->
 </div> <!-- container -->
-</div> <!-- container -->
 
-  `;
+`;
 
   // const loginForm = divElement.querySelector('#login-form');
 
-  const btnSubmitLogin = viewLogin.querySelector('#btnSubmitLogin');
   const btnLoginMode = viewLogin.querySelector('#sign-in-btn');
   const btnSignUpMode = viewLogin.querySelector('#sign-up-btn');
   const container = viewLogin.querySelector('.container');
@@ -135,11 +138,16 @@ export default () => {
 
   /* EVENTO DE LOGEO */
 
+  const btnSubmitLogin = viewLogin.querySelector('#btnSubmitLogin');
+
   btnSubmitLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    const email = viewLogin.querySelector('#email-login').value;
-    const password = viewLogin.querySelector('#password-login').value;
-    loginUser(email, password).then((data) => {
+    console.log('entró al click');
+
+    const emailLogin = viewLogin.querySelector('#email-login').value;
+    const passwordLogin = viewLogin.querySelector('#password-login').value;
+
+    loginUser(emailLogin, passwordLogin).then((data) => {
       if (data.user.emailVerified) {
         window.location.hash = '#/timeline';
       } else {
@@ -150,26 +158,38 @@ export default () => {
   });
 
   const registerForm = viewLogin.querySelector('#register-form');
-  const btnRegister = viewLogin.querySelector('#btn-signUp');
-  const inputForm = viewLogin.querySelectorAll('.inputForm');
 
   /* EVENTO DE REGISTRO */
 
+  const btnRegister = viewLogin.querySelector('#btn-signUp');
+
   btnRegister.addEventListener('click', (e) => {
+    const usernameRegister = viewLogin.querySelector('#username-register').value;
+    const emailRegister = viewLogin.querySelector('#email-register').value;
+
+    const passwordRegister = viewLogin.querySelector('#password-register').value;
+
     e.preventDefault();
+    console.log('ENTRÓ');
     // Obtener valores de datos de registros ingresados
-    const email = viewLogin.querySelector('#email-register').value;
-    const password = viewLogin.querySelector('#password-register').value;
     const contentMsg = viewLogin.querySelector('.msg');
     // Registrar usuario
-    createUser(email, password)
+    console.log(emailRegister, passwordRegister);
+    createUser(emailRegister, passwordRegister)
       .then(() => {
-        registerForm.reset();
-        sendEmail();
-        logOut();
-        window.location.hash = '#/';
+        const user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: usernameRegister,
+          photoURL: 'https://example.com/jane-q-user/profile.jpg',
+        });
+        addUser(usernameRegister, emailRegister, passwordRegister);
+        sendEmail().then(() => {
+          logOut();
+          window.location.hash = '#/';
+        });
       })
       .catch((err) => {
+        console.log('CAAAAAAAAAAAAATCH');
         contentMsg.innerHTML = `<p>${err.message}</p>`;
         setTimeout(() => {
           contentMsg.innerHTML = '';
@@ -178,10 +198,18 @@ export default () => {
   });
 
   const btnGoogle = viewLogin.querySelector('#btnGoogle');
-  console.log(document);
 
   btnGoogle.addEventListener('click', () => {
-    signInGoogle();
+    signInGoogle()
+      .then(() => {
+        addUser(firebase.auth().currentUser.displayName,
+          firebase.auth().currentUser.email);
+      })
+      .then(() => {
+        if (firebase.auth().currentUser) {
+          window.location.hash = '#/timeline';
+        }
+      });
   });
 
   return viewLogin;
