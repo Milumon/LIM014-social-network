@@ -13,12 +13,13 @@ export default () => {
   const viewLogin = document.createElement('section');
   viewLogin.classList.add('container-login');
   viewLogin.innerHTML = `
-
-<div class="container">
-  <div class="containerTwo">
-    <div class="forms-container">
+  <div class="container">
+    <div class="containerTwo">
+      <div class="forms-container">
       <div class="signin-signup">
 
+
+        <!---- login-form ---->
         <form class="sign-in-form" id="login-form">
           <h2 class="title">Sign in</h2>
           <!-- CAMPO DE CORREO -->
@@ -31,12 +32,12 @@ export default () => {
             <i class="fas fa-lock"></i>
             <input type="password" id="password-login" placeholder="Password" required />
           </div>
-          <!-- MENSAJE DE ERROR -->
-          <div class="msg">
-          </div>
+          
           <!-- BOTÓN DE ENVIAR -->
           <input type="submit" class="btn" id="btnSubmitLogin" value="Login" />
-
+          <!-- MENSAJE DE ERROR -->
+          <div class = "msg-login">
+          </div>
           <p class="social-text">Or enter with ...</p>
 
           <div class="social-media">
@@ -48,6 +49,7 @@ export default () => {
         </form> <!-- login-form -->
 
 
+        <!---- register-form ---->
         <form class="sign-up-form" id="register-form">
           <h2 class="title">Sign up</h2>
           <!-- CAMPO DE USUARIO -->
@@ -147,32 +149,40 @@ export default () => {
     const emailLogin = viewLogin.querySelector('#email-login').value;
     const passwordLogin = viewLogin.querySelector('#password-login').value;
 
-    loginUser(emailLogin, passwordLogin).then((data) => {
-      if (data.user.emailVerified) {
-        window.location.hash = '#/timeline';
-      } else {
-        alert('user no verificó');
-      }
-    })
-      .catch((err) => alert(err));
+    const contentMsg = viewLogin.querySelector('.msg-login');
+
+    loginUser(emailLogin, passwordLogin).then((userCredential) => {
+        const user = userCredential.user.emailVerified;
+        if (user) {
+          window.location.hash = '#/timeline';
+        } else {
+          alert('user no verificó');
+        }
+      })
+      .catch((err) => {
+        contentMsg.innerHTML = `<p>${err.message}</p>`;
+        setTimeout(() => {
+          contentMsg.innerHTML = "";
+        }, 5000)
+      });
   });
 
   const registerForm = viewLogin.querySelector('#register-form');
+
 
   /* EVENTO DE REGISTRO */
 
   const btnRegister = viewLogin.querySelector('#btn-signUp');
 
+
   btnRegister.addEventListener('click', (e) => {
+    e.preventDefault();
     const usernameRegister = viewLogin.querySelector('#username-register').value;
     const emailRegister = viewLogin.querySelector('#email-register').value;
-
     const passwordRegister = viewLogin.querySelector('#password-register').value;
 
-    e.preventDefault();
-    console.log('ENTRÓ');
-    // Obtener valores de datos de registros ingresados
     const contentMsg = viewLogin.querySelector('.msg');
+
     // Registrar usuario
     console.log(emailRegister, passwordRegister);
     createUser(emailRegister, passwordRegister)
@@ -189,11 +199,10 @@ export default () => {
         });
       })
       .catch((err) => {
-        console.log('CAAAAAAAAAAAAATCH');
         contentMsg.innerHTML = `<p>${err.message}</p>`;
         setTimeout(() => {
           contentMsg.innerHTML = '';
-        }, 3000);
+        }, 5000);
       });
   });
 

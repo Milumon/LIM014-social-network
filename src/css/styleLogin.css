@@ -1,12 +1,13 @@
-.msg {
+.msg,
+.msg-login {
   font-weight: lighter;
   font-size: 12px;
   color: red;
-} 
+}
 
 /* container de todo */
 .container {
-/*   background-image: 
+  /*   background-image: 
     linear-gradient( 
       rgba(0, 0, 0, 0.6), 
       rgba(0, 0, 0, 0.9)
@@ -95,7 +96,8 @@ form.sign-in-form {
   font-size: 1.1rem;
 }
 
-.input-field:hover, .input-field:focus {
+.input-field:hover,
+.input-field:focus {
   border: 1px solid var(--paletteOne-one-color);
 }
 
@@ -184,21 +186,21 @@ form.sign-in-form {
 .container:before {
   content: "";
   position: absolute;
-  width: 2000px;  
+  width: 2000px;
   height: 1000px;
   top: -20%;
   right: 42%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #262A4C  0%, var(--paletteOne-two-color) 100%);
+  background-image: linear-gradient(-45deg, #262A4C 0%, var(--paletteOne-two-color) 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
-  z-index: 6; 
+  z-index: 6;
 }
 
 .containerTwo:before {
   content: "";
   position: absolute;
-  width: 2000px;  
+  width: 2000px;
   height: 2000px;
   top: -20%;
   right: 42%;
@@ -206,7 +208,7 @@ form.sign-in-form {
   background-image: linear-gradient(-45deg, #262A4C 0%, #262A4C 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
-  z-index: 5; 
+  z-index: 5;
 }
 
 
@@ -278,11 +280,11 @@ form.sign-in-form {
   transform: translate(100%, -50%);
   right: 52%;
 }
- 
+
 
 
 .container.sign-up-mode .left-panel .image,
-.container.sign-up-mode .left-panel .content, 
+.container.sign-up-mode .left-panel .content,
 .containerTwo.sign-up-mode .left-panel .image,
 .containerTwo.sign-up-mode .left-panel .content {
   transform: translateX(-800px);
@@ -400,7 +402,7 @@ form.sign-in-form {
     right: initial;
   }
 
-  .containerTwo.sign-up-mode:before  {
+  .containerTwo.sign-up-mode:before {
     transform: translate(-50%, 40%);
     bottom: 32%;
     right: initial;
