@@ -152,28 +152,26 @@ export default () => {
     const contentMsg = viewLogin.querySelector('.msg-login');
 
     loginUser(emailLogin, passwordLogin).then((userCredential) => {
-        const user = userCredential.user.emailVerified;
-        if (user) {
-          window.location.hash = '#/timeline';
-        } else {
-          alert('user no verificó');
-        }
-      })
+      const user = userCredential.user.emailVerified;
+      if (user) {
+        window.location.hash = '#/timeline';
+      } else {
+        alert('user no verificó');
+      }
+    })
       .catch((err) => {
         contentMsg.innerHTML = `<p>${err.message}</p>`;
         setTimeout(() => {
-          contentMsg.innerHTML = "";
-        }, 5000)
+          contentMsg.innerHTML = '';
+        }, 5000);
       });
   });
 
   const registerForm = viewLogin.querySelector('#register-form');
 
-
   /* EVENTO DE REGISTRO */
 
   const btnRegister = viewLogin.querySelector('#btn-signUp');
-
 
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
