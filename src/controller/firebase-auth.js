@@ -1,7 +1,7 @@
-/* ********SIG UP********* */
-
 // Acceso al servicio de Firebase auth
 const user = firebase.auth();
+
+/* ********SIG UP********* */
 
 // Registra usuarios nuevos
 export const createUser = (email, password) => user.createUserWithEmailAndPassword(email, password);

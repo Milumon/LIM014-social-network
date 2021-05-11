@@ -10,4 +10,4 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const storage = firebase.storage();
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
