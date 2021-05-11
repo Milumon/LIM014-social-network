@@ -3,11 +3,11 @@ import {
   getPosts,
   uploadImage,
   deletePost,
-} from "../controller/firebase-firestore.js";
+} from '../controller/firebase-firestore.js';
 
 export default () => {
-  const viewTimeLine = document.createElement("section");
-  viewTimeLine.classList.add("section-TimeLine");
+  const viewTimeLine = document.createElement('section');
+  viewTimeLine.classList.add('section-TimeLine');
   viewTimeLine.innerHTML = `
     <!--Header-->  
       <header class="header">
@@ -67,30 +67,29 @@ export default () => {
   const userId = firebase.auth().currentUser.uid;
   const currentUser = firebase.auth().currentUser.displayName;
   // Capturar el botón de compartir
-  const btnShare = viewTimeLine.querySelector(".btn-share");
+  const btnShare = viewTimeLine.querySelector('.btn-share');
   // Capturar el botón de subir archivo
-  const inputFile = viewTimeLine.querySelector("#btnUploadFile");
+  const inputFile = viewTimeLine.querySelector('#btnUploadFile');
 
   // Todo lo que sucederá cuando le den a 'COMPARTIR'
-  btnShare.addEventListener("click", (e) => {
+  btnShare.addEventListener('click', (e) => {
     e.preventDefault();
     // Capturar el value del contenido del post
-    const inputContent = viewTimeLine.querySelector(".post-description").value;
+    const inputContent = viewTimeLine.querySelector('.post-description').value;
     // Capturar el archivo seleccionado
     const imageFile = inputFile.files[0];
-    console.log("objeto de imagen", imageFile);
-    const uploadTask = uploadImage(imageFile, "profilePhotos");
+    console.log('objeto de imagen', imageFile);
+    const uploadTask = uploadImage(imageFile, 'profilePhotos');
     // Capturar el FORM
-    const formShare = viewTimeLine.querySelector(".form-share");
+    const formShare = viewTimeLine.querySelector('.form-share');
     // PRIVACIDAD (reempalzar por input list value)
-    const privacy = "Publico";
+    const privacy = 'Publico';
 
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       (snapshot) => {
         // Observe state change events such as progress, pause, and resume
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log(`Upload is ${progress}% done`);
         // eslint-disable-next-line default-case
       },
@@ -103,13 +102,13 @@ export default () => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
           addPost(userId, currentUser, privacy, inputContent, downloadURL)
             .then((refDoc) => {
-              console.log("Info del post => ", refDoc);
+              console.log('Info del post => ', refDoc);
             })
             .catch((error) => {
               console.log(`Error creando el post => ${error}`);
             });
         });
-      }
+      },
     );
 
     /* Resetear los inputs del FORM */
@@ -117,15 +116,15 @@ export default () => {
     /* Enviar la info del userId y el texto del post */
   });
 
-  const containerPost = viewTimeLine.querySelector(".content-posts");
+  const containerPost = viewTimeLine.querySelector('.content-posts');
 
   getPosts((post) => {
-    containerPost.innerHTML = "";
-    console.log("POOOOOOOOOOOOOOOOOOOOOOOST", post);
+    containerPost.innerHTML = '';
+    console.log('POOOOOOOOOOOOOOOOOOOOOOOST', post);
     post.forEach((x) => {
       // containerPost.appendChild(x.Description);
-      const singlePost = document.createElement("div");
-      singlePost.classList.add("post-user");
+      const singlePost = document.createElement('div');
+      singlePost.classList.add('post-user');
       singlePost.innerHTML += `
       <header class="header-post-user">
         <figure class="img-user">
@@ -135,10 +134,10 @@ export default () => {
         <nav class="nav-edit">
           <ul class= "ul-content"> 
             <li>   
-            <a><i class="fas fa-grip-vertical" id="icon-edit"></i></a>
+            <a class="fas fa-grip-vertical" id="icon-edit"></a>
             <ul class= "ul-second">
-              <li><a href="#" class="post-edit">edit</a></li>
-              <li><a href="#" class= "post-delete" >delete</a></li>
+              <li><a class="post-edit">edit</a></li>
+              <li><a class= "post-delete-${x.id}">delete</a></li>
             </ul>
             </li>
           </ul>
@@ -155,7 +154,15 @@ export default () => {
         </p>
       </div>
       `;
-      containerPost.appendChild(singlePost);
+      const btnDelete = singlePost.querySelector(`.post-delete-${x.id}`);
+      btnDelete.addEventListener('click', () => {
+        deletePost(x.id).then(() => {
+          console.log('Document successfully deleted!');
+        }).catch((error) => {
+          console.error('Error removing document: ', error);
+        });
+      });
+      return containerPost.appendChild(singlePost);
       // singlePost.deletePost();
     });
   });
