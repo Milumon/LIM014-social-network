@@ -1,7 +1,9 @@
 // Acceso al servicio de Firebase auth
 const user = firebase.auth();
 
-// Registrar usuario
+/* ********SIG UP********* */
+
+// Registra usuarios nuevos
 export const createUser = (email, password) => user.createUserWithEmailAndPassword(email, password);
 
 export const sendEmail = () => {
@@ -24,13 +26,16 @@ export const sendEmail = () => {
   });
 };
  */
+
+/* ********LOGIN********* */
+
+// Acceso de usuarios existentes
 export const loginUser = (email, password) => user.signInWithEmailAndPassword(email, password);
 
 export const sendRecoverPass = (email) => {
   const auth = firebase.auth();
   return auth.sendPasswordResetEmail(email);
 };
-
 export const logOut = () => firebase.auth().signOut();
 
 export const signInGoogle = () => {
