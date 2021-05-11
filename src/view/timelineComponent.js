@@ -71,6 +71,8 @@ export default () => {
   // Capturar el botón de subir archivo
   const inputFile = viewTimeLine.querySelector('#btnUploadFile');
 
+  
+
   // Todo lo que sucederá cuando le den a 'COMPARTIR'
   btnShare.addEventListener('click', (e) => {
     e.preventDefault();
@@ -136,8 +138,9 @@ export default () => {
             <li>   
             <a class="fas fa-grip-vertical" id="icon-edit"></a>
             <ul class= "ul-second">
-              <li><a class="post-edit">edit</a></li>
-              <li><a class= "post-delete-${x.id}">delete</a></li>
+              <li><button class="post-edit">edit</button></li>
+              <li><button class= "post-delete" value="${x.id}">delete</button></li>
+             >
             </ul>
             </li>
           </ul>
@@ -154,9 +157,11 @@ export default () => {
         </p>
       </div>
       `;
-      const btnDelete = singlePost.querySelector(`.post-delete-${x.id}`);
+
+      const btnDelete = singlePost.querySelector('.post-delete');
       btnDelete.addEventListener('click', () => {
-        deletePost(x.id).then(() => {
+        console.log('VALUEEEEEEEEEEEEEEEEEEEEEEE', btnDelete.value);
+        deletePost(btnDelete.value).then(() => {
           console.log('Document successfully deleted!');
         }).catch((error) => {
           console.error('Error removing document: ', error);

@@ -7,7 +7,11 @@ const firebaseConfig = {
   storageBucket: 'gs://findmypawn.appspot.com',
   messagingSenderId: '940211215000',
   appId: '1:940211215000:web:cec39923833ea11a68ceed',
+
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
 const storage = firebase.storage();
