@@ -103,12 +103,11 @@
   }
 
   /********** Posts ***********/
-  #icon-edit ul {
+  .ul-content li ul  {
     display: none;
   }
-
-  #icon-edit a:hover {
-    display: block;
+  .ul-content li:hover ul{
+    display:block;
   }
 
   .content-posts .post-user {

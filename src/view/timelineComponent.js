@@ -134,10 +134,10 @@ export default () => {
         <nav class="nav-edit">
           <ul class= "ul-content"> 
             <li>   
-            <a><i class="fas fa-grip-vertical" id="icon-edit"></i></a>
+            <a class="fas fa-grip-vertical" id="icon-edit"></a>
             <ul class= "ul-second">
-              <li><a href="#" class="post-edit">edit</a></li>
-              <li><a href="#" class= "post-delete" >delete</a></li>
+              <li><a class="post-edit">edit</a></li>
+              <li><a class= "post-delete-${x.id}">delete</a></li>
             </ul>
             </li>
           </ul>
@@ -154,7 +154,15 @@ export default () => {
         </p>
       </div>
       `;
-      containerPost.appendChild(singlePost);
+      const btnDelete = singlePost.querySelector(`.post-delete-${x.id}`);
+      btnDelete.addEventListener('click', () => {
+        deletePost(x.id).then(() => {
+          console.log('Document successfully deleted!');
+        }).catch((error) => {
+          console.error('Error removing document: ', error);
+        });
+      });
+      return containerPost.appendChild(singlePost);
       // singlePost.deletePost();
     });
   });
