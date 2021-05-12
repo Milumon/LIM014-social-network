@@ -30,10 +30,12 @@ const changeView = (route) => {
     }
     case '#/timeline': {
       onAuthStateChanged((user) => {
+        // se llama al onAuthStateChanged para verificar si el usuario esta logeado
         if (user !== null) {
-          console.log('USER IDDDDDDDDDDDD ', user.uid);
+          console.log("USER IDDDDDDDDDDDD ", user.uid);
+        // 
           getDataUser(user.uid).then((doc) => {
-            console.log('dataaaaaaaaa ', doc);
+            console.log("dataaaaaaaaa ", doc);
             container.appendChild(components.timeline(doc.data()));
           });
         }
