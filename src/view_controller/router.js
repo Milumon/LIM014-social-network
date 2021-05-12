@@ -7,6 +7,10 @@ import {
 } from '../controller/firebase-auth.js';
 // aqui exportaras las funciones que necesites
 
+// const createChild = (element, child) => {
+// element.appendChild(child);}
+// createChild(container, components.login());
+
 const changeView = (route) => {
   console.log('test changeView', route);
   const container = document.getElementById('container');
