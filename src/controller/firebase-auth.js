@@ -1,53 +1,70 @@
+/* ********ADMINISTRAR USUARIOS********* */
+export const currentUser = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in.
+      console.log('siii', user);
+    } else {
+      // User is signed out
+      console.log('usuario no exite');
+    }
+  });
+};
 
-
-
-
-
-
-
-
-// Acceso al servicio de Firebase auth
-const user = firebase.auth();
+export const getCurrentUser = () => firebase.auth().currentUser;
 
 /* ********SIG UP********* */
+export const createUser = (email, password) => {
+  // Acceso a la información del usuario en el servicio de autenticación
+  const user = firebase.auth();
+  // Crear usuario con correo electrónico y contraseña
+  return user.createUserWithEmailAndPassword(email, password);
+};
 
-// Registra usuarios nuevos
-export const createUser = (email, password) => user.createUserWithEmailAndPassword(email, password);
-
+// enviar e-mail de verificación
 export const sendEmail = () => {
-  console.log('ingresó a sendemail');
-
+  // Acceso a la información del usuario en el servicio de autenticación
+  const user = firebase.auth();
   const configuration = {
     url: 'http://localhost:5000/#/',
   };
   // Enviar e-mail de verificación
-  return user.currentUser.sendEmailVerification(configuration);
+  return getCurrentUser().sendEmailVerification(configuration);
 };
 
-/* export const updateUsername = (username) => {
-  console.log('ingresó a username');
+/* ********LOG IN********* */
 
-  const user = firebase.auth().currentUser;
-
-  return user.updateProfile({
-    displayName: username,
-  });
+export const loginUser = (email, password) => {
+  // Acceso a la información del usuario en el servicio de autenticación
+  const user = firebase.auth();
+  // Usuarios existentes puedan acceder con su dirección de correo electrónico y una contraseña
+  return user.signInWithEmailAndPassword(email, password);
 };
- */
-
-/* ********LOGIN********* */
-
-// Acceso de usuarios existentes
-export const loginUser = (email, password) => user.signInWithEmailAndPassword(email, password);
-
-export const sendRecoverPass = (email) => {
-  const auth = firebase.auth();
-  return auth.sendPasswordResetEmail(email);
-};
-export const logOut = () => firebase.auth().signOut();
 
 export const signInGoogle = () => {
-  const auth = firebase.auth();
+  const user = firebase.auth();
+  // Autenticar con Firebase a través del objeto del proveedor de Google
   const provider = new firebase.auth.GoogleAuthProvider();
-  return auth.signInWithPopup(provider);
+  // Para acceder con una ventana emergente
+  user.signInWithPopup(provider);
 };
+
+// Salir de sesión de un usuario
+export const logOut = () => firebase.auth().signOut();
+
+// // Enviar correo de verificación
+// export const sendRecoverPass = (email) => {
+//   const auth = firebase.auth();
+//   return auth.sendPasswordResetEmail(email);
+// };
+
+// /* export const updateUsername = (username) => {
+//   console.log('ingresó a username');
+
+//   const user = firebase.auth().currentUser;
+
+//   return user.updateProfile({
+//     displayName: username,
+//   });
+// };
+//  */
