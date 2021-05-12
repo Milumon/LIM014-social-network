@@ -5,14 +5,14 @@ import {
   deletePost,
 } from '../controller/firebase-firestore.js';
 
-export default () => {
+export default (userData) => {
   const viewTimeLine = document.createElement('section');
   viewTimeLine.classList.add('section-TimeLine');
   viewTimeLine.innerHTML = `
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
-        <div class="user">
+        <div class="${userData.name}">
           <img src = "../img/user.png">
           <a href="#"><i class="fas fa-sort-down"></i></a>
         </div>
@@ -71,7 +71,7 @@ export default () => {
   // Capturar el botón de subir archivo
   const inputFile = viewTimeLine.querySelector('#btnUploadFile');
 
-  
+
 
   // Todo lo que sucederá cuando le den a 'COMPARTIR'
   btnShare.addEventListener('click', (e) => {

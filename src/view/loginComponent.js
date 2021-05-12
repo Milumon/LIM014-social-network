@@ -5,9 +5,7 @@ import {
   logOut,
   loginUser,
 } from '../controller/firebase-auth.js';
-import {
-  addUser,
-} from '../controller/firebase-firestore.js';
+import { addUser } from '../controller/firebase-firestore.js';
 
 export default () => {
   const viewLogin = document.createElement('section');
@@ -151,7 +149,8 @@ export default () => {
 
     const contentMsg = viewLogin.querySelector('.msg-login');
 
-    loginUser(emailLogin, passwordLogin).then((userCredential) => {
+    loginUser(emailLogin, passwordLogin)
+      .then((userCredential) => {
         const user = userCredential.user.emailVerified;
         if (user) {
           window.location.hash = '#/timeline';
@@ -209,8 +208,10 @@ export default () => {
   btnGoogle.addEventListener('click', () => {
     signInGoogle()
       .then(() => {
-        addUser(firebase.auth().currentUser.displayName,
-          firebase.auth().currentUser.email);
+        addUser(
+          firebase.auth().currentUser.displayName,
+          firebase.auth().currentUser.email,
+        );
       })
       .then(() => {
         if (firebase.auth().currentUser) {
@@ -218,6 +219,5 @@ export default () => {
         }
       });
   });
-
   return viewLogin;
 };

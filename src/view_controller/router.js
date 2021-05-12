@@ -1,7 +1,10 @@
 import {
   components,
 } from '../view/index.js';
-
+import {
+  currentUser,
+  getDataUser,
+} from '../controller/firebase-auth.js';
 // aqui exportaras las funciones que necesites
 
 const changeView = (route) => {
@@ -22,9 +25,16 @@ const changeView = (route) => {
       break;
     }
     case '#/timeline': {
-      console.log('TIMELINE');
+      const user = currentUser((userd) => {
+        console.log("primer ", userd);
+      });
+      console.log("gaaaaaaaaaaaa", user);
+      if (user !== null) {
+        getDataUser(user.uid).then((doc) => {
+          container.appendChild(components.timeline(doc.data()));
+        });
+      }
       // container.appendChild(components.header());
-      container.appendChild(components.timeline());
       break;
     }
     default:

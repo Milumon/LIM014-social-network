@@ -1,16 +1,13 @@
 /* ********ADMINISTRAR USUARIOS********* */
 export const currentUser = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in.
-      console.log('siii', user);
-    } else {
-      // User is signed out
-      console.log('usuario no exite');
-    }
-  });
-};
+  firebase.auth().onAuthStateChanged(
 
+  );
+};
+export const getDataUser = (currentUser) => {
+  const db = firebase.firestore();
+  return db.collection('user').doc(currentUser).get();
+};
 export const getCurrentUser = () => firebase.auth().currentUser;
 
 /* ********SIG UP********* */

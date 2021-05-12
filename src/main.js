@@ -1,5 +1,7 @@
 // Este es el punto de entrada de tu aplicacion
-import { changeView } from './view_controller/router.js';
+import {
+  changeView
+} from './view_controller/router.js';
 
 // 36.20
 
