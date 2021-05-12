@@ -7,12 +7,15 @@ import {
 
 export default (userData) => {
   // Capturar el USER ID actual
-  const userId = userData.uid; // firebase.firestore
+  const userId = userData.userId; // firebase.firestore
   const userName = userData.name; // firebase.auth()
 
   const viewTimeLine = document.createElement('section');
   viewTimeLine.classList.add('section-TimeLine');
-  viewTimeLine.innerHTML = `
+
+  
+  viewTimeLine.innerHTML = /*html*/ ` 
+  
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
@@ -31,6 +34,7 @@ export default (userData) => {
       </nav>
     <!--Share-->
     <div class="contentPosts-container">
+ 
       <article class="content-share">
         <div class="share">
           <form class="form-share">
@@ -84,6 +88,7 @@ export default (userData) => {
       () => {
         // Handle successful uploads on complete
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          console.log('se está enviando la siguiente data: userID ', userId, ' UserName ', userName, ' privacy ', privacy, ' inputContent ', inputContent, ' DOWNLOADurl ', downloadURL );
           addPost(userId, userName, privacy, inputContent, downloadURL)
             .then((refDoc) => {
               console.log('Info del post => ', refDoc);
@@ -110,6 +115,11 @@ export default (userData) => {
       const singlePost = document.createElement('div');
       singlePost.classList.add('post-user');
       singlePost.innerHTML += `
+
+      <div id="modalContainer" class="modal hide">
+      <input type="button" id="btnCancelDeletePost" value="Cancelar">
+      <input type="button" id="btnDeletePost" value="Aceptar">
+    </div>
       <header class="header-post-user">
         <figure class="img-user">
           <img src="">
@@ -141,13 +151,28 @@ export default (userData) => {
       `;
 
       const btnDelete = singlePost.querySelector('.post-delete');
+      const modal = singlePost.querySelector('#modalContainer');
+      const btnDeleteConfirm = singlePost.querySelector('#btnDeletePost');
+      const btnCancelDeletePost = singlePost.querySelector('#btnCancelDeletePost');
+
       btnDelete.addEventListener('click', () => {
-        console.log('VALUEEEEEEEEEEEEEEEEEEEEEEE', btnDelete.value);
-        deletePost(btnDelete.value).then(() => {
-          console.log('Document successfully deleted!');
-        }).catch((error) => {
-          console.error('Error removing document: ', error);
-        });
+
+        modal.classList.toggle('hide');
+
+        btnDeleteConfirm.addEventListener('click', () => {
+          deletePost(btnDelete.value).then(() => {
+            alert('Document successfully deleted!');
+          }).catch((error) => {
+            console.error('Error removing document: ', error);
+          });
+        })
+
+        btnCancelDeletePost.addEventListener('click', () => {
+          modal.classList.toggle('hide')
+        })
+
+
+         
       });
       return containerPost.appendChild(singlePost);
       // singlePost.deletePost();
