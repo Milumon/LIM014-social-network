@@ -1,6 +1,6 @@
 // Este es el punto de entrada de tu aplicacion
 import {
-  changeView
+  changeView,
 } from './view_controller/router.js';
 
 // 36.20
@@ -8,8 +8,8 @@ import {
 const init = () => {
   changeView(window.location.hash);
   window.addEventListener('hashchange', () => {
-    console.log('init', window.location.hash);
     changeView(window.location.hash);
+    
   });
 };
 

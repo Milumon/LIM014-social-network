@@ -6,13 +6,17 @@ import {
 } from '../controller/firebase-firestore.js';
 
 export default (userData) => {
+  // Capturar el USER ID actual
+  const userId = userData.uid; // firebase.firestore
+  const userName = userData.name; // firebase.auth()
+
   const viewTimeLine = document.createElement('section');
   viewTimeLine.classList.add('section-TimeLine');
   viewTimeLine.innerHTML = `
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
-        <div class="${userData.name}">
+        <div class="">
           <img src = "../img/user.png">
           <a href="#"><i class="fas fa-sort-down"></i></a>
         </div>
@@ -47,31 +51,10 @@ export default (userData) => {
     </div>
   `;
 
-  /* inputFile.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    uploadImage(file, 'profilePhotos');
-  }); */
-
-  // const btnSingOut = viewTimeLine.querySelector("button");
-
-  // btnSingOut.addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   console.log("LOG OUT ENVIADO");
-
-  //   logOut().then(() => {
-  //     window.location.hash = "#/login";
-  //   });
-  // });
-
-  // Capturar el USER ID actual
-  const userId = firebase.auth().currentUser.uid;
-  const currentUser = firebase.auth().currentUser.displayName;
   // Capturar el botón de compartir
   const btnShare = viewTimeLine.querySelector('.btn-share');
   // Capturar el botón de subir archivo
   const inputFile = viewTimeLine.querySelector('#btnUploadFile');
-
-
 
   // Todo lo que sucederá cuando le den a 'COMPARTIR'
   btnShare.addEventListener('click', (e) => {
@@ -80,8 +63,7 @@ export default (userData) => {
     const inputContent = viewTimeLine.querySelector('.post-description').value;
     // Capturar el archivo seleccionado
     const imageFile = inputFile.files[0];
-    console.log('objeto de imagen', imageFile);
-    const uploadTask = uploadImage(imageFile, 'profilePhotos');
+    const uploadTask = uploadImage(imageFile, 'Photos');
     // Capturar el FORM
     const formShare = viewTimeLine.querySelector('.form-share');
     // PRIVACIDAD (reempalzar por input list value)
@@ -102,7 +84,7 @@ export default (userData) => {
       () => {
         // Handle successful uploads on complete
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          addPost(userId, currentUser, privacy, inputContent, downloadURL)
+          addPost(userId, userName, privacy, inputContent, downloadURL)
             .then((refDoc) => {
               console.log('Info del post => ', refDoc);
             })

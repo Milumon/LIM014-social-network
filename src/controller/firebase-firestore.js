@@ -1,9 +1,10 @@
 const db = firebase.firestore();
-export const addUser = (name, email, password) => {
-  db.collection('user').add({
+export const addUser = (name, email, password, userId) => {
+  db.collection('user').doc(userId).set({
     name,
     email: email || 'noEmail',
     password: password || 'noPassword',
+    userId,
   });
 };
 

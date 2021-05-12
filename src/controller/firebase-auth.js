@@ -1,12 +1,10 @@
 /* ********ADMINISTRAR USUARIOS********* */
-export const currentUser = () => {
-  firebase.auth().onAuthStateChanged(
-
-  );
+export const onAuthStateChanged = (cb) => {
+  firebase.auth().onAuthStateChanged(cb);
 };
-export const getDataUser = (currentUser) => {
+export const getDataUser = (currentUserId) => {
   const db = firebase.firestore();
-  return db.collection('user').doc(currentUser).get();
+  return db.collection('user').doc(currentUserId).get();
 };
 export const getCurrentUser = () => firebase.auth().currentUser;
 
