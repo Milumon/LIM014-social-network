@@ -2,10 +2,7 @@
 export const onAuthStateChanged = (cb) => {
   firebase.auth().onAuthStateChanged(cb);
 };
-export const getDataUser = (currentUserId) => {
-  const db = firebase.firestore();
-  return db.collection('user').doc(currentUserId).get();
-};
+
 export const getCurrentUser = () => firebase.auth().currentUser;
 
 /* ********SIG UP********* */

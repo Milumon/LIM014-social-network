@@ -189,8 +189,9 @@ export default () => {
           displayName: usernameRegister,
           photoURL: 'https://example.com/jane-q-user/profile.jpg',
         });
-        addUser(usernameRegister, emailRegister, passwordRegister, user.uid);
+        addUser(user.uid, usernameRegister, emailRegister, passwordRegister);
         sendEmail().then(() => {
+          registerForm.reset();
           logOut();
           window.location.hash = '#/';
         });

@@ -1,10 +1,6 @@
-import {
-  components,
-} from '../view/index.js';
-import {
-  getDataUser,
-  onAuthStateChanged,
-} from '../controller/firebase-auth.js';
+import { components } from '../view/index.js';
+import { onAuthStateChanged } from '../controller/firebase-auth.js';
+import { getDataUser } from '../controller/firebase-firestore.js';
 
 const changeView = (route) => {
   console.log('test changeView', route);
@@ -25,12 +21,11 @@ const changeView = (route) => {
     }
     case '#/timeline': {
       onAuthStateChanged((user) => {
-        // se llama al onAuthStateChanged para verificar si el usuario esta logeado
+        // Se llama al onAuthStateChanged para verificar si el usuario esta logeado
         if (user !== null) {
-          console.log('USER IDDDDDDDDDDDD ', user.uid);
-          //
+          // identificar documento por uid de una colección
           getDataUser(user.uid).then((doc) => {
-            console.log('dataaaaaaaaa ', doc);
+            // resolver promesa para acceder a los datos del documento (doc.data())
             container.appendChild(components.timeline(doc.data()));
           });
         }
