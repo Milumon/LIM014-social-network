@@ -1,77 +1,90 @@
-const db = firebase.firestore();
-export const addUser = (name, email, password, userId) => {
-  db.collection('user').doc(userId).set({
-    name,
-    email: email || 'noEmail',
-    password: password || 'noPassword',
+/* ********DATA USER********* */
+export const addUser = (userId, name, email, password) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  // Para crear un documento en la colección user con ID generado manualmente
+  return db.collection('user').doc(userId).set({
     userId,
+    name,
+    mail: email,
+    password,
   });
 };
 
-export const addUserInfo = (photo, birthday, description) => {
-  db.collection('user').set({
-    photo,
-    birthday,
+export const getDataUser = (currentUserId) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  // .get() obtener los datos del documento de una colección
+  return db.collection('user').doc(currentUserId).get();
+};
+
+/* ********POST********* */
+export const addPost = (userId, name, privacy, description, imageURL) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  // Para crear un documento en la colección post
+  return db.collection('post').add({
+    userId,
+    name,
     description,
+    privacy,
+    date: firebase.firestore.FieldValue.serverTimestamp(),
+    imageURL: imageURL || '',
+    likes: '2',
   });
 };
-
-export const addPost = (userId, name, privacy, description, imageURL) => db.collection('post').add({
-  userId,
-  name,
-  description,
-  privacy,
-  date: firebase.firestore.FieldValue.serverTimestamp(),
-  imageURL,
-  likes: '2',
-});
 
 export const getPosts = (callback) => {
-  db.collection('post').orderBy('date', 'desc')
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  return db.collection('post').orderBy('date', 'desc')
+    // querySnapshot es una colección de post (doc)
+    // Obtener en tiempo real los datos del doc
     .onSnapshot((querySnapshot) => {
-      console.log('Colección(querySnapshot)', querySnapshot);
+      // console.log('Colección(querySnapshot)', querySnapshot);
       const post = [];
+      // Se rrecore el querySnapshot
       querySnapshot.forEach((doc) => {
-        console.log('info de los posts (doc) dentro del querySnapshot', doc.data());
+        // console.log( 'info de los posts (doc) dentro del querySnapshot',
+        //     doc.data(),
+        //   );
+      // Se agrega los valores que obtiene de cada post
         post.push({
           id: doc.id,
           ...doc.data(),
         });
       });
-      console.log('array de post', post);
+      // console.log('array de post', post);
       callback(post);
     });
 };
 
-export const deletePost = (idPost) => db.collection('post').doc(idPost).delete();
+export const editPost = (idPost, description) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  return db.collection('post').doc(idPost).update({
+    description,
+  });
+};
 
+export const deletePost = (idPost) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  return db.collection('post').doc(idPost).delete();
+};
+
+/* ******** STORAGE ********* */
 export const uploadImage = (file, location) => {
   const storageRef = firebase.storage().ref(`${location}/${file.name}`);
   return storageRef.put(file);
 };
 
-/* export const uploadImage = (file, uid, determinate) => {
-  const refStorage = firebase.storage().ref(`imgsPosts/${uid}/${file.name}`);
-  const task = refStorage.put(file);
+/* ****SE ESTABA UTILIZANDO***** */
 
-  task.on('state_changed', (snapshot) => {
-    const porcentaje = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    determinate.style.width = `${porcentaje}px`;
-  },
-
-  (err) => {
-    alert(err);
-  },
-  () => {
-    task.snapshot.ref
-      .getDownloadURL()
-      .then((url) => {
-        console.log(url);
-        sessionStorage.setItem('imgNewPost', url);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  });
-};
- */
+// export const addUserInfo = (photo, birthday, description) => {
+//   db.collection('user').set({
+//     photo,
+//     birthday,
+//     description,
+//   });
+// };

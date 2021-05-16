@@ -15,9 +15,7 @@ export default (userData) => {
 
   const viewTimeLine = document.createElement('section');
   viewTimeLine.classList.add('section-TimeLine');
-
-  viewTimeLine.innerHTML = /* html */` 
-  
+  viewTimeLine.innerHTML = /* html */ ` 
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
@@ -36,7 +34,6 @@ export default (userData) => {
       </nav>
     <!--Share-->
     <div class="contentPosts-container">
- 
       <article class="content-share">
         <div class="share">
           <form class="form-share">
@@ -69,38 +66,51 @@ export default (userData) => {
     const inputContent = viewTimeLine.querySelector('.post-description').value;
     // Capturar el archivo seleccionado
     const imageFile = inputFile.files[0];
-    const uploadTask = uploadImage(imageFile, 'Photos');
+
+    const uploadTask = imageFile ? uploadImage(imageFile, 'Photos') : null;
     // Capturar el FORM
     const formShare = viewTimeLine.querySelector('.form-share');
     // PRIVACIDAD (reempalzar por input list value)
     const privacy = 'Publico';
 
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
+    if (imageFile) {
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
         // Observe state change events such as progress, pause, and resume
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`Upload is ${progress}% done`);
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`Upload is ${progress}% done`);
         // eslint-disable-next-line default-case
-      },
-      (error) => {
+        },
+        (error) => {
         // Handle unsuccessful uploads
-        console.error(error);
-      },
-      () => {
+          console.error(error);
+        },
+        () => {
         // Handle successful uploads on complete
-        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          console.log('se está enviando la siguiente data: userID ', userId, ' UserName ', userName, ' privacy ', privacy, ' inputContent ', inputContent, ' DOWNLOADurl ', downloadURL);
-          addPost(userId, userName, privacy, inputContent, downloadURL)
-            .then((refDoc) => {
-              console.log('Info del post => ', refDoc);
-            })
-            .catch((error) => {
-              console.log(`Error creando el post => ${error}`);
-            });
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            console.log('se está enviando la siguiente data: userID ',
+              userId, ' UserName ', userName, ' privacy ', privacy, ' inputContent ',
+              inputContent, ' DOWNLOADurl ', downloadURL);
+            addPost(userId, userName, privacy, inputContent, downloadURL)
+              .then((refDoc) => {
+                console.log('Info del post => ', refDoc);
+              })
+              .catch((error) => {
+                console.log(`Error creando el post => ${error}`);
+              });
+          });
+        },
+      );
+    } else {
+      addPost(userId, userName, privacy, inputContent)
+        .then((refDoc) => {
+          console.log('Info del post => ', refDoc);
+        })
+        .catch((error) => {
+          console.log(`Error creando el post => ${error}`);
         });
-      },
-    );
+    }
 
     /* Resetear los inputs del FORM */
     formShare.reset();
@@ -111,7 +121,7 @@ export default (userData) => {
 
   getPosts((dataPost) => {
     containerPost.innerHTML = '';
-    post(dataPost,containerPost);
+    post(dataPost, containerPost);
   });
 
   return viewTimeLine;
