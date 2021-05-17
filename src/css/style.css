@@ -23,3 +23,12 @@ ul,
 li {
   list-style: none;
 }
+
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+.show {
+  display: block;
+}

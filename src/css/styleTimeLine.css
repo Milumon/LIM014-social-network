@@ -3,6 +3,7 @@
     height: 100vh;
     width: 100%
   }
+
   /* Modal */
 
   .hide {
@@ -10,16 +11,21 @@
 
   }
 
-  .modal { 
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
+  .modal {
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
   }
 
   /* Header */
@@ -55,6 +61,17 @@
     color: var(--paletteOne-one-color)
   }
 
+  .header .submenu {
+    display: none;
+    position: absolute;
+    right: 2px;
+    margin: 10px 5px 0 0;
+  }
+
+  .opc-select:hover .submenu {
+    display: block;
+  }
+
   /* Menú */
   .nav {
     background-color: var(--paletteOne-one-color);
@@ -74,6 +91,10 @@
   }
 
   /* Share */
+  .content-share {
+    display: none;
+  }
+
   .content-share .share {
     text-align: center;
     border-radius: 5px;
@@ -121,11 +142,12 @@
   }
 
   /********** Posts ***********/
-  .ul-content li ul  {
+  .ul-content li ul {
     display: none;
   }
-  .ul-content li:hover ul{
-    display:block;
+
+  .ul-content li:hover ul {
+    display: block;
   }
 
   .content-posts .post-user {

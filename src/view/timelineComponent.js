@@ -19,17 +19,22 @@ export default (userData) => {
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
-        <div class="">
+        <div class="user">
           <img src = "../img/user.png">
-          <a href="#"><i class="fas fa-sort-down"></i></a>
+          <li class="opc-select"><i class="fas fa-sort-down"></i>
+            <ul class="submenu">
+              <li><button class="profile"> Profile </button></li>
+              <li><button class="logout"> Log out </button></li>
+            </ul>
+          </li>
         </div>
       </header>
     <!--Menu-->  
       <nav class="nav">
         <ul class="list-options"> 
-          <li><a href="#"><i class="fas fa-search"></i></a></li>
-          <li><a href="#"><i class="fas fa-home"></i></a></li>
-          <li><a href="#"><i class="fas fa-edit"></i></a></li>
+          <li><a><i class="fas fa-search"></i></a></li>
+          <li><a><i class="fas fa-home"></i></a></li>
+          <li class= "opc-addpost" ><i class="fas fa-edit"></i></li>
         </ul>
       </nav>
     <!--Share-->
@@ -54,6 +59,18 @@ export default (userData) => {
     </div>
   `;
 
+  // Capturar la opción que contiene el add post
+  const contenteShare = viewTimeLine.querySelector('.content-share');
+
+  const createPost = viewTimeLine.querySelector('.opc-addpost');
+  createPost.addEventListener('click', () => {
+    if (contenteShare.style.display === 'none') {
+      contenteShare.style.display = 'block';
+    } else {
+      contenteShare.style.display = 'none';
+    }
+  });
+
   // Capturar el botón de compartir
   const btnShare = viewTimeLine.querySelector('.btn-share');
   // Capturar el botón de subir archivo
@@ -77,21 +94,30 @@ export default (userData) => {
       uploadTask.on(
         'state_changed',
         (snapshot) => {
-        // Observe state change events such as progress, pause, and resume
+          // Observe state change events such as progress, pause, and resume
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log(`Upload is ${progress}% done`);
-        // eslint-disable-next-line default-case
+          // eslint-disable-next-line default-case
         },
         (error) => {
-        // Handle unsuccessful uploads
+          // Handle unsuccessful uploads
           console.error(error);
         },
         () => {
-        // Handle successful uploads on complete
+          // Handle successful uploads on complete
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            console.log('se está enviando la siguiente data: userID ',
-              userId, ' UserName ', userName, ' privacy ', privacy, ' inputContent ',
-              inputContent, ' DOWNLOADurl ', downloadURL);
+            console.log(
+              'se está enviando la siguiente data: userID ',
+              userId,
+              ' UserName ',
+              userName,
+              ' privacy ',
+              privacy,
+              ' inputContent ',
+              inputContent,
+              ' DOWNLOADurl ',
+              downloadURL,
+            );
             addPost(userId, userName, privacy, inputContent, downloadURL)
               .then((refDoc) => {
                 console.log('Info del post => ', refDoc);
