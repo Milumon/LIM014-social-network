@@ -19,7 +19,7 @@ export const getDataUser = (currentUserId) => {
 };
 
 /* ********POST********* */
-export const addPost = (userId, name, privacy, description, imageURL) => {
+export const addPost = (userId, name, privacy, description, imageURL, likes) => {
   // Obtener acceso a Firestore
   const db = firebase.firestore();
   // Para crear un documento en la colección post
@@ -30,7 +30,7 @@ export const addPost = (userId, name, privacy, description, imageURL) => {
     privacy,
     date: firebase.firestore.FieldValue.serverTimestamp(),
     imageURL: imageURL || '',
-    likes: '2',
+    likes,
   });
 };
 
@@ -77,6 +77,14 @@ export const deletePost = (idPost) => {
 export const uploadImage = (file, location) => {
   const storageRef = firebase.storage().ref(`${location}/${file.name}`);
   return storageRef.put(file);
+};
+
+export const countLikes = (idPost, likes) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  return db.collection('post').doc(idPost).update({
+    likes,
+  });
 };
 
 /* ****SE ESTABA UTILIZANDO***** */

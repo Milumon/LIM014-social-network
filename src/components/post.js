@@ -1,11 +1,15 @@
-import { deletePost, editPost } from '../controller/firebase-firestore.js';
+import {
+  deletePost,
+  editPost,
+  countLikes,
+} from '../controller/firebase-firestore.js';
 
 export const post = (dataPost, containerPost) => {
   dataPost.forEach((x) => {
     // containerPost.appendChild(x.Description);
     const singlePost = document.createElement('div');
     singlePost.classList.add('post-user');
-    singlePost.innerHTML += /*html*/ `
+    singlePost.innerHTML += /* html */ `
       <div id="modalContainer" class="modal hide">
       <input type="button" id="btnCancelDeletePost" value="Cancelar">
       <input type="button" id="btnDeletePost" value="Aceptar">
@@ -31,7 +35,7 @@ export const post = (dataPost, containerPost) => {
       <div class="user-post-description">
         <img src="${x.imageURL}">
         <div class="like-comment">
-        <a><i class="far fa-heart"></i></a>
+        <a><i class="far fa-heart" id="btn-like" ></i></a>
         <a><i class="far fa-comment"></i></a>
         </div>
       <textarea class="description" readonly>${x.description}</textarea>
@@ -42,16 +46,16 @@ export const post = (dataPost, containerPost) => {
     const btnDelete = singlePost.querySelector('.post-delete');
     const modal = singlePost.querySelector('#modalContainer');
     const btnDeleteConfirm = singlePost.querySelector('#btnDeletePost');
-    const btnCancelDeletePost = singlePost.querySelector('#btnCancelDeletePost');
+    const btnCancelDeletePost = singlePost.querySelector(
+      '#btnCancelDeletePost',
+    );
 
     btnDelete.addEventListener('click', () => {
       modal.classList.toggle('hide');
 
       btnDeleteConfirm.addEventListener('click', () => {
         deletePost(btnDelete.value)
-          .then(() => {
-
-          })
+          .then(() => {})
           .catch((error) => {
             console.error('Error removing document: ', error);
           });
@@ -72,6 +76,20 @@ export const post = (dataPost, containerPost) => {
     btnSave.addEventListener('click', () => {
       textInput.setAttribute('readonly', true);
       editPost(btnEdit.value, textInput.value);
+    });
+
+    // update likes
+    const userId = firebase.auth.currentUser;
+    const likes = singlePost.querySelector('#btn-like');
+    likes.addEventListener('click', () => {
+      const result = x.likes.indexOf(userId);
+      if (result === -1) {
+        x.likes.push(userId);
+        countLikes(x.id, x.likes);
+      } else {
+        x.likes.splice(result, 1);
+        countLikes(x.id, x.likes);
+      }
     });
 
     return containerPost.appendChild(singlePost);

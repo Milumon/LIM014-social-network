@@ -6,6 +6,7 @@
   --paletteOne-two-color: #2FE099;
   --paletteOne-three-color: white;
   --background: #fafafa;
+  ;
 }
 
 * {
@@ -17,6 +18,7 @@
 body,
 input {
   font-family: "Lobster", sans-serif;
+  background-color: var(--background);
 }
 
 ul,

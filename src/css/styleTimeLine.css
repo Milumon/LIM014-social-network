@@ -151,12 +151,12 @@
   }
 
   .content-posts .post-user {
+    background-color: white;
     margin: 20px 5%;
-    background-color: #fafafa;
+    border: 1px solid #dbdbdb;
     padding: 5px;
     text-align: center;
     border-radius: 5px;
-
   }
 
   .content-posts .post-user .header-post-user {
