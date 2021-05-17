@@ -5,8 +5,7 @@ export const post = (dataPost, containerPost) => {
     // containerPost.appendChild(x.Description);
     const singlePost = document.createElement('div');
     singlePost.classList.add('post-user');
-    singlePost.innerHTML += /* html */ `
-
+    singlePost.innerHTML += /*html*/ `
       <div id="modalContainer" class="modal hide">
       <input type="button" id="btnCancelDeletePost" value="Cancelar">
       <input type="button" id="btnDeletePost" value="Aceptar">
@@ -24,7 +23,6 @@ export const post = (dataPost, containerPost) => {
               <li><button class="post-save" value="${x.id}">save</button></li>
               <li><button class="post-edit" value="${x.id}">edit</button></li>
               <li><button class= "post-delete" value="${x.id}">delete</button></li>
-             >
             </ul>
             </li>
           </ul>
