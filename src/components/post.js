@@ -1,4 +1,5 @@
 import {
+  addComment,
   deletePost,
   editPost,
   countLikes,
@@ -36,10 +37,17 @@ export const post = (userData, dataPost, containerPost) => {
         <img src="${objPost.imageURL}">
         <div class="like-comment">
         <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
-        <a><i class="far fa-comment"></i></a>
+        <a><i class="far fa-comment" id="btn-comment"></i></a>
         </div>
       <textarea class="description" readonly>${objPost.description}</textarea>
         <!-- <input type="text" class="description" value="${objPost.description}" readonly>  -->
+        <section id ="boxComment" class="hide">
+            <form class="formComment">
+              <textarea class="comment" placeholder="Add a comment" required></textarea>
+              <button type="submit" class="fas fa-paper-plane"></button>
+            </form>
+            <div id = "boxPosts"></div>
+          </section>  
       </div>
       `;
 
@@ -95,7 +103,23 @@ export const post = (userData, dataPost, containerPost) => {
       }
     });
 
+    // comments
+    const boxComment = singlePost.querySelector('#boxComment');
+    const btnComment = singlePost.querySelector('#btn-comment');
+    btnComment.addEventListener('click', () => {
+      boxComment.classList.toggle('hide');
+    });
+
+    // add comment
+    const formComment = singlePost.querySelector('.formComment');
+
+    formComment.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const textComment = singlePost.querySelector('.comment').value;
+      /* userId, idPost, comment */
+      addComment(userData.userId, objPost.id, textComment);
+    });
+
     return containerPost.appendChild(singlePost);
-    singlePost.deletePost();
   });
 };

@@ -56,6 +56,8 @@ export default (userData) => {
     <!--Posts-->   
       <article class= "content-posts">
       </article>  
+
+      
     </div>
   `;
 
