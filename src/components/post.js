@@ -4,7 +4,7 @@ import {
   countLikes,
 } from '../controller/firebase-firestore.js';
 
-export const post = (dataPost, containerPost) => {
+export const post = (userData, dataPost, containerPost) => {
   dataPost.forEach((x) => {
     // containerPost.appendChild(x.Description);
     const singlePost = document.createElement('div');
@@ -35,7 +35,7 @@ export const post = (dataPost, containerPost) => {
       <div class="user-post-description">
         <img src="${x.imageURL}">
         <div class="like-comment">
-        <a><i class="far fa-heart" id="btn-like" value="${x.id}"></i></a>
+        <a><i class="far fa-heart ${(x.likes.indexOf(userData.userId) === -1) ? 'unliked' : 'liked'}" value="${x.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment"></i></a>
         </div>
       <textarea class="description" readonly>${x.description}</textarea>
@@ -82,14 +82,16 @@ export const post = (dataPost, containerPost) => {
     // const userId = firebase.auth.currentUser;
     const likes = singlePost.querySelector('#btn-like');
     likes.addEventListener('click', () => {
-      const result = x.likes.indexOf(x.userId);
+      const result = x.likes.indexOf(userData.userId);
       console.log('aaa', x.userId);
       if (result === -1) {
         x.likes.push(x.userId);
+        likes.setAttribute('style', 'color: red !important;');
         countLikes(x.id, x.likes);
         console.log('kkkkk', x.likes);
         console.log('ooooo', x.id);
       } else {
+        likes.removeAttribute('style');
         x.likes.splice(result, 1);
         countLikes(x.id, x.likes);
       }

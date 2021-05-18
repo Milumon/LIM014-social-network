@@ -36,6 +36,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  } 
+
+  .fa-heart:hover {
+    cursor: pointer;
+  }
+
+  .liked {
+    color: red;
+  }
+
+  .unliked {
+    color: black;
   }
 
   .header h1 {

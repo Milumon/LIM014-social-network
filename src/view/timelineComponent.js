@@ -147,7 +147,7 @@ export default (userData) => {
 
   getPosts((dataPost) => {
     containerPost.innerHTML = '';
-    post(dataPost, containerPost);
+    post(userData, dataPost, containerPost);
   });
 
   return viewTimeLine;
