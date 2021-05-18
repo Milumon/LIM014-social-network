@@ -56,6 +56,8 @@ export default (userData) => {
     <!--Posts-->   
       <article class= "content-posts">
       </article>  
+
+      
     </div>
   `;
 
@@ -147,7 +149,7 @@ export default (userData) => {
 
   getPosts((dataPost) => {
     containerPost.innerHTML = '';
-    post(dataPost, containerPost);
+    post(userData, dataPost, containerPost);
   });
 
   return viewTimeLine;

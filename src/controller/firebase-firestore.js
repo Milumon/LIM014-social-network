@@ -85,6 +85,15 @@ export const countLikes = (idPost, likes) => {
   return db.collection('post').doc(idPost).update({ likes });
 };
 
+export const addComment = (userId, idPost, comment) => {
+  const db = firebase.firestore();
+  return db.collection('post').doc(idPost).collection('comments').add({
+    userId,
+    date: firebase.firestore.FieldValue.serverTimestamp(),
+    comment,
+  });
+};
+
 /* ****SE ESTABA UTILIZANDO***** */
 
 // export const addUserInfo = (photo, birthday, description) => {
