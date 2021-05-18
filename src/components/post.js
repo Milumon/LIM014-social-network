@@ -5,8 +5,8 @@ import {
 } from '../controller/firebase-firestore.js';
 
 export const post = (userData, dataPost, containerPost) => {
-  dataPost.forEach((x) => {
-    // containerPost.appendChild(x.Description);
+  dataPost.forEach((objPost) => {
+    // containerPost.appendChild(objPost.Description);
     const singlePost = document.createElement('div');
     singlePost.classList.add('post-user');
     singlePost.innerHTML += /* html */ `
@@ -17,29 +17,29 @@ export const post = (userData, dataPost, containerPost) => {
       <header class="header-post-user">
         <figure class="img-user">
           <img src="">
-          <p>${x.name}</p>
+          <p>${objPost.name}</p>
         </figure>
         <nav class="nav-edit">
           <ul class= "ul-content"> 
             <li>   
             <a class="fas fa-grip-vertical" id="icon-edit"></a>
             <ul class= "ul-second">
-              <li><button class="post-save" value="${x.id}">save</button></li>
-              <li><button class="post-edit" value="${x.id}">edit</button></li>
-              <li><button class= "post-delete" value="${x.id}">delete</button></li>
+              <li><button class="post-save" value="${objPost.id}">save</button></li>
+              <li><button class="post-edit" value="${objPost.id}">edit</button></li>
+              <li><button class= "post-delete" value="${objPost.id}">delete</button></li>
             </ul>
             </li>
           </ul>
         </nav>
       </header>
       <div class="user-post-description">
-        <img src="${x.imageURL}">
+        <img src="${objPost.imageURL}">
         <div class="like-comment">
-        <a><i class="far fa-heart ${(x.likes.indexOf(userData.userId) === -1) ? 'unliked' : 'liked'}" value="${x.id}" id="btn-like"></i></a>
+        <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment"></i></a>
         </div>
-      <textarea class="description" readonly>${x.description}</textarea>
-        <!-- <input type="text" class="description" value="${x.description}" readonly>  -->
+      <textarea class="description" readonly>${objPost.description}</textarea>
+        <!-- <input type="text" class="description" value="${objPost.description}" readonly>  -->
       </div>
       `;
 
@@ -82,18 +82,16 @@ export const post = (userData, dataPost, containerPost) => {
     // const userId = firebase.auth.currentUser;
     const likes = singlePost.querySelector('#btn-like');
     likes.addEventListener('click', () => {
-      const result = x.likes.indexOf(userData.userId);
-      console.log('aaa', x.userId);
+      const result = objPost.likes.indexOf(userData.userId);
+      console.log('aaa', objPost.userId);
       if (result === -1) {
-        x.likes.push(x.userId);
-        likes.setAttribute('style', 'color: red !important;');
-        countLikes(x.id, x.likes);
-        console.log('kkkkk', x.likes);
-        console.log('ooooo', x.id);
+        objPost.likes.push(userData.userId);
+        countLikes(objPost.id, objPost.likes);
+        console.log('kkkkk', objPost.likes);
+        console.log('ooooo', objPost.id);
       } else {
-        likes.removeAttribute('style');
-        x.likes.splice(result, 1);
-        countLikes(x.id, x.likes);
+        objPost.likes.splice(result, 1);
+        countLikes(objPost.id, objPost.likes);
       }
     });
 
