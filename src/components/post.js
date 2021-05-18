@@ -38,6 +38,7 @@ export const post = (userData, dataPost, containerPost) => {
         <div class="like-comment">
         <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment" id="btn-comment"></i></a>
+        <p>${objPost.likes.length}</p>
         </div>
       <textarea class="description" readonly>${objPost.description}</textarea>
         <!-- <input type="text" class="description" value="${objPost.description}" readonly>  -->
