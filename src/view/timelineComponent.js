@@ -15,7 +15,7 @@ export default (userData) => {
 
   const viewTimeLine = document.createElement('section');
   viewTimeLine.classList.add('section-TimeLine');
-  viewTimeLine.innerHTML = /* html */ ` 
+  viewTimeLine.innerHTML = /*html*/ ` 
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
