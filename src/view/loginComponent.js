@@ -10,7 +10,7 @@ import { addUser } from '../controller/firebase-firestore.js';
 export default () => {
   const viewLogin = document.createElement('section');
   viewLogin.classList.add('container-login');
-  viewLogin.innerHTML = `
+  viewLogin.innerHTML = /* html */ `
   <div class="container">
     <div class="containerTwo">
       <div class="forms-container">
@@ -45,7 +45,6 @@ export default () => {
           </div> <!-- social-media -->
 
         </form> <!-- login-form -->
-
 
         <!---- register-form ---->
         <form class="sign-up-form" id="register-form">
