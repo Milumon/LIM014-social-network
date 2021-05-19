@@ -28,9 +28,25 @@ li {
 
 textarea {
   resize: none;
-  width: 100%;
+  width: 80%;
+  border: 1px solid white;
+  padding: 1px;
 }
 
-.show {
-  display: block;
+textarea:hover {
+  border: 1px solid white;
+}
+
+textarea:focus {
+  outline: white;
+  border: 10px solid white;
+}
+
+.show-edit {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 2px;
+  border: 1px solid red;
+
 }

@@ -25,7 +25,6 @@ export const post = (userData, dataPost, containerPost) => {
             <li>   
             <a class="fas fa-grip-vertical" id="icon-edit"></a>
             <ul class= "ul-second">
-              <li><button class="post-save" value="${objPost.id}">save</button></li>
               <li><button class="post-edit" value="${objPost.id}">edit</button></li>
               <li><button class= "post-delete" value="${objPost.id}">delete</button></li>
             </ul>
@@ -39,9 +38,11 @@ export const post = (userData, dataPost, containerPost) => {
         <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment" id="btn-comment"></i></a>
         <p>${objPost.likes.length}</p>
-        </div>
-      <textarea class="description" readonly>${objPost.description}</textarea>
-        <!-- <input type="text" class="description" value="${objPost.description}" readonly>  -->
+      </div>
+      <div id="content-description">
+        <textarea class="description" readonly>${objPost.description}</textarea>
+        <button class="post-save" value="${objPost.id}" hidden="">save</button>
+      </div>
         <section id ="boxComment" class="hide">
             <form class="formComment">
               <textarea class="comment" placeholder="Add a comment" required></textarea>
@@ -52,12 +53,11 @@ export const post = (userData, dataPost, containerPost) => {
       </div>
       `;
 
+    // Modal opc delete
     const btnDelete = singlePost.querySelector('.post-delete');
     const modal = singlePost.querySelector('#modalContainer');
     const btnDeleteConfirm = singlePost.querySelector('#btnDeletePost');
-    const btnCancelDeletePost = singlePost.querySelector(
-      '#btnCancelDeletePost',
-    );
+    const btnCancelDeletePost = singlePost.querySelector('#btnCancelDeletePost');
 
     btnDelete.addEventListener('click', () => {
       modal.classList.toggle('hide');
@@ -74,12 +74,17 @@ export const post = (userData, dataPost, containerPost) => {
         modal.classList.toggle('hide');
       });
     });
+
+    // Opc edit post
     const btnSave = singlePost.querySelector('.post-save');
     const btnEdit = singlePost.querySelector('.post-edit');
     const textInput = singlePost.querySelector('.description');
+    const contentDescription = singlePost.querySelector('#content-description');
 
     btnEdit.addEventListener('click', () => {
       textInput.removeAttribute('readonly');
+      contentDescription.setAttribute('class', 'show-edit');
+      btnSave.removeAttribute('hidden');
     });
 
     btnSave.addEventListener('click', () => {
