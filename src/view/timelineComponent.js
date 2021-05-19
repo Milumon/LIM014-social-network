@@ -80,8 +80,10 @@ export default (userData) => {
   });
   // Log out
   const btnLogOut = viewTimeLine.querySelector('.logout');
-  btnLogOut.addEventListener('click', () => {
-    logOut();
+  btnLogOut.addEventListener('click', (e) => {
+    e.preventDefault();
+    logOut().then(() => console.log('user salió'));
+    window.location.hash = '#/login';
   });
   // Capturar la opción que contiene el add post
   const contenteShare = viewTimeLine.querySelector('.content-share');
