@@ -10,11 +10,11 @@ export const post = (userData, dataPost, containerPost) => {
     // containerPost.appendChild(objPost.Description);
     const singlePost = document.createElement('section');
     singlePost.classList.add('post-user');
-    singlePost.innerHTML += /* html */ `
+    singlePost.innerHTML += /*html*/ `
       <div id="modalContainer" class="modal hide">
-      <input type="button" id="btnCancelDeletePost" value="Cancelar">
-      <input type="button" id="btnDeletePost" value="Aceptar">
-    </div>
+        <input type="button" id="btnCancelDeletePost" value="Cancelar">
+        <input type="button" id="btnDeletePost" value="Aceptar">
+      </div>
       <header class="header-post-user">
         <figure class="img-user">
           <img src="">
@@ -34,10 +34,25 @@ export const post = (userData, dataPost, containerPost) => {
       </header>
       <div class="user-post-description">
         <img src="${objPost.imageURL}">
-        <div class="like-comment">
+      <div id="content-description">
+        <textarea class="description" readonly>${objPost.description}</textarea>
+        <button class="post-save" value="${objPost.id}" hidden="">save</button>
+      </div>
+      <div class="like-comment">
         <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment" id="btn-comment"></i></a>
         <p>${objPost.likes.length}</p>
+<<<<<<< HEAD
+=======
+      </div>
+      <section id ="boxComment" class="hide">
+        <form class="formComment">
+          <textarea class="comment" placeholder="Add a comment" required></textarea>
+          <button type="submit" class="fas fa-paper-plane"></button>
+        </form>
+        <div id = "boxPosts"></div>
+      </section>  
+>>>>>>> 124e754adfad552c94d4813400e069189839e5e5
       </div>
       <div id="content-description">
         <p id="description">${objPost.description}</p>
@@ -52,13 +67,15 @@ export const post = (userData, dataPost, containerPost) => {
       </div>  
     </div>
       `;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 124e754adfad552c94d4813400e069189839e5e5
     // Modal opc delete
     const btnDelete = singlePost.querySelector('.post-delete');
     const modal = singlePost.querySelector('#modalContainer');
     const btnDeleteConfirm = singlePost.querySelector('#btnDeletePost');
-    const btnCancelDeletePost = singlePost.querySelector(
-      '#btnCancelDeletePost',
-    );
+    const btnCancelDeletePost = singlePost.querySelector('#btnCancelDeletePost');
 
     btnDelete.addEventListener('click', () => {
       modal.classList.toggle('hide');
@@ -76,6 +93,7 @@ export const post = (userData, dataPost, containerPost) => {
     });
 
     // Opc edit post
+<<<<<<< HEAD
     const btnEdit = singlePost.querySelector('.post-edit');
     const btnSave = singlePost.querySelector('.post-save');
     const textInput = singlePost.querySelector('#description');
@@ -83,6 +101,15 @@ export const post = (userData, dataPost, containerPost) => {
 
     btnEdit.addEventListener('click', () => {
       textInput.setAttribute('contentEditable', 'true');
+=======
+    const btnSave = singlePost.querySelector('.post-save');
+    const btnEdit = singlePost.querySelector('.post-edit');
+    const textInput = singlePost.querySelector('.description');
+    const contentDescription = singlePost.querySelector('#content-description');
+
+    btnEdit.addEventListener('click', () => {
+      textInput.removeAttribute('readonly');
+>>>>>>> 124e754adfad552c94d4813400e069189839e5e5
       contentDescription.setAttribute('class', 'show-edit');
       btnSave.removeAttribute('hidden');
     });
@@ -92,10 +119,11 @@ export const post = (userData, dataPost, containerPost) => {
       contentDescription.removeAttribute('class', 'show-edit');
       btnSave.setAttribute('hidden', 'true');
       editPost(btnEdit.value, textInput.value);
+      btnSave.setAttribute('hidden', 'true');
+      contentDescription.setAttribute('style', 'border: 1px solid white');
     });
 
     // update likes
-    // const userId = firebase.auth.currentUser;
     const likes = singlePost.querySelector('#btn-like');
     likes.addEventListener('click', () => {
       const result = objPost.likes.indexOf(userData.userId);
