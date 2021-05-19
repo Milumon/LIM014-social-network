@@ -10,7 +10,7 @@ export const post = (userData, dataPost, containerPost) => {
     // containerPost.appendChild(objPost.Description);
     const singlePost = document.createElement('section');
     singlePost.classList.add('post-user');
-    singlePost.innerHTML += /*html*/ `
+    singlePost.innerHTML += /* html */ `
       <div id="modalContainer" class="modal hide">
         <input type="button" id="btnCancelDeletePost" value="Cancelar">
         <input type="button" id="btnDeletePost" value="Aceptar">
@@ -50,10 +50,6 @@ export const post = (userData, dataPost, containerPost) => {
         </form>
         <div id = "boxPosts"></div>
       </section>  
-      </div>
-      <div id="content-description">
-        <p id="description">${objPost.description}</p>
-        <button class="post-save" value="${objPost.id}" hidden="">save</button>
       </div>
       <div id ="boxComment" class="hide">
         <form class="formComment">
