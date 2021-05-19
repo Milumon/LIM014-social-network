@@ -5,6 +5,9 @@ import {
 } from '../controller/firebase-firestore.js';
 
 import {
+  logOut,
+} from '../controller/firebase-auth.js';
+import {
   post,
 } from '../components/post.js';
 
@@ -15,18 +18,18 @@ export default (userData) => {
 
   const viewTimeLine = document.createElement('section');
   viewTimeLine.classList.add('section-TimeLine');
-  viewTimeLine.innerHTML = /* html */ ` 
+  viewTimeLine.innerHTML = /*html*/ ` 
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
         <div class="user">
           <img src = "../img/user.png">
-          <li class="opc-select"><i class="fas fa-sort-down"></i>
+          <nav class="opc-select"><i class="fas fa-sort-down" id="userOpc"></i>
             <ul class="submenu">
               <li><button class="profile"> Profile </button></li>
               <li><button class="logout"> Log out </button></li>
             </ul>
-          </li>
+          </nav>
         </div>
       </header>
     <!--Menu-->  
@@ -58,7 +61,17 @@ export default (userData) => {
       </article>        
     </div>
   `;
-
+  
+  // user menu
+  const userOpc = viewTimeLine.querySelector('#userOpc');
+  userOpc.addEventListener('click', () => {
+    
+  })
+  // Log out
+  const btnLogOut = viewTimeLine.querySelector('.logout');
+  btnLogOut.addEventListener('click', () => {
+    logOut();
+  });
   // Capturar la opción que contiene el add post
   const contenteShare = viewTimeLine.querySelector('.content-share');
 
