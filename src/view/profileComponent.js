@@ -53,10 +53,10 @@ export default (userData) => {
   const containerPost = viewProfile.querySelector('.content-posts');
 
   getPosts((dataPost) => {
-    const filterPost = dataPost.filter(post => post.userId == userData.userId)
+    const filterPost = dataPost.filter((post) => post.userId === userData.userId);
     containerPost.innerHTML = '';
     post(userData, filterPost, containerPost);
-    console.log(dataPost);
+    // console.log(dataPost);
   });
 
   return viewProfile;

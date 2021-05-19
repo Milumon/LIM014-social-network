@@ -18,14 +18,14 @@ export default (userData) => {
 
   const viewTimeLine = document.createElement('section');
   viewTimeLine.classList.add('section-TimeLine');
-  viewTimeLine.innerHTML = /*html*/ ` 
+  viewTimeLine.innerHTML = /* html */ ` 
     <!--Header-->  
       <header class="header">
         <h1>FindMyPaw</h1>
         <div class="user">
           <img src = "../img/user.png">
           <nav class="opc-select"><i class="fas fa-sort-down" id="userOpc"></i>
-            <ul class="submenu">
+            <ul class="submenu" id="subMenuUser">
               <li><button class="profile" id = "profile"> Profile </button></li>
               <li><button class="logout" id = "logout"> Log out </button></li>
             </ul>
@@ -61,12 +61,17 @@ export default (userData) => {
       </article>        
     </div>
   `;
-  
+
   // user menu
   const userOpc = viewTimeLine.querySelector('#userOpc');
+  const subMenuUser = viewTimeLine.querySelector('#subMenuUser');
   userOpc.addEventListener('click', () => {
-    
-  })
+    if (subMenuUser.style.display === 'none') {
+      subMenuUser.style.display = 'block';
+    } else {
+      subMenuUser.style.display = 'none';
+    }
+  });
   // Log out
   const btnLogOut = viewTimeLine.querySelector('.logout');
   btnLogOut.addEventListener('click', () => {
