@@ -23,8 +23,8 @@ export default (userData) => {
           <img src = "../img/user.png">
           <li class="opc-select"><i class="fas fa-sort-down"></i>
             <ul class="submenu">
-              <li><button class="profile"> Profile </button></li>
-              <li><button class="logout"> Log out </button></li>
+              <li><button class="profile" id = "profile"> Profile </button></li>
+              <li><button class="logout" id = "logout"> Log out </button></li>
             </ul>
           </li>
         </div>
