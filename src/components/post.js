@@ -10,11 +10,11 @@ export const post = (userData, dataPost, containerPost) => {
     // containerPost.appendChild(objPost.Description);
     const singlePost = document.createElement('div');
     singlePost.classList.add('post-user');
-    singlePost.innerHTML += /* html */ `
+    singlePost.innerHTML += /*html*/ `
       <div id="modalContainer" class="modal hide">
-      <input type="button" id="btnCancelDeletePost" value="Cancelar">
-      <input type="button" id="btnDeletePost" value="Aceptar">
-    </div>
+        <input type="button" id="btnCancelDeletePost" value="Cancelar">
+        <input type="button" id="btnDeletePost" value="Aceptar">
+      </div>
       <header class="header-post-user">
         <figure class="img-user">
           <img src="">
@@ -34,22 +34,22 @@ export const post = (userData, dataPost, containerPost) => {
       </header>
       <div class="user-post-description">
         <img src="${objPost.imageURL}">
-        <div class="like-comment">
-        <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
-        <a><i class="far fa-comment" id="btn-comment"></i></a>
-        <p>${objPost.likes.length}</p>
-      </div>
       <div id="content-description">
         <textarea class="description" readonly>${objPost.description}</textarea>
         <button class="post-save" value="${objPost.id}" hidden="">save</button>
       </div>
-        <section id ="boxComment" class="hide">
-            <form class="formComment">
-              <textarea class="comment" placeholder="Add a comment" required></textarea>
-              <button type="submit" class="fas fa-paper-plane"></button>
-            </form>
-            <div id = "boxPosts"></div>
-          </section>  
+      <div class="like-comment">
+        <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
+        <a><i class="far fa-comment" id="btn-comment"></i></a>
+        <p>${objPost.likes.length}</p>
+      </div>
+      <section id ="boxComment" class="hide">
+        <form class="formComment">
+          <textarea class="comment" placeholder="Add a comment" required></textarea>
+          <button type="submit" class="fas fa-paper-plane"></button>
+        </form>
+        <div id = "boxPosts"></div>
+      </section>  
       </div>
       `;
 
@@ -90,10 +90,11 @@ export const post = (userData, dataPost, containerPost) => {
     btnSave.addEventListener('click', () => {
       textInput.setAttribute('readonly', true);
       editPost(btnEdit.value, textInput.value);
+      btnSave.setAttribute('hidden', 'true');
+      contentDescription.setAttribute('style', 'border: 1px solid white');
     });
 
     // update likes
-    // const userId = firebase.auth.currentUser;
     const likes = singlePost.querySelector('#btn-like');
     likes.addEventListener('click', () => {
       const result = objPost.likes.indexOf(userData.userId);

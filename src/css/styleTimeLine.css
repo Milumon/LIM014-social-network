@@ -36,7 +36,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  } 
+  }
 
   .fa-heart:hover {
     cursor: pointer;
@@ -207,12 +207,13 @@
   }
 
   .content-posts .post-user .user-post-description p {
-    text-align: justify;
     font-size: 12px;
+    padding-left: 11px;
   }
 
   .content-posts .post-user .user-post-description .like-comment {
-    margin: 5px 0;
+    text-align: left;
+    border-top: 1px solid #F4F4F4;
   }
 
   .content-posts .post-user .user-post-description .like-comment a {
@@ -222,6 +223,27 @@
     border-radius: 100%;
     color: var(--paletteOne-one-color);
   }
+
+  .content-posts .post-user .user-post-description .show-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    padding: 2px;
+    border: 1px solid #dbdbdb;
+  }
+
+  .content-posts .post-user .user-post-description .post-save {
+    width: 11%;
+    background-color: var(--paletteOne-two-color);
+    border: 1px solid var(--paletteOne-two-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--paletteOne-three-color)
+  }
+
 }
 
 @media screen and (min-width:650px) {
