@@ -32,6 +32,19 @@ const changeView = (route) => {
       });
       break;
     }
+    case '#/profile': {
+      onAuthStateChanged((user) => {
+        // Se llama al onAuthStateChanged para verificar si el usuario esta logeado
+        if (user !== null) {
+          // identificar documento por uid de una colección
+          getDataUser(user.uid).then((doc) => {
+            // resolver promesa para acceder a los datos del documento (doc.data())
+            container.appendChild(components.profile(doc.data()));
+          });
+        }
+      });
+      break;
+    }
     default:
       break;
   }
