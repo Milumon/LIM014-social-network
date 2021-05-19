@@ -72,6 +72,12 @@ export default (userData) => {
       subMenuUser.style.display = 'none';
     }
   });
+
+  // profile
+  const opcProfile = viewTimeLine.querySelector('.profile');
+  opcProfile.addEventListener('click', () => {
+    window.location.hash = '#/profile';
+  });
   // Log out
   const btnLogOut = viewTimeLine.querySelector('.logout');
   btnLogOut.addEventListener('click', () => {
