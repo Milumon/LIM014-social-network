@@ -42,8 +42,6 @@ export const post = (userData, dataPost, containerPost) => {
         <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment" id="btn-comment"></i></a>
         <p>${objPost.likes.length}</p>
-<<<<<<< HEAD
-=======
       </div>
       <section id ="boxComment" class="hide">
         <form class="formComment">
@@ -52,7 +50,6 @@ export const post = (userData, dataPost, containerPost) => {
         </form>
         <div id = "boxPosts"></div>
       </section>  
->>>>>>> 124e754adfad552c94d4813400e069189839e5e5
       </div>
       <div id="content-description">
         <p id="description">${objPost.description}</p>
@@ -67,10 +64,6 @@ export const post = (userData, dataPost, containerPost) => {
       </div>  
     </div>
       `;
-<<<<<<< HEAD
-=======
-
->>>>>>> 124e754adfad552c94d4813400e069189839e5e5
     // Modal opc delete
     const btnDelete = singlePost.querySelector('.post-delete');
     const modal = singlePost.querySelector('#modalContainer');
@@ -93,15 +86,6 @@ export const post = (userData, dataPost, containerPost) => {
     });
 
     // Opc edit post
-<<<<<<< HEAD
-    const btnEdit = singlePost.querySelector('.post-edit');
-    const btnSave = singlePost.querySelector('.post-save');
-    const textInput = singlePost.querySelector('#description');
-    const contentDescription = singlePost.querySelector('#content-description');
-
-    btnEdit.addEventListener('click', () => {
-      textInput.setAttribute('contentEditable', 'true');
-=======
     const btnSave = singlePost.querySelector('.post-save');
     const btnEdit = singlePost.querySelector('.post-edit');
     const textInput = singlePost.querySelector('.description');
@@ -109,7 +93,6 @@ export const post = (userData, dataPost, containerPost) => {
 
     btnEdit.addEventListener('click', () => {
       textInput.removeAttribute('readonly');
->>>>>>> 124e754adfad552c94d4813400e069189839e5e5
       contentDescription.setAttribute('class', 'show-edit');
       btnSave.removeAttribute('hidden');
     });

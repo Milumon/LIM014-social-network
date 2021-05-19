@@ -37,15 +37,6 @@ textarea {
   text-align: center;
 }
 
-<<<<<<< HEAD
-.show-edit {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px;
-  padding: 2px;
-  border: 1px solid red;
-
-=======
 textarea:hover {
   border: 1px solid white;
 }
@@ -53,5 +44,4 @@ textarea:hover {
 textarea:focus {
   outline: white;
   border: 10px solid white;
->>>>>>> 124e754adfad552c94d4813400e069189839e5e5
 }
