@@ -61,7 +61,7 @@ export default (userData) => {
       </article>        
     </div>
   `;
-
+  console.log('sectionnnnnnn', viewTimeLine);
   // user menu
   const userOpc = viewTimeLine.querySelector('#userOpc');
   const subMenuUser = viewTimeLine.querySelector('#subMenuUser');
@@ -82,8 +82,12 @@ export default (userData) => {
   const btnLogOut = viewTimeLine.querySelector('.logout');
   btnLogOut.addEventListener('click', (e) => {
     e.preventDefault();
-    logOut().then(() => console.log('user salió'));
-    window.location.hash = '#/login';
+    // viewTimeLine.innerHTML = '';
+    console.log(viewTimeLine);
+    logOut().then(() => {
+      window.location.hash = '#/login';
+      console.log('user salió');
+    });
   });
   // Capturar la opción que contiene el add post
   const contenteShare = viewTimeLine.querySelector('.content-share');

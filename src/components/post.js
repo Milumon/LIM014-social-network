@@ -60,6 +60,7 @@ export const post = (userData, dataPost, containerPost) => {
       </div>  
     </div>
       `;
+
     // Modal opc delete
     const btnDelete = singlePost.querySelector('.post-delete');
     const modal = singlePost.querySelector('#modalContainer');

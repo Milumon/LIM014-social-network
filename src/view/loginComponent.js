@@ -153,6 +153,7 @@ export default () => {
         const user = userCredential.user.emailVerified;
         if (user) {
           window.location.hash = '#/timeline';
+          window.location.reload();
         } else {
           alert('user no verificó');
         }
