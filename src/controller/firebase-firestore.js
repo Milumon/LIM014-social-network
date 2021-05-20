@@ -8,6 +8,8 @@ export const addUser = (userId, name, email, password) => {
     name,
     mail: email,
     password,
+    profilePhoto: '',
+    descriptionProfile: '',
   });
 };
 
@@ -92,6 +94,12 @@ export const addComment = (userId, idPost, comment) => {
     date: firebase.firestore.FieldValue.serverTimestamp(),
     comment,
   });
+};
+
+export const updateUser = (idUser, profilePhoto, descriptionProfile) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  return db.collection('user').doc(idUser).update({ profilePhoto, descriptionProfile });
 };
 
 /* ****SE ESTABA UTILIZANDO***** */
