@@ -131,9 +131,10 @@ export default (userData) => {
 
   getPosts((dataPost) => {
     const filterPost = dataPost.filter((data) => data.userId === userData.userId);
+
     containerPost.innerHTML = '';
     post(userData, filterPost, containerPost);
-    console.log(dataPost);
+    // console.log(dataPost);
   });
 
   return viewProfile;

@@ -5,6 +5,9 @@ import {
 } from '../controller/firebase-firestore.js';
 
 import {
+  logOut,
+} from '../controller/firebase-auth.js';
+import {
   post,
 } from '../components/post.js';
 
@@ -21,12 +24,12 @@ export default (userData) => {
         <h1>FindMyPaw</h1>
         <div class="user">
           <img src = "../img/user.png">
-          <li class="opc-select"><i class="fas fa-sort-down"></i>
-            <ul class="submenu">
+          <nav class="opc-select"><i class="fas fa-sort-down" id="userOpc"></i>
+            <ul class="submenu" id="subMenuUser">
               <li><button class="profile" id = "profile"> Profile </button></li>
               <li><button class="logout" id = "logout"> Log out </button></li>
             </ul>
-          </li>
+          </nav>
         </div>
       </header>
     <!--Menu-->  
@@ -59,6 +62,29 @@ export default (userData) => {
     </div>
   `;
 
+  // user menu
+  const userOpc = viewTimeLine.querySelector('#userOpc');
+  const subMenuUser = viewTimeLine.querySelector('#subMenuUser');
+  userOpc.addEventListener('click', () => {
+    if (subMenuUser.style.display === 'none') {
+      subMenuUser.style.display = 'block';
+    } else {
+      subMenuUser.style.display = 'none';
+    }
+  });
+
+  // profile
+  const opcProfile = viewTimeLine.querySelector('.profile');
+  opcProfile.addEventListener('click', () => {
+    window.location.hash = '#/profile';
+  });
+  // Log out
+  const btnLogOut = viewTimeLine.querySelector('.logout');
+  btnLogOut.addEventListener('click', (e) => {
+    e.preventDefault();
+    logOut().then(() => console.log('user salió'));
+    window.location.hash = '#/login';
+  });
   // Capturar la opción que contiene el add post
   const contenteShare = viewTimeLine.querySelector('.content-share');
 

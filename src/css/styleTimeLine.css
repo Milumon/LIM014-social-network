@@ -70,18 +70,16 @@
   }
 
   .header .user i {
-    color: var(--paletteOne-one-color)
+    color: var(--paletteOne-one-color);
+    cursor: pointer;
   }
 
+  /*submenu user*/
   .header .submenu {
     display: none;
     position: absolute;
     right: 2px;
     margin: 10px 5px 0 0;
-  }
-
-  .opc-select:hover .submenu {
-    display: block;
   }
 
   /* Menú */
