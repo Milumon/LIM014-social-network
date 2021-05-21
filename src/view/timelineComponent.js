@@ -23,7 +23,7 @@ export default (userData) => {
       <header class="header">
         <h1>FindMyPaw</h1>
         <div class="user">
-          <img src = "../img/user.png">
+          <img src = "${userData.profilePhoto}">
           <nav class="opc-select"><i class="fas fa-sort-down" id="userOpc"></i>
             <ul class="submenu" id="subMenuUser">
               <li><button class="profile" id = "profile"> Profile </button></li>
@@ -78,6 +78,11 @@ export default (userData) => {
   opcProfile.addEventListener('click', () => {
     window.location.hash = '#/profile';
   });
+  // home
+  const btnHome = viewTimeLine.querySelector('.fa-home');
+  btnHome.addEventListener('click', () => {
+    window.location.hash = '#/timeline';
+  });
   // Log out
   const btnLogOut = viewTimeLine.querySelector('.logout');
   btnLogOut.addEventListener('click', (e) => {
@@ -109,6 +114,7 @@ export default (userData) => {
   // Todo lo que sucederá cuando le den a 'COMPARTIR'
   btnShare.addEventListener('click', (e) => {
     e.preventDefault();
+
     // Capturar el value del contenido del post
     const inputContent = viewTimeLine.querySelector('.post-description').value;
     // Capturar el archivo seleccionado

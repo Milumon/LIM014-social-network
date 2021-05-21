@@ -70,11 +70,15 @@ export const post = (userData, dataPost, containerPost) => {
     btnDelete.addEventListener('click', () => {
       modal.classList.toggle('hide');
       btnDeleteConfirm.addEventListener('click', () => {
-        deletePost(btnDelete.value)
-          .then(() => {})
-          .catch((error) => {
-            console.error('Error removing document: ', error);
-          });
+        if (userData.userId === objPost.userId) {
+          deletePost(btnDelete.value)
+            .then(() => {})
+            .catch((error) => {
+              console.error('Error removing document: ', error);
+            });
+        } else {
+          alert('no puedes borrar post ajeno oyeeee');
+        }
       });
 
       btnCancelDeletePost.addEventListener('click', () => {
@@ -98,7 +102,12 @@ export const post = (userData, dataPost, containerPost) => {
       textInput.setAttribute('contentEditable', false);
       contentDescription.removeAttribute('class', 'show-edit');
       btnSave.setAttribute('hidden', 'true');
-      editPost(btnEdit.value, textInput.value);
+      if (userData.userId === objPost.userId) {
+        editPost(btnEdit.value, textInput.value);
+      } else {
+        alert('no es tu post, no lo edites');
+        window.location.reload();
+      }
       btnSave.setAttribute('hidden', 'true');
       contentDescription.setAttribute('style', 'border: 1px solid white');
     });
