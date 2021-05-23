@@ -408,25 +408,24 @@ form.sign-in-form {
     right: initial;
   }
 
-
-  .container.sign-up-mode .left-panel .image,
-  .container.sign-up-mode .left-panel .content {
-    transform: translateY(-300px);
-  }
-
-  .container.sign-up-mode .right-panel .image,
-  .container.sign-up-mode .right-panel .content {
-    transform: translateY(0px);
-  }
-
-  .right-panel .image,
-  .right-panel .content {
-    transform: translateY(300px);
-  }
-
   .container.sign-up-mode .signin-signup {
     top: 5%;
     transform: translate(-50%, 0);
+  }
+
+  .right-panel .content,
+  .right-panel .image {
+    transform: translateY(300px);
+  }
+
+  .container.sign-up-mode .right-panel .content,
+  .container.sign-up-mode .right-panel .image {
+    transform: translateY(0px);
+  }
+
+  .container.sign-up-mode .left-panel .content,
+  .container.sign-up-mode .left-panel .image {
+    transform: translateY(-300px);
   }
 }
 

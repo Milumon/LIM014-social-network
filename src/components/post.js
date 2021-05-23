@@ -73,11 +73,12 @@ export const post = (userData, dataPost, containerPost) => {
         if (userData.userId === objPost.userId) {
           deletePost(btnDelete.value)
             .then(() => {})
-            .catch((error) => {
-              console.error('Error removing document: ', error);
+            .catch(() => {
+              // console.error('Error removing document: ', error);
             });
         } else {
-          alert('no puedes borrar post ajeno oyeeee');
+          // alert('no puedes borrar post ajeno oyeeee');
+          window.location.reload();
         }
       });
 
@@ -105,7 +106,7 @@ export const post = (userData, dataPost, containerPost) => {
       if (userData.userId === objPost.userId) {
         editPost(btnEdit.value, textInput.value);
       } else {
-        alert('no es tu post, no lo edites');
+        // alert('no es tu post, no lo edites');
         window.location.reload();
       }
       btnSave.setAttribute('hidden', 'true');
@@ -116,12 +117,12 @@ export const post = (userData, dataPost, containerPost) => {
     const likes = singlePost.querySelector('#btn-like');
     likes.addEventListener('click', () => {
       const result = objPost.likes.indexOf(userData.userId);
-      console.log('aaa', objPost.userId);
+      // console.log('aaa', objPost.userId);
       if (result === -1) {
         objPost.likes.push(userData.userId);
         countLikes(objPost.id, objPost.likes);
-        console.log('kkkkk', objPost.likes);
-        console.log('ooooo', objPost.id);
+        // console.log('kkkkk', objPost.likes);
+        // console.log('ooooo', objPost.id);
       } else {
         objPost.likes.splice(result, 1);
         countLikes(objPost.id, objPost.likes);

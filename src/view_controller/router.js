@@ -3,7 +3,7 @@ import { onAuthStateChanged } from '../controller/firebase-auth.js';
 import { getDataUser } from '../controller/firebase-firestore.js';
 
 const changeView = (route) => {
-  console.log('test changeView', route);
+  // console.log('test changeView', route);
   const container = document.getElementById('container');
   container.innerHTML = '';
   switch (route) {

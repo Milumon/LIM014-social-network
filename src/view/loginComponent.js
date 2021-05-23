@@ -57,7 +57,7 @@ export default () => {
           <!-- CAMPO DE CORREO -->
           <div class="input-field">
             <i class="fas fa-envelope"></i> 
-            <input type="email" id="email-register" placeholder="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required />
+            <input type="email" id="email-register" placeholder="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+/.[a-z]{2,4}$"  required />
           </div>
           <!-- CAMPO DE CONTRASEÑA -->
           <div class="input-field">
@@ -141,7 +141,7 @@ export default () => {
 
   btnSubmitLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('entró al click');
+    // console.log('entró al click');
 
     const emailLogin = viewLogin.querySelector('#email-login').value;
     const passwordLogin = viewLogin.querySelector('#password-login').value;
@@ -155,7 +155,7 @@ export default () => {
           window.location.hash = '#/timeline';
           window.location.reload();
         } else {
-          alert('user no verificó');
+          // alert('user no verificó');
         }
       })
       .catch((err) => {
@@ -181,7 +181,7 @@ export default () => {
     const contentMsg = viewLogin.querySelector('.msg');
 
     // Registrar usuario
-    console.log(emailRegister, passwordRegister);
+    // console.log(emailRegister, passwordRegister);
     createUser(emailRegister, passwordRegister)
       .then(() => {
         const user = firebase.auth().currentUser;

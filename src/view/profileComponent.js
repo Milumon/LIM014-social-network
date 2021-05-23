@@ -82,40 +82,40 @@ export default (userData) => {
     const formEdit = viewProfile.querySelector('#form-edit');
 
     const inputDescription = viewProfile.querySelector('#profile-description').value;
-    console.log('Descripciooooooon', inputDescription);
+    // console.log('Descripciooooooon', inputDescription);
 
     const imgProfile = inputPhoto.files[0];
 
     const uploadUser = imgProfile ? uploadImage(imgProfile, 'Users') : null;
-    console.log('queeee seraaaaa', uploadUser);
+    // console.log('queeee seraaaaa', uploadUser);
 
     if (imgProfile) {
       uploadUser.on(
         'state_changed',
-        (snapshot) => {
+        () => {
           // Observe state change events such as progress, pause, and resume
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}% done`);
+          // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // console.log(`Upload is ${progress}% done`);
           // eslint-disable-next-line default-case
         },
-        (error) => {
+        () => {
           // Handle unsuccessful uploads
-          console.error(error);
+          // console.error(error);
         },
         () => {
           // Handle successful uploads on complete
           uploadUser.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            console.log(
-              'se está enviando la siguiente data: userID ',
-              downloadURL,
-            );
+            // console.log(
+            //   'se está enviando la siguiente data: userID ',
+            //   downloadURL,
+            // );
             updateUser(userData.userId, downloadURL, inputDescription)
-              .then((refDoc) => {
+              .then(() => {
                 window.location.reload();
-                console.log('Info del user => ', refDoc);
+                // console.log('Info del user => ', refDoc);
               })
-              .catch((error) => {
-                console.log(`Error actualizando el user => ${error}`);
+              .catch(() => {
+                // console.log(`Error actualizando el user => ${error}`);
               });
           });
         },

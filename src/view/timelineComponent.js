@@ -61,7 +61,7 @@ export default (userData) => {
       </article>        
     </div>
   `;
-  console.log('sectionnnnnnn', viewTimeLine);
+  // console.log('sectionnnnnnn', viewTimeLine);
   // user menu
   const userOpc = viewTimeLine.querySelector('#userOpc');
   const subMenuUser = viewTimeLine.querySelector('#subMenuUser');
@@ -88,10 +88,10 @@ export default (userData) => {
   btnLogOut.addEventListener('click', (e) => {
     e.preventDefault();
     // viewTimeLine.innerHTML = '';
-    console.log(viewTimeLine);
+    // console.log(viewTimeLine);
     logOut().then(() => {
       window.location.hash = '#/login';
-      console.log('user salió');
+      // console.log('user salió');
     });
   });
   // Capturar la opción que contiene el add post
@@ -129,48 +129,48 @@ export default (userData) => {
     if (imageFile) {
       uploadTask.on(
         'state_changed',
-        (snapshot) => {
+        () => {
           // Observe state change events such as progress, pause, and resume
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}% done`);
+          // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // console.log(`Upload is ${progress}% done`);
           // eslint-disable-next-line default-case
         },
-        (error) => {
+        () => {
           // Handle unsuccessful uploads
-          console.error(error);
+          // console.error(error);
         },
         () => {
           // Handle successful uploads on complete
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            console.log(
-              'se está enviando la siguiente data: userID ',
-              userId,
-              ' UserName ',
-              userName,
-              ' privacy ',
-              privacy,
-              ' inputContent ',
-              inputContent,
-              ' DOWNLOADurl ',
-              downloadURL,
-            );
+            // console.log(
+            //   'se está enviando la siguiente data: userID ',
+            //   userId,
+            //   ' UserName ',
+            //   userName,
+            //   ' privacy ',
+            //   privacy,
+            //   ' inputContent ',
+            //   inputContent,
+            //   ' DOWNLOADurl ',
+            //   downloadURL,
+            // );
             addPost(userId, userName, privacy, inputContent, downloadURL)
-              .then((refDoc) => {
-                console.log('Info del post => ', refDoc);
+              .then(() => {
+                // console.log('Info del post => ', refDoc);
               })
-              .catch((error) => {
-                console.log(`Error creando el post => ${error}`);
+              .catch(() => {
+                // console.log(`Error creando el post => ${error}`);
               });
           });
         },
       );
     } else {
       addPost(userId, userName, privacy, inputContent)
-        .then((refDoc) => {
-          console.log('Info del post => ', refDoc);
+        .then(() => {
+          // console.log('Info del post => ', refDoc);
         })
-        .catch((error) => {
-          console.log(`Error creando el post => ${error}`);
+        .catch(() => {
+          // console.log(`Error creando el post => ${error}`);
         });
     }
 
