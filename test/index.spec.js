@@ -1,6 +1,10 @@
 import MockFirebase from 'mock-cloud-firestore';
 
-import { addPost, getPosts, deletePost } from '../src/controller/firebase-firestore.js';
+import {
+  addPost,
+  getPosts,
+  deletePost,
+} from '../src/controller/firebase-firestore.js';
 
 const fixtureData = {
   __collection__: {
@@ -18,7 +22,7 @@ const fixtureData = {
         Post002: {
           userId: '002',
           name: 'Bri',
-          description: 'Toda una bichota',
+          description: 'GG',
           privacy: 'Publico',
           date: '22 de mayo 2021',
           likes: ['001', '002'],
@@ -29,23 +33,24 @@ const fixtureData = {
   },
 };
 
+// Instancia de la libreria
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 describe('Add Post', () => {
-  it('Debería de poder agregar un post ', (done) => addPost('003').then(() => {
+  it('Debería de poder agregar un post ', (done) => addPost('003', 'Milu', 'Publico', 'Gucci', 'src/img/perrito3.0.png').then(() => {
     const callback = (notes) => {
-      const result = notes.find((element) => element.title === 'comprar pan');
-      expect(result.title).toBe('comprar pan');
+      const result = notes.find((element) => element.description === 'Gucci');
+      expect(result.description).toBe('Gucci');
       done();
     };
     getPosts(callback);
   }));
 });
 
-describe('', () => {
-  it('Debería poder eliminar un post con id: abc123', (done) => deletePost('abc123').then(() => {
+describe('Delete Post', () => {
+  it('Debería poder eliminar un post con id: 001', (done) => deletePost('001').then(() => {
     const callback = (notes) => {
-      const result = notes.find((element) => element.id === 'abc123');
+      const result = notes.find((element) => element.id === '001');
       expect(result).toBe(undefined);
       done();
     };
