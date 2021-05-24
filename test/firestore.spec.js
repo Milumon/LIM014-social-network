@@ -4,6 +4,7 @@ import {
   addPost,
   getPosts,
   deletePost,
+  editPost,
 } from '../src/controller/firebase-firestore.js';
 
 const fixtureData = {
@@ -52,6 +53,17 @@ describe('Delete Post', () => {
     const callback = (notes) => {
       const result = notes.find((element) => element.id === '001');
       expect(result).toBe(undefined);
+      done();
+    };
+    getPosts(callback);
+  }));
+});
+
+describe('Edit Post', () => {
+  it('Debería poder editar un post con id: 001', (done) => editPost('Post001', 'successful').then(() => {
+    const callback = (notes) => {
+      const result = notes.find((element) => element.description === 'successful');
+      expect(result.description).toBe('successful');
       done();
     };
     getPosts(callback);

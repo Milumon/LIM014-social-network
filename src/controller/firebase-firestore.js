@@ -20,6 +20,15 @@ export const getDataUser = (currentUserId) => {
   return db.collection('user').doc(currentUserId).get();
 };
 
+export const updateUser = (idUser, profilePhoto, descriptionProfile) => {
+  // Obtener acceso a Firestore
+  const db = firebase.firestore();
+  return db
+    .collection('user')
+    .doc(idUser)
+    .update({ profilePhoto, descriptionProfile });
+};
+
 /* ********POST********* */
 export const addPost = (userId, name, privacy, description, imageURL) => {
   // Obtener acceso a Firestore
@@ -75,12 +84,6 @@ export const deletePost = (idPost) => {
   return db.collection('post').doc(idPost).delete();
 };
 
-/* ******** STORAGE ********* */
-export const uploadImage = (file, location) => {
-  const storageRef = firebase.storage().ref(`${location}/${file.name}`);
-  return storageRef.put(file);
-};
-
 export const countLikes = (idPost, likes) => {
   // Obtener acceso a Firestore
   const db = firebase.firestore();
@@ -96,18 +99,8 @@ export const addComment = (userId, idPost, comment) => {
   });
 };
 
-export const updateUser = (idUser, profilePhoto, descriptionProfile) => {
-  // Obtener acceso a Firestore
-  const db = firebase.firestore();
-  return db.collection('user').doc(idUser).update({ profilePhoto, descriptionProfile });
+/* ******** STORAGE ********* */
+export const uploadImage = (file, location) => {
+  const storageRef = firebase.storage().ref(`${location}/${file.name}`);
+  return storageRef.put(file);
 };
-
-/* ****SE ESTABA UTILIZANDO***** */
-
-// export const addUserInfo = (photo, birthday, description) => {
-//   db.collection('user').set({
-//     photo,
-//     birthday,
-//     description,
-//   });
-// };
