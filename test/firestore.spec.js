@@ -6,6 +6,8 @@ import {
   deletePost,
   editPost,
   countLikes,
+  addComment,
+  getComments,
 } from '../src/controller/firebase-firestore.js';
 
 const fixtureData = {
@@ -29,6 +31,17 @@ const fixtureData = {
           date: '22 de mayo 2021',
           likes: ['001', '002'],
           imageURL: 'src/img/perrito3.0.png',
+        },
+      },
+    },
+    comments: {
+      __doc__: {
+        comment001: {
+          comment: 'well',
+          date: '20 may 2021',
+          imageURL: 'src/img/perrito3.0.png',
+          userId: '002',
+          username: 'Thais',
         },
       },
     },
@@ -79,5 +92,16 @@ describe('Likes', () => {
       done();
     };
     getPosts(callback);
+  }));
+});
+
+describe('Comentarios', () => {
+  it('Debería poder comentar', (done) => addComment('002', 'Post002', 'hello', 'Milumon', 'src/img/perrito3.0.png').then(() => {
+    const callback = (notes) => {
+      const result = notes.find((element) => element.comment === 'hello');
+      expect(result.comment).toBe('hello');
+      done();
+    };
+    getComments(callback, 'Post002');
   }));
 });
