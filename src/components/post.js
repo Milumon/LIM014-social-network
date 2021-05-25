@@ -53,17 +53,10 @@ export const post = (userData, dataPost, containerPost) => {
           <textarea class="comment" placeholder="Add a comment" required></textarea>
           <button type="submit" class="fas fa-paper-plane"></button>
         </form>
-        <div id = "boxPosts"></div>
+        <div id = "content-comments"></div>
       </section>  
       </div>
-      <div id ="boxComment" class="hide">
-        <form class="formComment">
-          <textarea class="comment" placeholder="Add a comment" required></textarea>
-          <button type="submit" class="fas fa-paper-plane"></button>
-        </form>
-        <div id = "content-comments"></div>
-      </div>  
-    </div>
+ 
       `;
 
     // Modal opc delete
@@ -146,12 +139,12 @@ export const post = (userData, dataPost, containerPost) => {
 
     // add comments
 
-    const BtnComment = singlePost.querySelector('.fa-paper-plane');
+    const btnShareComment = singlePost.querySelector('.fa-paper-plane');
 
-    BtnComment.addEventListener('click', () => {
+    btnShareComment.addEventListener('click', () => {
       const textComment = singlePost.querySelector('.comment').value;
       /* userId, idPost, comment */
-      addComment(userData.userId, objPost.id, textComment);
+      addComment(userData.userId, objPost.id, textComment, userData.name, userData.profilePhoto);
       console.log('uid:', userData.userId, 'obj:', objPost.id, textComment);
     });
 
@@ -161,11 +154,12 @@ export const post = (userData, dataPost, containerPost) => {
       const commentsContainer = singlePost.querySelector('#content-comments');
       commentsContainer.innerHTML = '';
       comment.forEach((element) => {
+        console.log('GAAAAAAAAAAA', element);
         commentsContainer.innerHTML += `
-        <p>${element.comment}</p>
+        <p>${`${element.username} : ${element.comment}`}</p>
         `;
       });
-    });
+    }, objPost.id);
 
     return containerPost.appendChild(singlePost);
   });

@@ -91,12 +91,14 @@ export const countLikes = (idPost, likes) => {
 };
 
 /* ********COMMENT********* */
-export const addComment = (userId, idPost, comment) => {
+export const addComment = (userId, idPost, comment, username, imageURL) => {
   const db = firebase.firestore();
   return db.collection('post').doc(idPost).collection('comments').add({
     userId,
     date: firebase.firestore.FieldValue.serverTimestamp(),
     comment,
+    username,
+    imageURL,
   });
 };
 
