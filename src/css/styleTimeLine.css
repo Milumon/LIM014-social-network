@@ -63,9 +63,59 @@
   }
 
   /* img user in post */
-  .user-post-description img {
+  .img-user-post-description {
     width: 98%;
     border-radius: 20px
+  }
+
+  .user-post-description .single-comment {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "img  name"
+      "img  description";
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    margin-bottom: 7px;
+    padding: 5px 8px;
+  }
+
+  /*Etiqueta en común*/
+  .img {
+    grid-area: img;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%
+  }
+
+  .name {
+    grid-area: name;
+    text-align: left;
+    margin-left: 8px;
+    font-size: 13px
+  }
+
+  .description {
+    grid-area: description;
+    text-align: left;
+  }
+
+  .formComment {
+    display: flex;
+    flex-direction: row;
+    background: var(--background);
+    margin-bottom: 10px;
+    margin: 10px auto;
+    border-radius: 10px;
+  }
+
+  .formComment button {
+    color: var(--paletteOne-two-color);
+    background-color: var(--paletteOne-one-color);
+    border: 1.95px solid var(--paletteOne-one-color);
+    border-radius: 2px;
+    box-sizing: border-box;
+    padding: 3px
   }
 
   /* img user in profile*/
@@ -241,14 +291,16 @@
   }
 
   .content-posts .post-user .user-post-description .post-save {
-    width: 11%;
-    background-color: var(--paletteOne-two-color);
-    border: 1px solid var(--paletteOne-two-color);
+    width: 12%;
+    color: var(--paletteOne-two-color);
+    background-color: var(--paletteOne-one-color);
+    border: 1.95px solid var(--paletteOne-one-color);
+    box-sizing: border-box;
     font-weight: 600;
     letter-spacing: 1px;
     border-radius: 4px;
     cursor: pointer;
-    color: var(--paletteOne-three-color)
+    font-size: 10px;
   }
 
   /* Profile */

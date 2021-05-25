@@ -38,7 +38,7 @@ export const post = (userData, dataPost, containerPost) => {
         </nav>
       </header>
       <div class="user-post-description">
-        <img src="${objPost.imageURL}">
+        <img class="img-user-post-description" src="${objPost.imageURL}">
       <div id="content-description">
         <textarea class="description" readonly>${objPost.description}</textarea>
         <button class="post-save" value="${objPost.id}" hidden="">save</button>
@@ -145,7 +145,6 @@ export const post = (userData, dataPost, containerPost) => {
       const textComment = singlePost.querySelector('.comment').value;
       /* userId, idPost, comment */
       addComment(userData.userId, objPost.id, textComment, userData.name, userData.profilePhoto);
-      console.log('uid:', userData.userId, 'obj:', objPost.id, textComment);
     });
 
     // get comments
@@ -156,7 +155,13 @@ export const post = (userData, dataPost, containerPost) => {
       comment.forEach((element) => {
         console.log('GAAAAAAAAAAA', element);
         commentsContainer.innerHTML += `
-        <p>${`${element.username} : ${element.comment}`}</p>
+        <div class="single-comment">
+          <img class="img" src= "${element.imageURL}"/>
+          <h4 class="name">${element.username}</h4>
+          <p class="description">
+          ${element.comment}
+          </p>
+        </div>
         `;
       });
     }, objPost.id);
