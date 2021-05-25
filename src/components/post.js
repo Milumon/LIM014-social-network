@@ -3,6 +3,7 @@ import {
   deletePost,
   editPost,
   countLikes,
+  getComments,
 } from '../controller/firebase-firestore.js';
 
 export const post = (userData, dataPost, containerPost) => {
@@ -25,8 +26,12 @@ export const post = (userData, dataPost, containerPost) => {
             <li>   
             <a class="fas fa-grip-vertical" id="icon-edit"></a>
             <ul class= "ul-second">
-              <li><button class="post-edit" value="${objPost.id}">edit</button></li>
-              <li><button class= "post-delete" value="${objPost.id}">delete</button></li>
+              <li><button class="post-edit" value="${
+  objPost.id
+}">edit</button></li>
+              <li><button class= "post-delete" value="${
+  objPost.id
+}">delete</button></li>
             </ul>
             </li>
           </ul>
@@ -56,7 +61,7 @@ export const post = (userData, dataPost, containerPost) => {
           <textarea class="comment" placeholder="Add a comment" required></textarea>
           <button type="submit" class="fas fa-paper-plane"></button>
         </form>
-        <div id = "boxPosts"></div>
+        <div id = "content-comments"></div>
       </div>  
     </div>
       `;
@@ -65,7 +70,9 @@ export const post = (userData, dataPost, containerPost) => {
     const btnDelete = singlePost.querySelector('.post-delete');
     const modal = singlePost.querySelector('#modalContainer');
     const btnDeleteConfirm = singlePost.querySelector('#btnDeletePost');
-    const btnCancelDeletePost = singlePost.querySelector('#btnCancelDeletePost');
+    const btnCancelDeletePost = singlePost.querySelector(
+      '#btnCancelDeletePost',
+    );
 
     btnDelete.addEventListener('click', () => {
       modal.classList.toggle('hide');
@@ -137,14 +144,27 @@ export const post = (userData, dataPost, containerPost) => {
       boxComment.classList.toggle('hide');
     });
 
-    // add comment
-    const formComment = singlePost.querySelector('.formComment');
+    // add comments
 
-    formComment.addEventListener('submit', (e) => {
-      e.preventDefault();
+    const BtnComment = singlePost.querySelector('.fa-paper-plane');
+
+    BtnComment.addEventListener('click', () => {
       const textComment = singlePost.querySelector('.comment').value;
       /* userId, idPost, comment */
       addComment(userData.userId, objPost.id, textComment);
+      console.log('uid:', userData.userId, 'obj:', objPost.id, textComment);
+    });
+
+    // get comments
+    getComments((comment) => {
+      console.log(comment);
+      const commentsContainer = singlePost.querySelector('#content-comments');
+      commentsContainer.innerHTML = '';
+      comment.forEach((element) => {
+        commentsContainer.innerHTML += `
+        <p>${element.comment}</p>
+        `;
+      });
     });
 
     return containerPost.appendChild(singlePost);

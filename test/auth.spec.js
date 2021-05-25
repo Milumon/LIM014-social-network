@@ -1,12 +1,10 @@
 // configurando firebase mock
 // iniciando tests
-
 import {
   loginUser,
   logOut,
   createUser,
   signInGoogle,
-  sendEmail,
 } from '../src/controller/firebase-auth.js';
 
 const firebasemock = require('firebase-mock');

@@ -5,6 +5,7 @@ import {
   getPosts,
   deletePost,
   editPost,
+  countLikes,
 } from '../src/controller/firebase-firestore.js';
 
 const fixtureData = {
@@ -17,7 +18,7 @@ const fixtureData = {
           description: 'No me testeen',
           privacy: 'Publico',
           date: '20 de mayo 2021',
-          likes: ['001'],
+          likes: [],
           imageURL: 'src/img/perrito3.0.png',
         },
         Post002: {
@@ -64,6 +65,17 @@ describe('Edit Post', () => {
     const callback = (notes) => {
       const result = notes.find((element) => element.description === 'successful');
       expect(result.description).toBe('successful');
+      done();
+    };
+    getPosts(callback);
+  }));
+});
+
+describe('Likes', () => {
+  it('Debería poder dar like al post con id: 001', (done) => countLikes('Post001', '001').then(() => {
+    const callback = (notes) => {
+      const result = notes.find((element) => element.likes === '001');
+      expect(result.likes).toBe('001');
       done();
     };
     getPosts(callback);
