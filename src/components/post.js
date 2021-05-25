@@ -115,6 +115,7 @@ export const post = (userData, dataPost, containerPost) => {
 
     // update likes
     const likes = singlePost.querySelector('#btn-like');
+
     likes.addEventListener('click', () => {
       const result = objPost.likes.indexOf(userData.userId);
       // console.log('aaa', objPost.userId);

@@ -209,9 +209,12 @@ export default () => {
   btnGoogle.addEventListener('click', () => {
     signInGoogle()
       .then(() => {
+        // userId, name, email, password
         addUser(
+          firebase.auth().currentUser.uid,
           firebase.auth().currentUser.displayName,
           firebase.auth().currentUser.email,
+          'registradoPorGoogle',
         );
       })
       .then(() => {

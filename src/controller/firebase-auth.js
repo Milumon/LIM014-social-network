@@ -35,7 +35,7 @@ export const signInGoogle = () => {
   // Autenticar con Firebase a través del proveedor de Google
   const provider = new firebase.auth.GoogleAuthProvider();
   // Para acceder con una ventana emergente
-  user.signInWithPopup(provider);
+  return user.signInWithPopup(provider);
 };
 
 // Salir de sesión de un usuario

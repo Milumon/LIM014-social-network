@@ -5,6 +5,8 @@ import {
   loginUser,
   logOut,
   createUser,
+  signInGoogle,
+  sendEmail,
 } from '../src/controller/firebase-auth.js';
 
 const firebasemock = require('firebase-mock');
@@ -19,23 +21,24 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockauth,
 );
 
-describe('Create user', () => {
-  it('Debería poder iniciar sesion', () => createUser('net@gmail.com', '12345678').then((user) => {
-    expect(user.email).toBe('net@gmail.com');
-  }));
-});
-
-describe('Login user', () => {
-  it('Debería poder iniciar sesion', () => loginUser('net@gmail.com', '12345678')
+describe('Métodos de autenticación', () => {
+  it('Debería poder registrarse con correo y contraseña', () => createUser('net@gmail.com', '12345678')
     .then((user) => {
       expect(user.email).toBe('net@gmail.com');
     }));
-});
 
-describe('Logout user', () => {
-  it('Debería salir de sesión', () => {
+  it('Debería poder iniciar sesion con correo y contraseña', () => loginUser('net@gmail.com', '12345678')
+    .then((user) => {
+      expect(user.email).toBe('net@gmail.com');
+    }));
+  it('Debería salir de sesión y el usuario retornar null', () => {
     logOut().then((user) => {
       expect(user).toBe(null);
+    });
+  });
+  it('Debería ser google.com', () => {
+    signInGoogle().then((google) => {
+      expect(google.providerData[0].providerId).toBe('google.com');
     });
   });
 });
