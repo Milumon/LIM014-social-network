@@ -78,7 +78,6 @@ export const post = (userData, dataPost, containerPost) => {
             });
         } else {
           // alert('no puedes borrar post ajeno oyeeee');
-          window.location.reload();
         }
       });
 
