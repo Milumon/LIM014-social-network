@@ -1,11 +1,13 @@
 import loginComponent from './loginComponent.js';
-import registerComponent from './registerComponent.js';
 import timelineComponent from './timelineComponent.js';
+import profileComponent from './profileComponent.js';
 
 const components = {
   login: loginComponent,
-  register: registerComponent,
   timeline: timelineComponent,
+  profile: profileComponent,
 };
 
-export { components };
+export {
+  components,
+};

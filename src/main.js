@@ -1,11 +1,13 @@
 // Este es el punto de entrada de tu aplicacion
-import { changeView } from './lib/router.js';
+import {
+  changeView,
+} from './view_controller/router.js';
 
 // 36.20
 
 const init = () => {
+  changeView(window.location.hash);
   window.addEventListener('hashchange', () => {
-    console.log('init', window.location.hash);
     changeView(window.location.hash);
   });
 };
