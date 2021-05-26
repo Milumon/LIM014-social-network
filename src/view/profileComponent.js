@@ -35,7 +35,7 @@ export default (userData) => {
   <!--Profile-->
     <div class="contentProfile-container">
       <article class="content-profile">
-        <div class="profile">
+        <div class="section-profile">
          <div class="ProfileImg">
          <div class="imageContain"><img src="${userData.profilePhoto}" alt=""></div>
          </div>
@@ -65,14 +65,12 @@ export default (userData) => {
   </div>
   `;
   // go to home
-
   const btnHome = viewProfile.querySelector('.fa-home');
   btnHome.addEventListener('click', () => {
     window.location.hash = '#/timeline';
   });
 
   // subir photo
-
   const inputPhoto = viewProfile.querySelector('#btnUploadPhoto');
   const btnSaveProfile = viewProfile.querySelector('#save-profile');
 

@@ -149,11 +149,9 @@ export const post = (userData, dataPost, containerPost) => {
 
     // get comments
     getComments((comment) => {
-      console.log(comment);
       const commentsContainer = singlePost.querySelector('#content-comments');
       commentsContainer.innerHTML = '';
       comment.forEach((element) => {
-        console.log('GAAAAAAAAAAA', element);
         commentsContainer.innerHTML += `
         <div class="single-comment">
           <img class="img" src= "${element.imageURL}"/>
