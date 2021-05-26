@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+:root {
+  /*Color Palette*/
+  --paletteOne-one-color: #262A4C;
+  --paletteOne-two-color: #2FE099;
+  --paletteOne-three-color: white;
+  --background: #fafafa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+input {
+  font-family: "Lobster", sans-serif;
+  background-color: var(--background);
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+  width: 80%;
+  border: 1px solid white;
+  padding: 2px 0 0 5px;
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 14px;
+  text-align: center;
+}
+
+textarea:hover {
+  border: 1px solid white;
+}
+
+textarea:focus {
+  outline: white;
+  border: 10px solid white;
+}
