@@ -250,7 +250,8 @@
   }
 
   .content-posts .post-user .header-post-user p {
-    font-size: 12px
+    font-size: 12px;
+    margin-right: 50px;
   }
 
   .content-posts .post-user .header-post-user .icon-edit i {
