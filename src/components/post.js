@@ -20,6 +20,7 @@ export const post = (userData, dataPost, containerPost) => {
         <figure class="img-user">
           <img src="">
           <p>${objPost.name}</p>
+          <p>${objPost.date}</p>
         </figure>
         <nav class="nav-edit">
           <ul class= "ul-content"> 
@@ -44,7 +45,9 @@ export const post = (userData, dataPost, containerPost) => {
         <button class="post-save" value="${objPost.id}" hidden="">save</button>
       </div>
       <div class="like-comment">
-        <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
+        <a><i class="far fa-heart ${
+  objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'
+}" value="${objPost.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment" id="btn-comment"></i></a>
         <p>${objPost.likes.length}</p>
       </div>
@@ -71,11 +74,7 @@ export const post = (userData, dataPost, containerPost) => {
       modal.classList.toggle('hide');
       btnDeleteConfirm.addEventListener('click', () => {
         if (userData.userId === objPost.userId) {
-          deletePost(btnDelete.value)
-            .then(() => {})
-            .catch(() => {
-              // console.error('Error removing document: ', error);
-            });
+          deletePost(btnDelete.value);
         } else {
           // alert('no puedes borrar post ajeno oyeeee');
         }

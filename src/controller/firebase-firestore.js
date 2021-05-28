@@ -30,6 +30,24 @@ export const updateUser = (idUser, profilePhoto, descriptionProfile) => {
 };
 
 /* ********POST********* */
+const datePostDB = () => {
+  const datePost = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  };
+  const timePost = {
+    hour12: 'true',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+  const date = new Date().toLocaleDateString('es-Es', datePost);
+  const time = new Date().toLocaleTimeString('es-Es', timePost);
+  const dateTime = `${date} ${time}`;
+
+  return dateTime;
+};
+
 export const addPost = (userId, name, privacy, description, imageURL) => {
   // Obtener acceso a Firestore
   const db = firebase.firestore();
@@ -39,7 +57,7 @@ export const addPost = (userId, name, privacy, description, imageURL) => {
     name,
     description,
     privacy,
-    date: firebase.firestore.FieldValue.serverTimestamp(),
+    date: datePostDB(),
     imageURL: imageURL || '',
     likes: [],
   });
