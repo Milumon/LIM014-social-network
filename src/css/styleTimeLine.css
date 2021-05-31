@@ -18,7 +18,7 @@
     height: 100%;
     overflow: auto;
     background-color: #a58f8f47;
-    padding-top: 50px;
+    padding: 50px;
   }
 
   /* Header */
@@ -208,13 +208,28 @@
   }
 
   /********** Posts ***********/
+
+  .ul-content {
+    right: 0;
+    top: -10px;
+    position: relative;
+  }
   .ul-content li ul {
     display: none;
+ 
   }
 
   .ul-content li:hover ul {
     display: block;
+ 
   }
+
+  .ul-content > li {
+    position: absolute;
+    right: 0;
+  }
+
+  
 
   .content-posts .post-user {
     background-color: white;
