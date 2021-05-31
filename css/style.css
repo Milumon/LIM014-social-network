@@ -25,7 +25,7 @@ li {
   list-style: none;
 }
 
-textarea {
+#content-description > textarea {
   resize: none;
   width: 80%;
   border: 1px solid white;
@@ -36,11 +36,11 @@ textarea {
   text-align: center;
 }
 
-textarea:hover {
+#content-description > textarea:hover {
   border: 1px solid white;
 }
 
-textarea:focus {
+#content-description > textarea:focus {
   outline: white;
   border: 10px solid white;
 }

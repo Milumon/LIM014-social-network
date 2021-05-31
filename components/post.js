@@ -12,7 +12,8 @@ export const post = (userData, dataPost, containerPost) => {
     const singlePost = document.createElement('section');
     singlePost.classList.add('post-user');
     singlePost.innerHTML += /* html */ `
-      <div id="modalContainer" class="modal hide">
+      <div id="modalContainer" class="hide">
+        <p class="messageDelete">¿Deseas eliminar tu post?</p>
         <input type="button" id="btnCancelDeletePost" value="Cancelar">
         <input type="button" id="btnDeletePost" value="Aceptar">
       </div>
@@ -20,18 +21,15 @@ export const post = (userData, dataPost, containerPost) => {
         <figure class="img-user">
           <img src="">
           <p>${objPost.name}</p>
+          <p>${objPost.date}</p>
         </figure>
-        <nav class="nav-edit">
+        <nav class="nav-edit ${objPost.userId === userData.userId ? 'show' : 'hide'}" >
           <ul class= "ul-content"> 
             <li>   
             <a class="fas fa-grip-vertical" id="icon-edit"></a>
             <ul class= "ul-second">
-              <li><button class="post-edit" value="${
-  objPost.id
-}">edit</button></li>
-              <li><button class= "post-delete" value="${
-  objPost.id
-}">delete</button></li>
+              <li><button class="post-edit" value="${objPost.id}">edit</button></li>
+              <li><button class= "post-delete" value="${objPost.id}">delete</button></li>
             </ul>
             </li>
           </ul>
@@ -44,13 +42,15 @@ export const post = (userData, dataPost, containerPost) => {
         <button class="post-save" value="${objPost.id}" hidden="">save</button>
       </div>
       <div class="like-comment">
-        <a><i class="far fa-heart ${objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'}" value="${objPost.id}" id="btn-like"></i></a>
+        <a><i class="far fa-heart ${
+  objPost.likes.includes(userData.userId) ? 'liked' : 'unliked'
+}" value="${objPost.id}" id="btn-like"></i></a>
         <a><i class="far fa-comment" id="btn-comment"></i></a>
         <p>${objPost.likes.length}</p>
       </div>
       <section id ="boxComment" class="hide">
         <form class="formComment">
-          <textarea class="comment" placeholder="Add a comment" required></textarea>
+          <textarea class="comment comment-text" placeholder="Add a comment" required></textarea>
           <button type="submit" class="fas fa-paper-plane"></button>
         </form>
         <div id = "content-comments"></div>
@@ -60,6 +60,7 @@ export const post = (userData, dataPost, containerPost) => {
       `;
 
     // Modal opc delete
+    const userPostInfo = singlePost.querySelector('.header-post-user');
     const btnDelete = singlePost.querySelector('.post-delete');
     const modal = singlePost.querySelector('#modalContainer');
     const btnDeleteConfirm = singlePost.querySelector('#btnDeletePost');
@@ -69,21 +70,19 @@ export const post = (userData, dataPost, containerPost) => {
 
     btnDelete.addEventListener('click', () => {
       modal.classList.toggle('hide');
+      userPostInfo.classList.toggle('hide');
+
       btnDeleteConfirm.addEventListener('click', () => {
         if (userData.userId === objPost.userId) {
-          deletePost(btnDelete.value)
-            .then(() => {})
-            .catch(() => {
-              // console.error('Error removing document: ', error);
-            });
+          deletePost(btnDelete.value);
         } else {
-          // alert('no puedes borrar post ajeno oyeeee');
-          window.location.reload();
+          document.write('no puedes borrar post ajeno oyeeee');
         }
       });
 
       btnCancelDeletePost.addEventListener('click', () => {
-        modal.classList.toggle('hide');
+        modal.classList.add('hide');
+        userPostInfo.classList.remove('hide');
       });
     });
 

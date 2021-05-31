@@ -6,24 +6,19 @@
 
   /* Modal */
   .hide {
-    display: none;
+    display: none !important;
   }
 
-  .modal {
-    position: fixed;
-    /* Stay in place */
+  #modalContainer {
+    position: relative;
     z-index: 1;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
-    background-color: #474e5d;
-    padding-top: 50px;
+    background-color: #a58f8f47;
+    padding: 50px;
   }
 
   /* Header */
@@ -203,24 +198,38 @@
   }
 
   .content-share .share button {
-    margin-top: 10px;
-    width: 80px;
+    margin-top: 10px; 
     color: var(--paletteOne-one-color);
     background-color: var(--paletteOne-two-color);
     border: 1.95px solid var(--paletteOne-two-color);
-    border-radius: 2px;
-    box-sizing: border-box;
-    padding: 1px
+    border-radius: 10px;
+    padding: 5px 15px;
+    box-sizing: border-box; 
   }
 
   /********** Posts ***********/
+
+  .ul-content {
+    right: 0;
+    top: -10px;
+    position: relative;
+  }
   .ul-content li ul {
     display: none;
+ 
   }
 
   .ul-content li:hover ul {
     display: block;
+ 
   }
+
+  .ul-content > li {
+    position: absolute;
+    right: 0;
+  }
+
+  
 
   .content-posts .post-user {
     background-color: white;
@@ -250,7 +259,8 @@
   }
 
   .content-posts .post-user .header-post-user p {
-    font-size: 12px
+    font-size: 12px;
+    margin-right: 50px;
   }
 
   .content-posts .post-user .header-post-user .icon-edit i {
@@ -407,6 +417,56 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
   }
+ 
+}
+
+.fa-edit:hover {
+  cursor: pointer;
+  color:white !important;
+}
+
+.fa-search {
+  display: none;
+}
+
+.fa-home:hover {
+  cursor: pointer;
+  color:white !important;
+}  
+
+.comment-text {
+border-radius: 10px;
+    resize: none;
+    /* width: 98%; */
+    border: 1px solid black;
+    padding: 2px 0 0 5px;
+    /* margin: 10px; */
+    font-weight: bolder;
+    font-size: 14px;
+    text-align: center;
+    width: 202px;
+}
+
+.formComment {
+  padding: 0 !important;
+}
+
+.messageDelete {
+  padding: 30px 0px;
+}
+
+#btnDeletePost{
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  background: red;
+}
+
+#btnCancelDeletePost{
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  background: var(--paletteOne-one-color);
 }
