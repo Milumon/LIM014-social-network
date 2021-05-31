@@ -6,23 +6,18 @@
 
   /* Modal */
   .hide {
-    display: none;
+    display: none !important;
   }
 
-  .modal {
-    position: fixed;
-    /* Stay in place */
+  #modalContainer {
+    position: relative;
     z-index: 1;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
-    background-color: #474e5d;
+    background-color: #a58f8f47;
     padding-top: 50px;
   }
 
@@ -203,14 +198,13 @@
   }
 
   .content-share .share button {
-    margin-top: 10px;
-    width: 80px;
+    margin-top: 10px; 
     color: var(--paletteOne-one-color);
     background-color: var(--paletteOne-two-color);
     border: 1.95px solid var(--paletteOne-two-color);
-    border-radius: 2px;
-    box-sizing: border-box;
-    padding: 1px
+    border-radius: 10px;
+    padding: 5px 15px;
+    box-sizing: border-box; 
   }
 
   /********** Posts ***********/
@@ -408,6 +402,56 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
   }
+ 
+}
+
+.fa-edit:hover {
+  cursor: pointer;
+  color:white !important;
+}
+
+.fa-search {
+  display: none;
+}
+
+.fa-home:hover {
+  cursor: pointer;
+  color:white !important;
+}  
+
+.comment-text {
+border-radius: 10px;
+    resize: none;
+    /* width: 98%; */
+    border: 1px solid black;
+    padding: 2px 0 0 5px;
+    /* margin: 10px; */
+    font-weight: bolder;
+    font-size: 14px;
+    text-align: center;
+    width: 202px;
+}
+
+.formComment {
+  padding: 0 !important;
+}
+
+.messageDelete {
+  padding: 30px 0px;
+}
+
+#btnDeletePost{
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  background: red;
+}
+
+#btnCancelDeletePost{
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  background: var(--paletteOne-one-color);
 }
