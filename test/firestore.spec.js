@@ -48,7 +48,7 @@ const fixtureData = {
   },
 };
 
-// Instancia de la libreria 
+// Instancia de la libreria
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 describe('Add Post', () => {
